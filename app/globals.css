@@ -2,7 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #fdfbf7;
+  --fg: #2d2d2d;
+  --muted: #e5e0d8;
+  --accent: #ff4d4d;
+  --blue: #2d5da1;
+
+  /* wobbly radii */
+  --r-wobbly: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --r-wobbly-md: 225px 18px 255px 18px / 18px 255px 18px 225px;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: sans-serif;
+  color: var(--fg);
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--muted) 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: var(--font-body), system-ui, -apple-system, Segoe UI, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading), system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+:focus-visible {
+  outline: 3px dashed var(--blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }
