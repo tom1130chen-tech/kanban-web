@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { Board, type BoardStatus } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
@@ -7,10 +8,12 @@ import { Button } from "../components/ui/Button";
 const tabs = [
   { id: "board", label: "KANBAN", title: "Project board" },
   { id: "todo", label: "TO DO + CALENDAR", title: "Schedule + tasks" },
-  { id: "news", label: "DAILY NEWS", title: "Signals & headlines" },
-  { id: "finance", label: "FINANCIAL WATCH", title: "Markets & liquidity" },
+  { id: "news", label: "DAILY NEWS", title: "Signals + headlines" },
+  { id: "finance", label: "FINANCIAL WATCH", title: "Markets + liquidity" },
   { id: "focus", label: "FOCUS", title: "Rituals" },
 ];
+
+const sectionLabels = ["Scheduled", "Queue", "In Progress", "Done"];
 
 const todoList = [
   { id: "todo-01", title: "Refine weekly sprint plan", owner: "Ops", due: "Wed" },
@@ -114,12 +117,22 @@ export default function Page() {
         </div>
       </nav>
 
-      <div className="mt-8 space-y-8" aria-live="polite">
+      <div className="board-stage" aria-live="polite">
         {activeTab === "board" && (
-          <div className="space-y-6">
-            <Board onStatusChange={setBoardStatus} />
-            <div className="grid gap-4 lg:grid-cols-[1fr_minmax(220px,240px)]">
-              <div className="rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard">
+          <>
+            <div className="board-labels">
+              {sectionLabels.map((label) => (
+                <span key={label} className="board-section-marker">
+                  {label}
+                </span>
+              ))}
+            </div>
+            <div className="board-divider" aria-hidden />
+            <div className="board-canvas">
+              <Board onStatusChange={setBoardStatus} />
+            </div>
+            <div className="grid gap-4 lg:grid-cols-[1fr_minmax(240px,260px)]">
+              <div className="rounded-[var(--r-wobbly)] border-[2px] border-dashed border-pencil bg-white/90 p-5 shadow-hard">
                 <p className="text-sm uppercase tracking-[0.5em] text-slate-500">Crew</p>
                 <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                   {teamMembers.map((member) => (
@@ -142,15 +155,22 @@ export default function Page() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard">
-                <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Highlight</p>
-                <p className="mt-2 text-lg font-heading text-slate-900">
-                  {teamMembers.find((member) => member.id === activeCrew)?.name}
-                </p>
-                <p className="mt-1 text-sm text-slate-600">{crewHighlights[activeCrew]}</p>
+              <div className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard flex flex-col gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="creature-img">
+                    <Image src="/avatar.png" alt="CKC335" width={72} height={72} />
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Highlight</p>
+                    <p className="text-lg font-heading text-slate-900">
+                      {teamMembers.find((member) => member.id === activeCrew)?.name}
+                    </p>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-600">{crewHighlights[activeCrew]}</p>
               </div>
             </div>
-          </div>
+          </>
         )}
 
         {activeTab === "todo" && (

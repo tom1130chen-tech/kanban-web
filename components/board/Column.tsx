@@ -2,7 +2,6 @@
 
 import { Droppable } from "@hello-pangea/dnd";
 import type { ColumnId, KanbanCard as CardType } from "../../lib/boardTypes";
-import { Card } from "../ui/Card";
 import { KanbanCard } from "./KanbanCard";
 import { cn } from "../../lib/utils";
 
@@ -17,16 +16,17 @@ export function Column({
   cards: CardType[];
   tilt: "left" | "right";
 }) {
+  const tiltClass = tilt === "left" ? "-rotate-[0.4deg]" : "rotate-[0.4deg]";
   return (
-    <Card decoration="tape" tilt={tilt} className="min-h-[420px] flex flex-col">
-      <div className="flex items-start justify-between gap-3">
+    <div className={cn("flex flex-col gap-3", tiltClass)}>
+      <div className="flex items-center justify-between gap-2">
         <div>
           <h2 className="m-0 text-2xl">{title}</h2>
         </div>
         <div className="flex items-center gap-2">
-          <div className="h-9 min-w-9 grid place-items-center border-[3px] border-pencil bg-postit shadow-hardSm text-base [border-radius:var(--r-wobbly)]">
+          <span className="h-9 min-w-9 grid place-items-center border-[3px] border-pencil bg-postit text-base [border-radius:var(--r-wobbly)]">
             {cards.length}
-          </div>
+          </span>
         </div>
       </div>
 
@@ -36,16 +36,12 @@ export function Column({
             ref={provided.innerRef}
             {...provided.droppableProps}
             className={cn(
-              "mt-4 flex flex-col gap-3 flex-1",
+              "flex flex-col gap-3",
               snapshot.isDraggingOver &&
-                "p-3 border-[3px] border-dashed border-penblue bg-penblue/5 [border-radius:var(--r-wobbly-md)]"
+                "p-3 border-[3px] border-dashed border-penblue bg-penblue/5 [border-radius:var(--r-wobbly-md)]",
+              "min-h-[300px]"
             )}
           >
-            {cards.length === 0 && (
-              <div className="border-2 border-dashed border-pencil p-3 opacity-80 [border-radius:var(--r-wobbly-md)]">
-                Empty
-              </div>
-            )}
             {cards.map((c, i) => (
               <KanbanCard key={c.id} card={c} index={i} />
             ))}
@@ -53,6 +49,6 @@ export function Column({
           </div>
         )}
       </Droppable>
-    </Card>
+    </div>
   );
 }
