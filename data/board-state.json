@@ -1,0 +1,40 @@
+{
+  "Scheduled": [
+    {
+      "id": "card-001",
+      "owner": "Product",
+      "dueDate": "2026-03-10",
+      "description": "Finalize the kanban-web deployment checklist and confirm env vars."
+    }
+  ],
+  "Queue": [
+    {
+      "id": "card-002",
+      "owner": "Ops",
+      "dueDate": "2026-03-12",
+      "description": "Document the Firebase rules and seeding steps for future deploys."
+    },
+    {
+      "id": "card-003",
+      "owner": "Design",
+      "dueDate": "2026-03-15",
+      "description": "Draft the next UX iteration (color tweaks, hero copy, button states)."
+    }
+  ],
+  "In Progress": [
+    {
+      "id": "card-004",
+      "owner": "Dev",
+      "dueDate": "2026-03-08",
+      "description": "Add card editing and deletion flows plus form validation."
+    }
+  ],
+  "Done": [
+    {
+      "id": "card-005",
+      "owner": "Dev",
+      "dueDate": "2026-03-01",
+      "description": "Convert the page to a client component and fix alias resolution."
+    }
+  ]
+}

@@ -2,11 +2,10 @@
 
 import { DragDropContext, type DropResult } from "@hello-pangea/dnd";
 import { useEffect, useMemo, useState } from "react";
-import { ensureAnonAuth } from "../../lib/auth";
-import { COLUMN_ORDER, makeEmptyBoard, type BoardState, type ColumnId } from "../../lib/boardTypes";
-import { subscribeBoard, writeBoard } from "../../lib/boardStore";
+import { COLUMN_ORDER, type BoardState, type ColumnId } from "../../lib/boardTypes";
 import { Column } from "./Column";
 import { AddCardModal } from "./AddCardModal";
+import { loadBoardState, saveBoardState, getSeedBoard } from "../../lib/localBoard";
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number) {
   const result = Array.from(list);
@@ -15,9 +14,11 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number) {
   return result;
 }
 
+type Status = "synced" | "saving" | "error";
+
 export function Board() {
-  const [board, setBoard] = useState<BoardState>(makeEmptyBoard());
-  const [status, setStatus] = useState<"connecting" | "synced" | "saving" | "error">("connecting");
+  const [board, setBoard] = useState<BoardState>(getSeedBoard());
+  const [status, setStatus] = useState<Status>("synced");
   const [error, setError] = useState<string | null>(null);
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,43 +27,20 @@ export function Board() {
   const tiltByIndex = useMemo(() => ["left", "right"] as const, []);
 
   useEffect(() => {
-    let unsub: (() => void) | null = null;
-    (async () => {
-      try {
-        await ensureAnonAuth();
-        unsub = subscribeBoard(
-          (state) => {
-            setBoard(state);
-            setStatus("synced");
-            setError(null);
-          },
-          (e) => {
-            setStatus("error");
-            setError(e instanceof Error ? e.message : "Failed to subscribe.");
-          }
-        );
-        setStatus("synced");
-      } catch (e) {
-        setStatus("error");
-        setError(e instanceof Error ? e.message : "Auth/init failed.");
-      }
-    })();
-
-    return () => {
-      if (unsub) unsub();
-    };
+    if (typeof window === "undefined") return;
+    setBoard(loadBoardState());
   }, []);
 
-  async function persist(next: BoardState) {
+  function persist(next: BoardState) {
     setBoard(next);
     setStatus("saving");
     try {
-      await ensureAnonAuth();
-      await writeBoard(next);
+      saveBoardState(next);
       setStatus("synced");
-    } catch (e) {
+      setError(null);
+    } catch (err) {
       setStatus("error");
-      setError(e instanceof Error ? e.message : "Write failed.");
+      setError(err instanceof Error ? err.message : "Failed to persist board state.");
     }
   }
 
@@ -75,7 +53,7 @@ export function Board() {
 
     if (src === dst) {
       const nextCol = reorder(board[src], source.index, destination.index);
-      void persist({ ...board, [src]: nextCol });
+      persist({ ...board, [src]: nextCol });
       return;
     }
 
@@ -84,7 +62,7 @@ export function Board() {
     const [moved] = srcItems.splice(source.index, 1);
     dstItems.splice(destination.index, 0, moved);
 
-    void persist({ ...board, [src]: srcItems, [dst]: dstItems });
+    persist({ ...board, [src]: srcItems, [dst]: dstItems });
   }
 
   return (
@@ -98,14 +76,7 @@ export function Board() {
 
       <div className="mb-3 inline-flex items-center gap-2 border-2 border-dashed border-pencil bg-white/70 px-3 py-2 shadow-hardSm [border-radius:var(--r-wobbly)] rotate-[1deg]">
         <span className="text-lg">
-          Status:{" "}
-          {status === "connecting"
-            ? "connecting"
-            : status === "saving"
-            ? "saving"
-            : status === "synced"
-            ? "synced"
-            : "error"}
+          Status: {status === "saving" ? "saving" : status === "error" ? "error" : "synced"}
         </span>
       </div>
 
@@ -133,7 +104,7 @@ export function Board() {
         onClose={() => setModalOpen(false)}
         onCreate={(card) => {
           const col = modalColumn!;
-          void persist({ ...board, [col]: [card, ...board[col]] });
+          persist({ ...board, [col]: [card, ...board[col]] });
         }}
       />
     </div>
