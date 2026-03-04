@@ -19,6 +19,8 @@ type BoardProps = {
   onStatusChange?: (status: BoardStatus) => void;
 };
 
+const sectionLabels = ["Scheduled", "Queue", "In Progress", "Done"];
+
 export function Board({ onStatusChange }: BoardProps) {
   const [board, setBoard] = useState<BoardState>(getSeedBoard());
   const [status, setStatus] = useState<BoardStatus>("synced");
@@ -82,16 +84,26 @@ export function Board({ onStatusChange }: BoardProps) {
       )}
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {COLUMN_ORDER.map((colId, idx) => (
-            <Column
-              key={colId}
-              id={colId}
-              title={colId}
-              cards={board[colId]}
-              tilt={tiltByIndex[idx % 2]}
-            />
-          ))}
+        <div className="board-shell">
+          <div className="board-labels">
+            {sectionLabels.map((label) => (
+              <span key={label} className="board-label">
+                {label}
+              </span>
+            ))}
+          </div>
+          <div className="board-divider" aria-hidden />
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {COLUMN_ORDER.map((colId, idx) => (
+              <Column
+                key={colId}
+                id={colId}
+                title={colId}
+                cards={board[colId]}
+                tilt={tiltByIndex[idx % 2]}
+              />
+            ))}
+          </div>
         </div>
       </DragDropContext>
     </div>
