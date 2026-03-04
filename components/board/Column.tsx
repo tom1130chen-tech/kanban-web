@@ -1,10 +1,10 @@
 "use client";
 
 import { Droppable } from "@hello-pangea/dnd";
-import type { ColumnId, KanbanCard as CardType } from "@/lib/boardTypes";
-import { Card } from "@/components/ui/Card";
+import type { ColumnId, KanbanCard as CardType } from "../../lib/boardTypes";
+import { Card } from "../ui/Card";
 import { KanbanCard } from "./KanbanCard";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 export function Column({
   id,

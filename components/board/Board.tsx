@@ -2,9 +2,9 @@
 
 import { DragDropContext, type DropResult } from "@hello-pangea/dnd";
 import { useEffect, useMemo, useState } from "react";
-import { ensureAnonAuth } from "@/lib/auth";
-import { COLUMN_ORDER, makeEmptyBoard, type BoardState, type ColumnId } from "@/lib/boardTypes";
-import { subscribeBoard, writeBoard } from "@/lib/boardStore";
+import { ensureAnonAuth } from "../../lib/auth";
+import { COLUMN_ORDER, makeEmptyBoard, type BoardState, type ColumnId } from "../../lib/boardTypes";
+import { subscribeBoard, writeBoard } from "../../lib/boardStore";
 import { Column } from "./Column";
 import { AddCardModal } from "./AddCardModal";
 

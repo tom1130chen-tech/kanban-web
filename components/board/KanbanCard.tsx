@@ -1,8 +1,8 @@
 "use client";
 
 import { Draggable } from "@hello-pangea/dnd";
-import type { KanbanCard as CardType } from "@/lib/boardTypes";
-import { cn } from "@/lib/utils";
+import type { KanbanCard as CardType } from "../../lib/boardTypes";
+import { cn } from "../../lib/utils";
 
 export function KanbanCard({ card, index }: { card: CardType; index: number }) {
   return (

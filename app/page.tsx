@@ -1,5 +1,5 @@
-import { Board } from "@/components/board/Board";
-import { Button } from "@/components/ui/Button";
+import { Board } from "../components/board/Board";
+import { Button } from "../components/ui/Button";
 
 export default function Page() {
   return (

@@ -1,11 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { ColumnId, KanbanCard } from "@/lib/boardTypes";
-import { uid } from "@/lib/utils";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Textarea } from "@/components/ui/Textarea";
+import type { ColumnId, KanbanCard } from "../../lib/boardTypes";
+import { uid } from "../../lib/utils";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
+import { Textarea } from "../ui/Textarea";
 
 export function AddCardModal({
   open,
