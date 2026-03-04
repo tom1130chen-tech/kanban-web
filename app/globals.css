@@ -44,34 +44,11 @@ h1, h2, h3 {
   gap: 1rem;
 }
 
-.board-labels {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  text-align: center;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.4em;
-  color: rgba(45, 45, 45, 0.7);
-}
-
-.board-divider {
-  width: 80%;
-  margin: 0 auto;
-  border-top: 1px dashed rgba(45, 45, 45, 0.4);
-}
-
 .board-canvas {
   padding: 1.5rem;
   border-radius: var(--r-wobbly);
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
-}
-
-.board-section-marker {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: rgba(45, 45, 45, 0.6);
 }
 
 .creature-img {
@@ -86,6 +63,33 @@ h1, h2, h3 {
   width: 4rem;
   height: 4rem;
   border-radius: 999px;
+}
+
+
+.board-columns {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.board-columns > * {
+  position: relative;
+}
+
+.board-columns > *:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  right: -0.75rem;
+  width: 2px;
+  border-right: 2px dashed rgba(45, 45, 45, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .board-columns > *:not(:last-child)::after {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
