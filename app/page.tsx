@@ -5,11 +5,11 @@ import { Board } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
 
 const tabs = [
-  { id: "board", label: "Tab 1", title: "看板" },
-  { id: "todo", label: "Tab 2", title: "To do + Calendar" },
-  { id: "news", label: "Tab 3", title: "Daily news" },
-  { id: "finance", label: "Tab 4", title: "Financial watch" },
-  { id: "focus", label: "Tab 5", title: "Focus" },
+  { id: "board", label: "Kanban", title: "Project board" },
+  { id: "todo", label: "To do + Calendar", title: "Schedule & tasks" },
+  { id: "news", label: "Daily News", title: "Signals & headlines" },
+  { id: "finance", label: "Financial Watch", title: "Markets & liquidity" },
+  { id: "focus", label: "Focus", title: "Deep work rituals" },
 ];
 
 const todoList = [
@@ -19,9 +19,9 @@ const todoList = [
 ];
 
 const calendarItems = [
-  { id: "cal-01", title: "Stand-up + blockers", time: "9:30 AM" },
-  { id: "cal-02", title: "User research sync", time: "2:00 PM" },
-  { id: "cal-03", title: "Investor briefing prep", time: "4:30 PM" },
+  { id: "cal-01", title: "Stand-up + blockers", time: "09:30" },
+  { id: "cal-02", title: "Research sync", time: "14:00" },
+  { id: "cal-03", title: "Investor prep", time: "16:30" },
 ];
 
 const newsFeed = [
@@ -44,39 +44,36 @@ const focusRituals = [
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
-  const tabTitle = useMemo(() => tabs.find((tab) => tab.id === activeTab)?.title ?? "", [activeTab]);
+  const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
   return (
-    <main className="mx-auto max-w-[1100px] px-5 py-8">
-      <header className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+    <main className="mx-auto max-w-[1200px] px-5 py-12">
+      <header className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <div className="inline-block border-2 border-dashed border-pencil bg-postit px-3 py-1 shadow-hardSm [border-radius:var(--r-wobbly)] -rotate-[1deg]">
+          <div className="inline-block border-[3px] border-pencil bg-postit px-4 py-1 shadow-hardSm [border-radius:var(--r-wobbly)] -rotate-[1deg]">
             Team work tracker
           </div>
-          <h1 className="mt-3 text-5xl md:text-6xl leading-[0.95] rotate-[0.4deg]">
-            Kanban, but human.
-          </h1>
-          <p className="mt-3 text-xl md:text-2xl max-w-[640px] opacity-90">
-            Drag cards. Sync in realtime. Looks like a sketchboard instead of a corporate dashboard.
+          <h1 className="mt-4 text-5xl font-heading leading-[1.05]">Project board, reimagined.</h1>
+          <p className="mt-2 max-w-xl text-lg text-slate-700">
+            Tabs keep your mission clear. Tap into every mode—Kanban, daily priorities, signal feeds—without
+            leaving the same sketchy digital desk.
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button variant="secondary" type="button" onClick={() => location.reload()}>
-            Refresh
-          </Button>
-        </div>
+        <Button variant="secondary" type="button" onClick={() => location.reload()}>
+          Refresh
+        </Button>
       </header>
 
-      <section className="mt-10 rounded-3xl border border-dashed border-pencil bg-white/70 p-5 shadow-hardMd">
-        <div className="flex flex-wrap gap-3 md:gap-5">
+      <nav className="mt-8 rounded-[var(--r-wobbly)] border-[3px] border-dashed border-pencil bg-white/80 px-5 py-4 shadow-hard">
+        <div className="flex flex-wrap gap-3 text-sm font-semibold">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+              className={`rounded-full border px-3 py-1 transition-all ${
                 activeTab === tab.id
-                  ? "border-pencil bg-pencil/20 text-pencil"
+                  ? "border-pencil bg-pencil/30 text-pencil"
                   : "border-transparent bg-white/40 text-slate-600 hover:border-pencil"
               }`}
               onClick={() => setActiveTab(tab.id)}
@@ -85,12 +82,16 @@ export default function Page() {
             </button>
           ))}
         </div>
+      </nav>
 
-        <div className="mt-6">
-          <p className="text-lg font-semibold text-slate-800">{tabTitle}</p>
+      <section className="mt-10 rounded-[var(--r-wobbly)] border-[3px] border-solid border-pencil bg-white/90 p-6 shadow-hard">
+        <div className="flex flex-col gap-1">
+          <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Current tab</p>
+          <h2 className="text-3xl font-heading">{tabMeta?.title}</h2>
         </div>
+        <p className="mt-3 text-lg text-slate-600">{tabMeta?.title} lives in this canvas.</p>
 
-        <div className="mt-6 min-h-[320px]" aria-live="polite">
+        <div className="mt-6 min-h-[360px]" aria-live="polite">
           {activeTab === "board" && <Board />}
 
           {activeTab === "todo" && (
@@ -101,13 +102,13 @@ export default function Page() {
                   {todoList.map((item) => (
                     <li
                       key={item.id}
-                      className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-soft"
+                      className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
                     >
                       <div className="flex items-center justify-between text-sm text-slate-500">
                         <span>{item.owner}</span>
                         <span>Due {item.due}</span>
                       </div>
-                      <p className="mt-1 text-base text-slate-900">{item.title}</p>
+                      <p className="mt-2 text-base text-slate-900">{item.title}</p>
                     </li>
                   ))}
                 </ul>
@@ -117,9 +118,12 @@ export default function Page() {
                 <div className="mb-3 text-lg font-semibold text-slate-800">Calendar</div>
                 <ul className="space-y-3">
                   {calendarItems.map((item) => (
-                    <li key={item.id} className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-soft">
-                      <p className="text-base font-semibold text-slate-900">{item.title}</p>
-                      <p className="text-sm text-slate-500">{item.time}</p>
+                    <li
+                      key={item.id}
+                      className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
+                    >
+                      <p className="text-lg font-semibold text-slate-900">{item.title}</p>
+                      <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{item.time}</p>
                     </li>
                   ))}
                 </ul>
@@ -130,9 +134,12 @@ export default function Page() {
           {activeTab === "news" && (
             <ul className="space-y-4">
               {newsFeed.map((item) => (
-                <li key={item.id} className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-soft">
-                  <p className="text-lg font-semibold text-slate-900">{item.headline}</p>
-                  <p className="mt-1 text-sm text-slate-500">{item.source}</p>
+                <li
+                  key={item.id}
+                  className="rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 px-4 py-4 shadow-hard"
+                >
+                  <p className="text-xl font-heading text-slate-900">{item.headline}</p>
+                  <p className="mt-2 text-xs uppercase tracking-[0.4em] text-slate-500">{item.source}</p>
                 </li>
               ))}
             </ul>
@@ -143,11 +150,11 @@ export default function Page() {
               {financeWatch.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm shadow-soft"
+                  className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-4 shadow-hard"
                 >
-                  <p className="text-xs uppercase tracking-wide text-slate-400">{item.label}</p>
-                  <p className="mt-2 text-xl font-semibold text-slate-900">{item.value}</p>
-                  <p className="mt-1 text-sm text-slate-500">{item.detail}</p>
+                  <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{item.label}</p>
+                  <p className="mt-2 text-2xl font-bold text-slate-900">{item.value}</p>
+                  <p className="mt-1 text-sm text-slate-600">{item.detail}</p>
                 </div>
               ))}
             </div>
@@ -156,7 +163,10 @@ export default function Page() {
           {activeTab === "focus" && (
             <div className="space-y-3">
               {focusRituals.map((ritual) => (
-                <p key={ritual} className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-base text-slate-900 shadow-soft">
+                <p
+                  key={ritual}
+                  className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 text-base text-slate-900 shadow-hard"
+                >
                   {ritual}
                 </p>
               ))}
