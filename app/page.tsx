@@ -1,3 +1,5 @@
+"use client";
+
 import { Board } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
 
