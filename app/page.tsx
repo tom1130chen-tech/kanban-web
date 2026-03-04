@@ -134,8 +134,18 @@ export default function Page() {
                         activeCrew === member.id ? "border-accent bg-accent/15" : "border-pencil bg-muted/70"
                       }`}
                     >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-pencil bg-white text-lg font-heading">
-                        {member.initials}
+                      <div className="crew-avatar">
+                        {member.avatar ? (
+                          <Image
+                            src={member.avatar}
+                            alt={member.name}
+                            width={52}
+                            height={52}
+                            className="rounded-full object-cover"
+                          />
+                        ) : (
+                          <span className="text-lg font-heading">{member.initials}</span>
+                        )}
                       </div>
                       <div className="text-left">
                         <p className="text-base font-heading text-slate-900">{member.name}</p>
