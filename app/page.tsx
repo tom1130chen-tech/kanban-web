@@ -5,11 +5,11 @@ import { Board } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
 
 const tabs = [
-  { id: "board", label: "Kanban", title: "Project board" },
-  { id: "todo", label: "To do + Calendar", title: "Schedule & tasks" },
-  { id: "news", label: "Daily News", title: "Signals & headlines" },
-  { id: "finance", label: "Financial Watch", title: "Markets & liquidity" },
-  { id: "focus", label: "Focus", title: "Deep work rituals" },
+  { id: "board", label: "KANBAN", title: "Project board" },
+  { id: "todo", label: "TO DO + CALENDAR", title: "Schedule & tasks" },
+  { id: "news", label: "DAILY NEWS", title: "Signals & headlines" },
+  { id: "finance", label: "FINANCIAL WATCH", title: "Markets & liquidity" },
+  { id: "focus", label: "FOCUS", title: "Rituals" },
 ];
 
 const todoList = [
@@ -42,57 +42,74 @@ const focusRituals = [
   "Daily recap with a teammate at 5 PM.",
 ];
 
+const teamMembers = [
+  { id: "crew-01", name: "Avery", role: "Product", initials: "AV" },
+  { id: "crew-02", name: "Kei", role: "Ops", initials: "KE" },
+  { id: "crew-03", name: "Jules", role: "Design", initials: "JL" },
+  { id: "crew-04", name: "Mira", role: "Finance", initials: "MR" },
+];
+
 export default function Page() {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
   return (
-    <main className="mx-auto max-w-[1200px] px-5 py-12">
-      <header className="grid gap-6 md:grid-cols-[1fr_auto] md:items-end">
-        <div>
-          <div className="inline-block border-[3px] border-pencil bg-postit px-4 py-1 shadow-hardSm [border-radius:var(--r-wobbly)] -rotate-[1deg]">
-            Team work tracker
+    <main className="mx-auto max-w-[1200px] px-5 py-10">
+      <nav className="w-full rounded-[var(--r-wobbly-md)] border-[3px] border-dashed border-pencil bg-white/90 px-4 py-3 shadow-hard">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap gap-3 text-xs font-heading uppercase tracking-[0.5em] text-slate-500">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                className={`rounded-full border px-4 py-2 text-sm leading-snug transition-all ${
+                  activeTab === tab.id
+                    ? "border-pencil bg-pencil text-pencil"
+                    : "border-transparent bg-white/40 text-slate-600 hover:border-pencil"
+                }`}
+                style={{ boxShadow: activeTab === tab.id ? "4px 4px 0px #2d2d2d" : "3px 3px 0px rgba(45,45,45,0.4)" }}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
-          <h1 className="mt-4 text-5xl font-heading leading-[1.05]">Project board, reimagined.</h1>
-          <p className="mt-2 max-w-xl text-lg text-slate-700">
-            Tabs keep your mission clear. Tap into every mode—Kanban, daily priorities, signal feeds—without
-            leaving the same sketchy digital desk.
-          </p>
-        </div>
-
-        <Button variant="secondary" type="button" onClick={() => location.reload()}>
-          Refresh
-        </Button>
-      </header>
-
-      <nav className="mt-8 rounded-[var(--r-wobbly)] border-[3px] border-dashed border-pencil bg-white/80 px-5 py-4 shadow-hard">
-        <div className="flex flex-wrap gap-3 text-sm font-semibold">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              className={`rounded-full border px-3 py-1 transition-all ${
-                activeTab === tab.id
-                  ? "border-pencil bg-pencil/30 text-pencil"
-                  : "border-transparent bg-white/40 text-slate-600 hover:border-pencil"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
+          <Button variant="secondary" type="button" onClick={() => location.reload()}>
+            Refresh
+          </Button>
         </div>
       </nav>
 
-      <section className="mt-10 rounded-[var(--r-wobbly)] border-[3px] border-solid border-pencil bg-white/90 p-6 shadow-hard">
+      <section className="mt-8 rounded-[var(--r-wobbly)] border-[3px] border-pencil bg-white/90 p-6 shadow-hard">
         <div className="flex flex-col gap-1">
-          <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Current tab</p>
+          <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Now displaying</p>
           <h2 className="text-3xl font-heading">{tabMeta?.title}</h2>
         </div>
-        <p className="mt-3 text-lg text-slate-600">{tabMeta?.title} lives in this canvas.</p>
-
         <div className="mt-6 min-h-[360px]" aria-live="polite">
-          {activeTab === "board" && <Board />}
+          {activeTab === "board" && (
+            <div className="space-y-8">
+              <Board />
+              <div className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard">
+                <p className="text-sm uppercase tracking-[0.5em] text-slate-500">Crew</p>
+                <div className="mt-3 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+                  {teamMembers.map((member) => (
+                    <div
+                      key={member.id}
+                      className="flex items-center gap-3 rounded-[var(--r-wobbly)] border-[3px] border-pencil bg-muted/70 px-3 py-2 shadow-hard"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-pencil bg-white text-lg font-heading">
+                        {member.initials}
+                      </div>
+                      <div>
+                        <p className="text-base font-heading text-slate-900">{member.name}</p>
+                        <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{member.role}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
           {activeTab === "todo" && (
             <div className="grid gap-6 lg:grid-cols-2">
