@@ -10,13 +10,11 @@ export function Column({
   id,
   title,
   cards,
-  onAdd,
   tilt,
 }: {
   id: ColumnId;
   title: string;
   cards: CardType[];
-  onAdd: () => void;
   tilt: "left" | "right";
 }) {
   return (
@@ -24,25 +22,11 @@ export function Column({
       <div className="flex items-start justify-between gap-3">
         <div>
           <h2 className="m-0 text-2xl">{title}</h2>
-          <div className="mt-1 text-base opacity-80">Drag cards between columns</div>
         </div>
-
         <div className="flex items-center gap-2">
           <div className="h-9 min-w-9 grid place-items-center border-[3px] border-pencil bg-postit shadow-hardSm text-base [border-radius:var(--r-wobbly)]">
             {cards.length}
           </div>
-          <button
-            onClick={onAdd}
-            className={cn(
-              "h-9 w-9 grid place-items-center border-[3px] border-pencil bg-white shadow-hardSm",
-              "[border-radius:var(--r-wobbly)]",
-              "transition-transform duration-100 hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-muted"
-            )}
-            aria-label={`Add card to ${title}`}
-            type="button"
-          >
-            +
-          </button>
         </div>
       </div>
 
@@ -59,7 +43,7 @@ export function Column({
           >
             {cards.length === 0 && (
               <div className="border-2 border-dashed border-pencil p-3 opacity-80 [border-radius:var(--r-wobbly-md)]">
-                Empty. Click + to add.
+                Empty
               </div>
             )}
             {cards.map((c, i) => (

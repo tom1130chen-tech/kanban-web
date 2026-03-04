@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Board } from "../components/board/Board";
+import { Board, type BoardStatus } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
 
 const tabs = [
@@ -56,10 +56,23 @@ const crewHighlights: Record<string, string> = {
   "crew-04": "Monitoring cash flow, liquidity signals, and runway margins.",
 };
 
+const statusLabelMap: Record<BoardStatus, string> = {
+  synced: "Synced",
+  saving: "Saving...",
+  error: "Error",
+};
+
 export default function Page() {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [activeCrew, setActiveCrew] = useState(teamMembers[0].id);
+  const [boardStatus, setBoardStatus] = useState<BoardStatus>("synced");
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
+
+  const refreshPage = () => {
+    if (boardStatus === "synced") {
+      location.reload();
+    }
+  };
 
   return (
     <main className="mx-auto max-w-[1200px] px-5 py-10">
@@ -83,10 +96,19 @@ export default function Page() {
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Current</p>
-            <span className="text-sm font-heading uppercase tracking-[0.4em] text-slate-800">{tabMeta?.label}</span>
-            <Button variant="secondary" type="button" onClick={() => location.reload()}>
-              Refresh
+            <div>
+              <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Current</p>
+              <span className="text-sm font-heading uppercase tracking-[0.4em] text-slate-800">{tabMeta?.label}</span>
+            </div>
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={refreshPage}
+              disabled={boardStatus !== "synced"}
+              className="text-xs uppercase tracking-[0.4em]"
+              title="Click when synced to refresh"
+            >
+              {statusLabelMap[boardStatus]}
             </Button>
           </div>
         </div>
@@ -101,7 +123,7 @@ export default function Page() {
           {activeTab === "board" && (
             <div className="space-y-6">
               <div className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-4 shadow-hard">
-                <Board />
+                <Board onStatusChange={setBoardStatus} />
               </div>
               <div className="grid gap-4 lg:grid-cols-[1fr_minmax(220px,240px)]">
                 <div className="rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard">
@@ -113,9 +135,7 @@ export default function Page() {
                         type="button"
                         onClick={() => setActiveCrew(member.id)}
                         className={`flex items-center gap-3 rounded-[var(--r-wobbly)] border-[3px] px-3 py-2 shadow-hard transition-all ${
-                          activeCrew === member.id
-                            ? "border-penblue bg-penblue/20"
-                            : "border-pencil bg-muted/70"
+                          activeCrew === member.id ? "border-penblue bg-penblue/20" : "border-pencil bg-muted/70"
                         }`}
                       >
                         <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-pencil bg-white text-lg font-heading">
@@ -131,15 +151,15 @@ export default function Page() {
                 </div>
                 <div className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard">
                   <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Highlight</p>
-                  <p className="mt-2 text-lg font-heading text-slate-900">{teamMembers.find((member) => member.id === activeCrew)?.name}</p>
+                  <p className="mt-2 text-lg font-heading text-slate-900">
+                    {teamMembers.find((member) => member.id === activeCrew)?.name}
+                  </p>
                   <p className="mt-1 text-sm text-slate-600">{crewHighlights[activeCrew]}</p>
                 </div>
               </div>
             </div>
           )}
 
-*** End Patch
-PATCH
           {activeTab === "todo" && (
             <div className="grid gap-6 lg:grid-cols-2">
               <div>
