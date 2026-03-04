@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { Board } from "../components/board/Board";
-import { Button } from "../components/ui/Button";
 
 const tabs = [
   { id: "board", label: "Tab 1", title: "看板" },
@@ -47,123 +46,113 @@ export default function Page() {
   const tabTitle = useMemo(() => tabs.find((tab) => tab.id === activeTab)?.title ?? "", [activeTab]);
 
   return (
-    <main className="mx-auto max-w-[1100px] px-5 py-8">
-      <header className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-        <div>
-          <div className="inline-block border-2 border-dashed border-pencil bg-postit px-3 py-1 shadow-hardSm [border-radius:var(--r-wobbly)] -rotate-[1deg]">
-            Team work tracker
-          </div>
-          <h1 className="mt-3 text-5xl md:text-6xl leading-[0.95] rotate-[0.4deg]">
-            Kanban, but human.
-          </h1>
-          <p className="mt-3 text-xl md:text-2xl max-w-[640px] opacity-90">
-            Drag cards. Sync in realtime. Looks like a sketchboard instead of a corporate dashboard.
-          </p>
-        </div>
+    <div className="comic-stage">
+      <main className="mx-auto flex max-w-[1200px] flex-col gap-8 px-5">
+        <section className="comic-panel px-6 py-8">
+          <div className="comic-explosion" aria-hidden="true" />
+          <header className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm uppercase text-slate-500">retro operations board</p>
+              <h1 className="text-4xl font-black text-slate-900 md:text-6xl">Teams, tabs, and hyper focus.</h1>
+              <p className="mt-2 text-lg text-slate-600 md:max-w-xl">
+                A playful hero space inspired by 1960s comic books. Navigate between the notebook, your daily
+                priorities, and signal-rich news streaks.
+              </p>
+            </div>
 
-        <div className="flex items-center gap-2">
-          <Button variant="secondary" type="button" onClick={() => location.reload()}>
-            Refresh
-          </Button>
-        </div>
-      </header>
-
-      <section className="mt-10 rounded-3xl border border-dashed border-pencil bg-white/70 p-5 shadow-hardMd">
-        <div className="flex flex-wrap gap-3 md:gap-5">
-          {tabs.map((tab) => (
             <button
-              key={tab.id}
               type="button"
-              className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-                activeTab === tab.id
-                  ? "border-pencil bg-pencil/20 text-pencil"
-                  : "border-transparent bg-white/40 text-slate-600 hover:border-pencil"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => location.reload()}
+              className="comic-tab-button active"
             >
-              {tab.label}
+              Refresh
             </button>
-          ))}
-        </div>
+          </header>
+        </section>
 
-        <div className="mt-6">
-          <p className="text-lg font-semibold text-slate-800">{tabTitle}</p>
-        </div>
+        <section className="comic-panel px-6 py-8">
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                className={`comic-tab-button ${activeTab === tab.id ? "active" : ""}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-        <div className="mt-6 min-h-[320px]" aria-live="polite">
-          {activeTab === "board" && <Board />}
+          <div className="mt-6">
+            <p className="comic-header-title">{tabTitle}</p>
+          </div>
 
-          {activeTab === "todo" && (
-            <div className="grid gap-6 lg:grid-cols-2">
-              <div>
-                <div className="mb-3 text-lg font-semibold text-slate-800">To do</div>
-                <ul className="space-y-3">
-                  {todoList.map((item) => (
-                    <li
-                      key={item.id}
-                      className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-soft"
-                    >
-                      <div className="flex items-center justify-between text-sm text-slate-500">
-                        <span>{item.owner}</span>
-                        <span>Due {item.due}</span>
-                      </div>
-                      <p className="mt-1 text-base text-slate-900">{item.title}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="mt-6 min-h-[320px]">
+            {activeTab === "board" && <Board />}
 
-              <div>
-                <div className="mb-3 text-lg font-semibold text-slate-800">Calendar</div>
-                <ul className="space-y-3">
-                  {calendarItems.map((item) => (
-                    <li key={item.id} className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-soft">
-                      <p className="text-base font-semibold text-slate-900">{item.title}</p>
-                      <p className="text-sm text-slate-500">{item.time}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
-
-          {activeTab === "news" && (
-            <ul className="space-y-4">
-              {newsFeed.map((item) => (
-                <li key={item.id} className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-soft">
-                  <p className="text-lg font-semibold text-slate-900">{item.headline}</p>
-                  <p className="mt-1 text-sm text-slate-500">{item.source}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {activeTab === "finance" && (
-            <div className="grid gap-4 md:grid-cols-3">
-              {financeWatch.map((item) => (
-                <div
-                  key={item.id}
-                  className="rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm shadow-soft"
-                >
-                  <p className="text-xs uppercase tracking-wide text-slate-400">{item.label}</p>
-                  <p className="mt-2 text-xl font-semibold text-slate-900">{item.value}</p>
-                  <p className="mt-1 text-sm text-slate-500">{item.detail}</p>
+            {activeTab === "todo" && (
+              <div className="comic-grid md:grid-cols-2">
+                <div className="comic-card p-5">
+                  <p className="text-sm uppercase text-slate-500">To do</p>
+                  <ul className="mt-4 space-y-3">
+                    {todoList.map((item) => (
+                      <li key={item.id}>
+                        <p className="text-base font-bold text-slate-900">{item.title}</p>
+                        <p className="text-xs text-slate-500">{item.owner} · Due {item.due}</p>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
-          )}
+                <div className="comic-card p-5">
+                  <p className="text-sm uppercase text-slate-500">Calendar</p>
+                  <ul className="mt-4 space-y-3">
+                    {calendarItems.map((item) => (
+                      <li key={item.id}>
+                        <p className="text-base font-semibold text-slate-900">{item.title}</p>
+                        <p className="text-xs text-slate-500">{item.time}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
 
-          {activeTab === "focus" && (
-            <div className="space-y-3">
-              {focusRituals.map((ritual) => (
-                <p key={ritual} className="rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-base text-slate-900 shadow-soft">
-                  {ritual}
-                </p>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-    </main>
+            {activeTab === "news" && (
+              <div className="comic-grid">
+                {newsFeed.map((item) => (
+                  <article key={item.id} className="comic-card p-5">
+                    <p className="text-lg font-bold text-slate-900">{item.headline}</p>
+                    <p className="text-xs uppercase text-slate-500">{item.source}</p>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            {activeTab === "finance" && (
+              <div className="comic-grid md:grid-cols-3">
+                {financeWatch.map((item) => (
+                  <div key={item.id} className="comic-card p-4">
+                    <p className="text-xs uppercase text-slate-500">{item.label}</p>
+                    <p className="text-2xl font-black text-slate-900">{item.value}</p>
+                    <p className="text-xs text-slate-600">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === "focus" && (
+              <div className="comic-grid">
+                {focusRituals.map((ritual) => (
+                  <div key={ritual} className="comic-card p-5">
+                    <p className="text-base font-bold text-slate-900">{ritual}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      </main>
+    </div>
   );
 }
