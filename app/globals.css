@@ -51,20 +51,25 @@ h1, h2, h3 {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
 }
 
-.creature-img {
+.crew-avatar {
   border: 2px dashed var(--fg);
   border-radius: 999px;
   padding: 3px;
   background: #fff;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.creature-img img {
+.crew-avatar img {
   display: block;
-  width: 4rem;
-  height: 4rem;
+  width: 82px;
+  height: 82px;
   border-radius: 999px;
+  object-fit: cover;
 }
-
 
 .board-columns {
   display: grid;

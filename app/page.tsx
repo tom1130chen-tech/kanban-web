@@ -13,8 +13,6 @@ const tabs = [
   { id: "focus", label: "FOCUS", title: "Rituals" },
 ];
 
-const sectionLabels = ["Scheduled", "Queue", "In Progress", "Done"];
-
 const todoList = [
   { id: "todo-01", title: "Refine weekly sprint plan", owner: "Ops", due: "Wed" },
   { id: "todo-02", title: "Review deployment log", owner: "Dev", due: "Thu" },
@@ -46,17 +44,17 @@ const focusRituals = [
 ];
 
 const teamMembers = [
-  { id: "crew-01", name: "Avery", role: "Product", initials: "AV" },
-  { id: "crew-02", name: "Kei", role: "Ops", initials: "KE" },
-  { id: "crew-03", name: "Jules", role: "Design", initials: "JL" },
-  { id: "crew-04", name: "Mira", role: "Finance", initials: "MR" },
+  { id: "crew-01", name: "Tom", role: "Ops", initials: "TC", avatar: "/avatar.png" },
+  { id: "crew-02", name: "Chat", role: "Admin", initials: "CH" },
+  { id: "crew-03", name: "Claw", role: "Coder", initials: "CL" },
+  { id: "crew-04", name: "Gem", role: "Art", initials: "GM" },
 ];
 
 const crewHighlights: Record<string, string> = {
-  "crew-01": "Mapping sprint milestones and refreshing delivery notes.",
-  "crew-02": "Clearing deployment logs and surfacing ops blockers.",
-  "crew-03": "Sketching the next visual language for the board.",
-  "crew-04": "Monitoring cash flow, liquidity signals, and runway margins.",
+  "crew-01": "Mapping sprint milestones, refreshing delivery notes, and keeping the ops pulse alive.",
+  "crew-02": "Curating notes, defending the workspace, and prepping your next spotlight (avatar incoming).",
+  "crew-03": "Aligning code, refining the kanban wiring, and keeping drag operations smooth.",
+  "crew-04": "Designing art treatments, sketches, and tactile cues for the board experience.",
 };
 
 const statusLabelMap: Record<BoardStatus, string> = {
@@ -120,14 +118,6 @@ export default function Page() {
       <div className="board-stage" aria-live="polite">
         {activeTab === "board" && (
           <>
-            <div className="board-labels">
-              {sectionLabels.map((label) => (
-                <span key={label} className="board-section-marker">
-                  {label}
-                </span>
-              ))}
-            </div>
-            <div className="board-divider" aria-hidden />
             <div className="board-canvas">
               <Board onStatusChange={setBoardStatus} />
             </div>
@@ -157,8 +147,20 @@ export default function Page() {
               </div>
               <div className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard flex flex-col gap-3">
                 <div className="flex items-center gap-4">
-                  <div className="creature-img">
-                    <Image src="/avatar.png" alt="CKC335" width={72} height={72} />
+                  <div className="crew-avatar">
+                    {teamMembers.find((member) => member.id === activeCrew)?.avatar ? (
+                      <Image
+                        src={teamMembers.find((member) => member.id === activeCrew)?.avatar as string}
+                        alt={teamMembers.find((member) => member.id === activeCrew)?.name ?? "avatar"}
+                        width={88}
+                        height={88}
+                        className="rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-pencil bg-white text-lg font-heading">
+                        {teamMembers.find((member) => member.id === activeCrew)?.initials}
+                      </div>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Highlight</p>
