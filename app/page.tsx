@@ -269,46 +269,49 @@ export default function Page() {
           <div className="max-w-[1100px] mx-auto">
             {/* Article Header - Clean & Minimal */}
             <header className="mb-12">
-              {/* Date badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-4 py-1.5 mb-6" style={{ boxShadow: "3px 3px 0px var(--accent)" }}>
-                <span className="w-2 h-2 rounded-full bg-accent"></span>
-                <span className="text-xs font-heading uppercase tracking-[0.3em] text-accent">
-                  {new Date(selectedNewsDate || newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
-                </span>
-              </div>
+              {/* Date badge + Navigation Buttons (same row) */}
+              <div className="flex flex-wrap items-center gap-4 mb-6">
+                {/* Date badge */}
+                <div className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-4 py-1.5" style={{ boxShadow: "3px 3px 0px var(--accent)" }}>
+                  <span className="w-2 h-2 rounded-full bg-accent"></span>
+                  <span className="text-xs font-heading uppercase tracking-[0.3em] text-accent">
+                    {new Date(selectedNewsDate || newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                  </span>
+                </div>
 
-              {/* Date Navigation Buttons */}
-              <div className="mb-6 flex flex-wrap items-center gap-2">
-                {pastDates.map((date, idx) => {
-                  const isSelected = date === selectedNewsDate;
-                  const isToday = idx === 0;
-                  const label = isToday ? 'Today' : new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                {/* Date Navigation Buttons */}
+                <div className="flex flex-wrap items-center gap-2">
+                  {pastDates.map((date, idx) => {
+                    const isSelected = date === selectedNewsDate;
+                    const isToday = idx === 0;
+                    const label = isToday ? 'Today' : new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                    
+                    return (
+                      <button
+                        key={date}
+                        type="button"
+                        onClick={() => setSelectedNewsDate(date)}
+                        className={`px-4 py-1.5 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 transition-all ${
+                          isSelected
+                            ? 'border-accent bg-accent text-white'
+                            : 'border-slate-300 bg-white text-slate-600 hover:border-accent'
+                        }`}
+                        style={{ boxShadow: isSelected ? '3px 3px 0px var(--accent)' : '2px 2px 0px rgba(45,45,45,0.3)' }}
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
                   
-                  return (
-                    <button
-                      key={date}
-                      type="button"
-                      onClick={() => setSelectedNewsDate(date)}
-                      className={`px-4 py-2 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 transition-all ${
-                        isSelected
-                          ? 'border-accent bg-accent text-white'
-                          : 'border-slate-300 bg-white text-slate-600 hover:border-accent'
-                      }`}
-                      style={{ boxShadow: isSelected ? '3px 3px 0px var(--accent)' : '2px 2px 0px rgba(45,45,45,0.3)' }}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-                
-                {/* History Button */}
-                <a
-                  href="/history"
-                  className="px-4 py-2 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 border-slate-300 bg-white text-slate-600 hover:border-accent hover:text-accent transition-all"
-                  style={{ boxShadow: '2px 2px 0px rgba(45,45,45,0.3)' }}
-                >
-                  📚 History →
-                </a>
+                  {/* History Button */}
+                  <a
+                    href="/history"
+                    className="px-4 py-1.5 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 border-slate-300 bg-white text-slate-600 hover:border-accent hover:text-accent transition-all"
+                    style={{ boxShadow: '2px 2px 0px rgba(45,45,45,0.3)' }}
+                  >
+                    📚 History →
+                  </a>
+                </div>
               </div>
 
               {/* Title - Reduced from 5xl to 3xl */}
