@@ -25,11 +25,10 @@ const calendarItems = [
   { id: "cal-03", title: "Investor prep", time: "16:30" },
 ];
 
-const newsFeed = [
-  { id: "news-01", headline: "Marketcraft playbook launches new analytics", source: "Future Economy" },
-  { id: "news-02", headline: "Global platforms face fresh regulation push", source: "Policy Daily" },
-  { id: "news-03", headline: "Urban ecosystems pivot toward AI infrastructure", source: "City Lab" },
-];
+// Newsletter digest data - auto-updated daily by cron job
+import newsletterData from "../data/newsletter-digest.json";
+
+const newsFeed = newsletterData.items || [];
 
 const financeWatch = [
   { id: "fin-01", label: "Liquidity", value: "Stable", detail: "Tier-one funds holding steady." },
@@ -223,17 +222,45 @@ export default function Page() {
         )}
 
         {activeTab === "news" && (
-          <ul className="space-y-4">
-            {newsFeed.map((item) => (
-              <li
-                key={item.id}
-                className="rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 px-4 py-4 shadow-hard"
-              >
-                <p className="text-xl font-heading text-slate-900">{item.headline}</p>
-                <p className="mt-2 text-xs uppercase tracking-[0.4em] text-slate-500">{item.source}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="space-y-4">
+            <div className="mb-4 flex items-center justify-between">
+              <p className="text-sm uppercase tracking-[0.5em] text-slate-500">
+                Last updated: {newsletterData.lastUpdated ? new Date(newsletterData.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'N/A'}
+              </p>
+            </div>
+            <ul className="space-y-4">
+              {newsFeed.map((item) => (
+                <li
+                  key={item.id}
+                  className="rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 px-5 py-4 shadow-hard"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <p className="text-lg font-heading text-slate-900">{item.title}</p>
+                      {item.summary && (
+                        <p className="mt-2 text-sm text-slate-700">{item.summary}</p>
+                      )}
+                      <div className="mt-3 flex items-center gap-3">
+                        <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{item.source}</p>
+                        <span className="text-xs text-slate-400">•</span>
+                        <p className="text-xs text-slate-500">{item.date}</p>
+                      </div>
+                    </div>
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 text-xs font-semibold text-accent hover:underline"
+                      >
+                        Read →
+                      </a>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
 
         {activeTab === "finance" && (
