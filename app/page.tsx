@@ -226,39 +226,73 @@ export default function Page() {
           <div className="space-y-6">
             {/* Article Header */}
             <header className="border-b-[3px] border-pencil pb-6">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Daily Newsletter</p>
-                  <h1 className="mt-2 text-4xl font-heading leading-tight text-slate-900">
-                    {newsletterData.article?.title || `Digest — ${new Date(newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}`}
-                  </h1>
+              <div className="flex flex-col gap-4">
+                {/* Top row: label + publish time */}
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Daily News</p>
+                    <h1 className="mt-2 text-4xl font-heading leading-tight text-slate-900">
+                      {newsletterData.article?.title || `Digest — ${new Date(newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}`}
+                    </h1>
+                    {newsletterData.article?.subtitle && (
+                      <p className="mt-2 text-lg text-slate-600 italic">
+                        {newsletterData.article.subtitle}
+                      </p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs uppercase tracking-[0.4em] text-slate-500">Published</p>
+                    <p className="text-lg font-semibold text-slate-900">
+                      {newsletterData.lastUpdated 
+                        ? new Date(newsletterData.lastUpdated).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })
+                        : 'N/A'}
+                    </p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-xs uppercase tracking-[0.4em] text-slate-500">Published</p>
-                  <p className="text-lg font-semibold text-slate-900">
-                    {newsletterData.lastUpdated 
-                      ? new Date(newsletterData.lastUpdated).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })
-                      : 'N/A'}
-                  </p>
-                </div>
+
+                {/* Meta row: author, read time, tags */}
+                {(newsletterData.article?.author || newsletterData.metadata?.readTime || newsletterData.article?.tags) && (
+                  <div className="flex flex-wrap items-center gap-4 text-sm">
+                    {newsletterData.article?.author && (
+                      <span className="text-slate-600">
+                        <span className="text-slate-500">Author:</span> <strong className="text-slate-900">{newsletterData.article.author}</strong>
+                      </span>
+                    )}
+                    {newsletterData.metadata?.readTime && (
+                      <>
+                        <span className="text-slate-400">•</span>
+                        <span className="text-slate-600">
+                          <span className="text-slate-500">Read:</span> <strong className="text-slate-900">{newsletterData.metadata.readTime}</strong>
+                        </span>
+                      </>
+                    )}
+                    {newsletterData.article?.tags && newsletterData.article.tags.length > 0 && (
+                      <>
+                        <span className="text-slate-400">•</span>
+                        <div className="flex flex-wrap gap-2">
+                          {newsletterData.article.tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+
+                {/* Sources count */}
+                {newsletterData.article?.sources && (
+                  <div className="flex items-center gap-4 text-sm">
+                    <span className="text-slate-600">
+                      <strong className="text-slate-900">{newsletterData.article.sources.length}</strong> source{newsletterData.article.sources.length !== 1 ? 's' : ''} curated
+                    </span>
+                  </div>
+                )}
               </div>
-              
-              {/* Sources count */}
-              {newsletterData.article?.sources && (
-                <div className="mt-4 flex items-center gap-4 text-sm">
-                  <span className="text-slate-600">
-                    <strong className="text-slate-900">{newsletterData.article.sources.length}</strong> sources curated
-                  </span>
-                  <span className="text-slate-400">•</span>
-                  <span className="text-slate-600">
-                    <strong className="text-slate-900">{newsletterData.article.sources.filter(s => s.type === 'email').length}</strong> newsletters
-                  </span>
-                  <span className="text-slate-400">•</span>
-                  <span className="text-slate-600">
-                    <strong className="text-slate-900">{newsletterData.article.sources.filter(s => s.type === 'article').length}</strong> articles
-                  </span>
-                </div>
-              )}
             </header>
 
             {/* Main Article Content */}
@@ -287,31 +321,38 @@ export default function Page() {
                     {newsletterData.article.sources.length} total
                   </span>
                 </h2>
-                <div className="grid gap-3 md:grid-cols-2">
+                <div className="space-y-3">
                   {newsletterData.article.sources.map((source, idx) => (
                     <a
                       key={idx}
                       href={source.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-between rounded-[var(--r-wobbly-md)] border-2 border-slate-200 bg-white/90 p-3 transition-all hover:border-accent hover:shadow-md"
+                      className="group block rounded-[var(--r-wobbly-md)] border-2 border-slate-200 bg-white/90 p-4 transition-all hover:border-accent hover:shadow-md"
                     >
-                      <div className="flex items-center gap-3">
-                        <span className="text-lg">
-                          {source.type === 'email' ? '📧' : '🌐'}
-                        </span>
-                        <div>
-                          <p className="font-semibold text-slate-900 group-hover:text-accent">
-                            {source.name}
-                          </p>
-                          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                            {source.type === 'email' ? 'Newsletter' : 'Article'}
-                          </p>
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-3">
+                          <span className="text-2xl">
+                            {source.type === 'email' ? '📧' : '🌐'}
+                          </span>
+                          <div>
+                            <p className="font-semibold text-slate-900 group-hover:text-accent">
+                              {source.name}
+                            </p>
+                            {source.summary && (
+                              <p className="mt-1 text-sm text-slate-600">
+                                {source.summary}
+                              </p>
+                            )}
+                            <p className="mt-2 text-xs uppercase tracking-[0.3em] text-slate-500">
+                              {source.type === 'email' ? 'Newsletter' : 'Article'}
+                            </p>
+                          </div>
                         </div>
+                        <span className="text-sm font-medium text-accent transition-transform group-hover:translate-x-1 whitespace-nowrap">
+                          Visit →
+                        </span>
                       </div>
-                      <span className="text-sm font-medium text-accent transition-transform group-hover:translate-x-1">
-                        Visit →
-                      </span>
                     </a>
                   ))}
                 </div>
@@ -322,7 +363,9 @@ export default function Page() {
             <footer className="border-t-[3px] border-pencil pt-6">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-slate-600">
-                  Compiled automatically from your subscribed newsletters and sources.
+                  {newsletterData.article?.author 
+                    ? `Written by ${newsletterData.article.author}`
+                    : 'Compiled automatically from your subscribed newsletters and sources.'}
                 </p>
                 <p className="text-xs uppercase tracking-[0.4em] text-slate-500">
                   {newsletterData.digestDate}
