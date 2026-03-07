@@ -45,9 +45,9 @@ const focusRituals = [
 
 const teamMembers = [
   { id: "crew-01", name: "Tom", role: "Ops", initials: "TC", avatar: "/avatar.png" },
-  { id: "crew-02", name: "Chat", role: "Admin", initials: "CH" },
-  { id: "crew-03", name: "Claw", role: "Coder", initials: "CL" },
-  { id: "crew-04", name: "Gem", role: "Art", initials: "GM" },
+  { id: "crew-02", name: "Chat", role: "Admin", initials: "CH", avatar: "/avatar-chat.png" },
+  { id: "crew-03", name: "Claw", role: "Coder", initials: "CL", avatar: "/avatar-claw.png" },
+  { id: "crew-04", name: "Gem", role: "Art", initials: "GM", avatar: "/avatar-gem.png" },
 ];
 
 const crewHighlights: Record<string, string> = {
