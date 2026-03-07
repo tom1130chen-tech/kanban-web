@@ -262,92 +262,132 @@ export default function Page() {
               )}
             </header>
 
-            {/* Article Content - Organized by Source */}
+            {/* Article Content - Continuous narrative with thematic sections */}
             <article className="prose prose-slate max-w-none">
-              {/* Group items by source */}
-              {Object.entries(
-                newsFeed.reduce((acc, item) => {
-                  const source = item.source;
-                  if (!acc[source]) acc[source] = [];
-                  acc[source].push(item);
-                  return acc;
-                }, {} as Record<string, typeof newsFeed>)
-              ).map(([source, items], idx) => (
-                <section key={source} className="mb-8">
-                  {/* Section Header */}
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border-2 border-pencil bg-accent/10 text-sm font-bold text-accent">
-                      {idx + 1}
-                    </span>
-                    <h2 className="m-0 text-2xl font-heading text-slate-900">{source}</h2>
-                    <span className="flex-1 border-t-2 border-dashed border-slate-300"></span>
-                    <span className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                      {items.length} {items.length === 1 ? 'item' : 'items'}
-                    </span>
-                  </div>
+              {/* Opening summary */}
+              <div className="mb-8 rounded-[var(--r-wobbly)] border-2 border-dashed border-pencil bg-white/60 p-4">
+                <p className="m-0 text-base leading-relaxed text-slate-700">
+                  <strong>Today's digest</strong> covers {newsFeed.length} stories from {new Set(newsFeed.map(i => i.source)).size} sources, 
+                  including product marketing insights, Apple's latest hardware moves, AI governance debates, and market updates.
+                </p>
+              </div>
 
-                  {/* Items from this source */}
-                  <div className="space-y-6">
-                    {items.map((item) => (
-                      <div key={item.id} className="group">
-                        {/* Item Header */}
-                        <div className="mb-2 flex items-center gap-2">
-                          {item.type === 'email' ? (
-                            <span className="text-xs text-slate-400">📧</span>
-                          ) : (
-                            <span className="text-xs text-slate-400">🌐</span>
+              {/* Group by theme/topic instead of source */}
+              {(() => {
+                // Simple grouping: combine items by similar topics
+                const sections = [];
+                const usedIds = new Set();
+                
+                // Section 1: Product & Marketing
+                const productItems = newsFeed.filter(i => 
+                  i.source === 'MKT1' || i.source === "Lenny's Newsletter" || i.source === 'Shreyas Doshi'
+                );
+                if (productItems.length > 0) {
+                  sections.push({
+                    title: 'Product Strategy & Marketing',
+                    items: productItems
+                  });
+                  productItems.forEach(i => usedIds.add(i.id));
+                }
+                
+                // Section 2: Tech Analysis
+                const techItems = newsFeed.filter(i => 
+                  i.source === 'Stratechery' && !usedIds.has(i.id)
+                );
+                if (techItems.length > 0) {
+                  sections.push({
+                    title: 'Technology Analysis',
+                    items: techItems
+                  });
+                  techItems.forEach(i => usedIds.add(i.id));
+                }
+                
+                // Section 3: Business & Markets
+                const businessItems = newsFeed.filter(i => 
+                  i.source === 'Morning Brew' && !usedIds.has(i.id)
+                );
+                if (businessItems.length > 0) {
+                  sections.push({
+                    title: 'Business & Markets',
+                    items: businessItems
+                  });
+                  businessItems.forEach(i => usedIds.add(i.id));
+                }
+                
+                // Remaining items
+                const remaining = newsFeed.filter(i => !usedIds.has(i.id));
+                if (remaining.length > 0) {
+                  sections.push({
+                    title: 'More Stories',
+                    items: remaining
+                  });
+                }
+                
+                return sections.map((section, idx) => (
+                  <section key={section.title} className="mb-8">
+                    {/* Section Header */}
+                    <h2 className="mb-4 flex items-center gap-3 text-2xl font-heading text-slate-900">
+                      <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border-2 border-pencil bg-accent/10 text-sm font-bold text-accent">
+                        {idx + 1}
+                      </span>
+                      {section.title}
+                      <span className="flex-1 border-t-2 border-dashed border-slate-300"></span>
+                      <span className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                        {section.items.length} {section.items.length === 1 ? 'story' : 'stories'}
+                      </span>
+                    </h2>
+
+                    {/* Combined narrative for this section */}
+                    <div className="space-y-4">
+                      {section.items.map((item, itemIdx) => (
+                        <div key={item.id} className="group">
+                          {/* Content paragraph */}
+                          <div 
+                            className="text-base leading-relaxed text-slate-700"
+                            dangerouslySetInnerHTML={{ __html: item.summary }}
+                          />
+                          
+                          {/* Source attribution inline */}
+                          <p className="mt-2 text-sm text-slate-600">
+                            <span className="font-semibold text-slate-900">Source:</span> {item.source} 
+                            {item.type === 'email' && ' (Newsletter)'}
+                            {item.type === 'article' && ' (Article)'}
+                            {' • '}
+                            <time dateTime={item.date}>
+                              {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            </time>
+                          </p>
+                          
+                          {/* Read link */}
+                          {item.url && (
+                            <p className="mt-2">
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+                              >
+                                Read original
+                                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                              </a>
+                            </p>
                           )}
-                          <time className="text-xs font-medium text-slate-500" dateTime={item.date}>
-                            {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                          </time>
+                          
+                          {/* Divider between items in same section */}
+                          {itemIdx < section.items.length - 1 && (
+                            <div className="my-4 border-b border-dashed border-slate-200"></div>
+                          )}
                         </div>
+                      ))}
+                    </div>
 
-                        {/* Item Title */}
-                        <h3 className="m-0 text-xl font-semibold text-slate-900 group-hover:text-accent">
-                          {item.title}
-                        </h3>
-
-                        {/* Full Content */}
-                        {item.summary && (
-                          <div className="mt-3 text-base leading-relaxed text-slate-700">
-                            {item.summary}
-                          </div>
-                        )}
-
-                        {/* Read Link */}
-                        {item.url && (
-                          <div className="mt-4">
-                            <a
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent/80"
-                            >
-                              Read original story
-                              <span className="transition-transform group-hover:translate-x-1">→</span>
-                            </a>
-                          </div>
-                        )}
-
-                        {/* Divider between items */}
-                        {idx < items.length - 1 && (
-                          <div className="my-6 border-b border-dashed border-slate-200"></div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Section Divider */}
-                  {idx < Object.keys(newsFeed.reduce((acc, item) => {
-                    const source = item.source;
-                    if (!acc[source]) acc[source] = [];
-                    acc[source].push(item);
-                    return acc;
-                  }, {} as Record<string, typeof newsFeed>)).length - 1 && (
-                    <div className="my-10 border-t-4 border-double border-slate-200"></div>
-                  )}
-                </section>
-              ))}
+                    {/* Section divider */}
+                    {idx < sections.length - 1 && (
+                      <div className="my-10 border-t-4 border-double border-slate-200"></div>
+                    )}
+                  </section>
+                ));
+              })()}
             </article>
 
             {/* Article Footer */}
