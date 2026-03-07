@@ -12,3 +12,6 @@ out/
 .vscode/
 .idea/
 .DS_Store
+
+# Newsletter (external workspace)
+../newsletter-page/
