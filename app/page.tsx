@@ -223,7 +223,7 @@ export default function Page() {
         )}
 
         {activeTab === "news" && (
-          <div className="max-w-[900px] mx-auto">
+          <div className="max-w-[1100px] mx-auto">
             {/* Article Header - Clean & Minimal */}
             <header className="mb-12">
               {/* Date badge */}
