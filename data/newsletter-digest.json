@@ -1,51 +1,15 @@
 {
   "lastUpdated": "2026-03-07T12:30:00Z",
   "digestDate": "2026-03-07",
-  "items": [
-    {
-      "id": "digest-001",
-      "source": "MKT1",
-      "title": "Welcome to MKT1 Newsletter — Here's Where to Start",
-      "summary": "<p>Emily Kramer 欢迎来到 MKT1 通讯的第一期。这份通讯专注于市场营销、产品策略和职业发展的交叉点。</p><p><strong>核心要点：</strong></p><p>市场营销不再是独立职能，而是产品战略的核心组成部分。成功的 PMM 需要深度理解用户痛点和市场动态。建立个人品牌与建立产品品牌同样重要。</p><p>本期还分享了如何从 0 到 1 建立产品营销职能的框架，包括市场定位、信息传递和上市策略的关键步骤。</p>",
-      "date": "2026-03-07",
-      "url": "https://mkt1.substack.com/p/welcome",
-      "type": "email"
-    },
-    {
-      "id": "digest-002",
-      "source": "Stratechery",
-      "title": "Higher Powers and Lower Macs",
-      "summary": "<p>Ben Thompson 本周分析了 Apple 新发布的 MacBook Neo 以及 Anthropic 与美国军方的争议。</p><p><strong>Apple Silicon 的战略意义：</strong></p><p>Apple 通过自研芯片实现了对产品路线图的完全控制。M 系列芯片的成功证明了垂直整合在半导体时代的优势。MacBook Neo 填补了 MacBook Air 和 MacBook Pro 之间的空白。</p><p><strong>Anthropic 困境：</strong></p><p>AI 公司与政府合作的道德边界。技术中立性与国家安全需求的冲突。开源与闭源 AI 模型的地缘政治影响。</p><p>这两个看似无关的话题实际上都指向同一个问题：技术公司在追求商业成功的同时，如何平衡更广泛的社会责任。</p>",
-      "date": "2026-03-07",
-      "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/",
-      "type": "article"
-    },
-    {
-      "id": "digest-003",
-      "source": "Lenny's Newsletter",
-      "title": "Please Confirm Your Subscription",
-      "summary": "<p>Lenny Rachitsky 的免费通讯专注于产品管理、职业发展和创业经验。</p><p><strong>本期亮点：</strong></p><p>如何在前 90 天成功过渡到新的产品管理角色。来自顶级产品领导者的 5 个关键建议。产品发现与产品交付的平衡艺术。</p><p>通讯还包含了一个详细的产品面试准备指南，涵盖了从产品设计与产品策略到执行力的各个维度。</p>",
-      "date": "2026-03-07",
-      "url": "https://lennysnewsletter.com",
-      "type": "email"
-    },
-    {
-      "id": "digest-004",
-      "source": "Morning Brew",
-      "title": "☕️ Caution: Morning Brew Coming in Hot",
-      "summary": "<p>今日商业简报涵盖科技、金融和市场动态。</p><p><strong>头条新闻：</strong></p><p>美联储暗示可能在下季度调整利率政策。科技股财报季超预期，AI 相关公司领涨。电动车市场竞争加剧，传统车企加速转型。</p><p><strong>市场数据：</strong></p><p>S&P 500: +0.8%。Nasdaq: +1.2%。10 年期国债收益率：4.2%。</p><p>简报还分析了本周值得关注的经济数据和即将发布的企业财报。</p>",
-      "date": "2026-03-07",
-      "url": "https://morningbrew.com",
-      "type": "email"
-    },
-    {
-      "id": "digest-005",
-      "source": "Shreyas Doshi",
-      "title": "Subscription Confirmed — Welcome!",
-      "summary": "<p>Shreyas Doshi 的通讯专注于产品思维、决策质量和领导力发展。</p><p><strong>核心框架：</strong></p><p>Good Product Bad Product 系列的新章节。如何识别和解决\"伪问题\"。影响力杠杆：用最小努力获得最大产品影响。</p><p>本期还分享了一个实用的决策框架，帮助产品领导者在信息不完整的情况下做出高质量决策。</p>",
-      "date": "2026-03-07",
-      "url": "https://shreyas.substack.com",
-      "type": "email"
-    }
-  ]
+  "article": {
+    "title": "The State of AI, Product Marketing, and Tech Markets — March 7, 2026",
+    "content": "<p>Today's newsletter digest reveals converging themes across product strategy, AI governance, and market dynamics. Here's what caught our attention.</p><p><strong>Product Marketing's Evolution</strong></p><p>Emily Kramer's MKT1 Newsletter emphasizes that product marketing is no longer a standalone function but a core component of product strategy. The framework for building PMM from scratch includes three pillars: market positioning that resonates with actual user pain points, messaging that translates features into outcomes, and go-to-market strategies that align with buyer journeys. This echoes advice from Lenny's Newsletter on the first 90 days in a new PM role—understand before you execute.</p><p><strong>Apple's Silicon Strategy Deepens</strong></p><p>Ben Thompson's analysis on Stratechery highlights how Apple's M-series chips represent more than performance gains—they're about controlling the roadmap. The new MacBook Neo fills the gap between Air and Pro, but the real story is vertical integration paying off in an era where generic processors can't match optimized silicon. This is the same playbook that made the iPhone successful.</p><p><strong>AI's Governance Dilemma</strong></p><p>The Anthropic controversy raises uncomfortable questions. Can AI companies remain neutral while serving government contracts? Thompson argues this isn't just about one company—it's about whether open-source models will fragment along geopolitical lines. The tension between technical neutrality and national security isn't going away.</p><p><strong>Market Signals</strong></p><p>Morning Brew's daily briefing points to Fed rate adjustments on the horizon, with tech earnings (especially AI-related companies) outperforming expectations. The S&P 500's 0.8% gain and Nasdaq's 1.2% rise suggest investor confidence in the sector, even as EV competition intensifies and traditional automakers accelerate their transitions.</p><p><strong>Decision-Making Under Uncertainty</strong></p><p>Shreyas Doshi's latest framework tackles a universal challenge: how do product leaders make high-quality decisions with incomplete information? His answer involves identifying \"pseudo-problems\" early and using influence leverage—minimum effort for maximum impact. This pairs well with the product interview prep guide from Lenny's, which covers everything from product design to execution.</p><p><strong>Connecting the Dots</strong></p><p>The throughline today: control and leverage. Apple controls its silicon roadmap. Anthropic faces pressure to control AI's societal impact. Product marketers must control the narrative between product and market. And all of this happens against a backdrop of markets trying to control uncertainty through information.</p>",
+    "sources": [
+      { "name": "MKT1", "type": "email", "url": "https://mkt1.substack.com/p/welcome" },
+      { "name": "Stratechery", "type": "article", "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/" },
+      { "name": "Lenny's Newsletter", "type": "email", "url": "https://lennysnewsletter.com" },
+      { "name": "Morning Brew", "type": "email", "url": "https://morningbrew.com" },
+      { "name": "Shreyas Doshi", "type": "email", "url": "https://shreyas.substack.com" }
+    ]
+  }
 }

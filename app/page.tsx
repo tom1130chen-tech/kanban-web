@@ -228,10 +228,8 @@ export default function Page() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.5em] text-slate-500">Daily Newsletter</p>
-                  <h1 className="mt-2 text-4xl font-heading leading-tight">
-                    {newsletterData.digestDate 
-                      ? `Digest — ${new Date(newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}`
-                      : 'Latest Digest'}
+                  <h1 className="mt-2 text-4xl font-heading leading-tight text-slate-900">
+                    {newsletterData.article?.title || `Digest — ${new Date(newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })}`}
                   </h1>
                 </div>
                 <div className="text-right">
@@ -244,151 +242,80 @@ export default function Page() {
                 </div>
               </div>
               
-              {/* Stats */}
-              {newsFeed.length > 0 && (
+              {/* Sources count */}
+              {newsletterData.article?.sources && (
                 <div className="mt-4 flex items-center gap-4 text-sm">
                   <span className="text-slate-600">
-                    <strong className="text-slate-900">{newsFeed.length}</strong> stories
+                    <strong className="text-slate-900">{newsletterData.article.sources.length}</strong> sources curated
                   </span>
                   <span className="text-slate-400">•</span>
                   <span className="text-slate-600">
-                    <strong className="text-slate-900">{newsFeed.filter(i => i.type === 'email').length}</strong> newsletters
+                    <strong className="text-slate-900">{newsletterData.article.sources.filter(s => s.type === 'email').length}</strong> newsletters
                   </span>
                   <span className="text-slate-400">•</span>
                   <span className="text-slate-600">
-                    <strong className="text-slate-900">{newsFeed.filter(i => i.type === 'article').length}</strong> articles
+                    <strong className="text-slate-900">{newsletterData.article.sources.filter(s => s.type === 'article').length}</strong> articles
                   </span>
                 </div>
               )}
             </header>
 
-            {/* Article Content - Continuous narrative with thematic sections */}
+            {/* Main Article Content */}
             <article className="prose prose-slate max-w-none">
-              {/* Opening summary */}
-              <div className="mb-8 rounded-[var(--r-wobbly)] border-2 border-dashed border-pencil bg-white/60 p-4">
-                <p className="m-0 text-base leading-relaxed text-slate-700">
-                  <strong>Today's digest</strong> covers {newsFeed.length} stories from {new Set(newsFeed.map(i => i.source)).size} sources, 
-                  including product marketing insights, Apple's latest hardware moves, AI governance debates, and market updates.
-                </p>
-              </div>
-
-              {/* Group by theme/topic instead of source */}
-              {(() => {
-                // Simple grouping: combine items by similar topics
-                const sections = [];
-                const usedIds = new Set();
-                
-                // Section 1: Product & Marketing
-                const productItems = newsFeed.filter(i => 
-                  i.source === 'MKT1' || i.source === "Lenny's Newsletter" || i.source === 'Shreyas Doshi'
-                );
-                if (productItems.length > 0) {
-                  sections.push({
-                    title: 'Product Strategy & Marketing',
-                    items: productItems
-                  });
-                  productItems.forEach(i => usedIds.add(i.id));
-                }
-                
-                // Section 2: Tech Analysis
-                const techItems = newsFeed.filter(i => 
-                  i.source === 'Stratechery' && !usedIds.has(i.id)
-                );
-                if (techItems.length > 0) {
-                  sections.push({
-                    title: 'Technology Analysis',
-                    items: techItems
-                  });
-                  techItems.forEach(i => usedIds.add(i.id));
-                }
-                
-                // Section 3: Business & Markets
-                const businessItems = newsFeed.filter(i => 
-                  i.source === 'Morning Brew' && !usedIds.has(i.id)
-                );
-                if (businessItems.length > 0) {
-                  sections.push({
-                    title: 'Business & Markets',
-                    items: businessItems
-                  });
-                  businessItems.forEach(i => usedIds.add(i.id));
-                }
-                
-                // Remaining items
-                const remaining = newsFeed.filter(i => !usedIds.has(i.id));
-                if (remaining.length > 0) {
-                  sections.push({
-                    title: 'More Stories',
-                    items: remaining
-                  });
-                }
-                
-                return sections.map((section, idx) => (
-                  <section key={section.title} className="mb-8">
-                    {/* Section Header */}
-                    <h2 className="mb-4 flex items-center gap-3 text-2xl font-heading text-slate-900">
-                      <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-full border-2 border-pencil bg-accent/10 text-sm font-bold text-accent">
-                        {idx + 1}
-                      </span>
-                      {section.title}
-                      <span className="flex-1 border-t-2 border-dashed border-slate-300"></span>
-                      <span className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                        {section.items.length} {section.items.length === 1 ? 'story' : 'stories'}
-                      </span>
-                    </h2>
-
-                    {/* Combined narrative for this section */}
-                    <div className="space-y-4">
-                      {section.items.map((item, itemIdx) => (
-                        <div key={item.id} className="group">
-                          {/* Content paragraph */}
-                          <div 
-                            className="text-base leading-relaxed text-slate-700"
-                            dangerouslySetInnerHTML={{ __html: item.summary }}
-                          />
-                          
-                          {/* Source attribution inline */}
-                          <p className="mt-2 text-sm text-slate-600">
-                            <span className="font-semibold text-slate-900">Source:</span> {item.source} 
-                            {item.type === 'email' && ' (Newsletter)'}
-                            {item.type === 'article' && ' (Article)'}
-                            {' • '}
-                            <time dateTime={item.date}>
-                              {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                            </time>
-                          </p>
-                          
-                          {/* Read link */}
-                          {item.url && (
-                            <p className="mt-2">
-                              <a
-                                href={item.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors hover:text-accent/80"
-                              >
-                                Read original
-                                <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                              </a>
-                            </p>
-                          )}
-                          
-                          {/* Divider between items in same section */}
-                          {itemIdx < section.items.length - 1 && (
-                            <div className="my-4 border-b border-dashed border-slate-200"></div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Section divider */}
-                    {idx < sections.length - 1 && (
-                      <div className="my-10 border-t-4 border-double border-slate-200"></div>
-                    )}
-                  </section>
-                ));
-              })()}
+              {newsletterData.article?.content ? (
+                <div 
+                  className="text-base leading-loose text-slate-800"
+                  dangerouslySetInnerHTML={{ __html: newsletterData.article.content }}
+                />
+              ) : (
+                <div className="rounded-[var(--r-wobbly)] border-2 border-dashed border-slate-300 bg-white/50 p-12 text-center">
+                  <p className="text-lg text-slate-600">No content yet</p>
+                  <p className="mt-2 text-sm text-slate-500">Check back tomorrow!</p>
+                </div>
+              )}
             </article>
+
+            {/* Sources Section */}
+            {newsletterData.article?.sources && newsletterData.article.sources.length > 0 && (
+              <section className="rounded-[var(--r-wobbly)] border-[3px] border-dashed border-pencil bg-white/70 p-6">
+                <h2 className="mb-4 flex items-center gap-3 text-xl font-heading text-slate-900">
+                  <span>📚</span>
+                  Sources
+                  <span className="flex-1 border-t-2 border-dashed border-slate-300"></span>
+                  <span className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                    {newsletterData.article.sources.length} total
+                  </span>
+                </h2>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {newsletterData.article.sources.map((source, idx) => (
+                    <a
+                      key={idx}
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center justify-between rounded-[var(--r-wobbly-md)] border-2 border-slate-200 bg-white/90 p-3 transition-all hover:border-accent hover:shadow-md"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg">
+                          {source.type === 'email' ? '📧' : '🌐'}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-slate-900 group-hover:text-accent">
+                            {source.name}
+                          </p>
+                          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                            {source.type === 'email' ? 'Newsletter' : 'Article'}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-sm font-medium text-accent transition-transform group-hover:translate-x-1">
+                        Visit →
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Article Footer */}
             <footer className="border-t-[3px] border-pencil pt-6">
@@ -401,14 +328,6 @@ export default function Page() {
                 </p>
               </div>
             </footer>
-
-            {/* Empty State */}
-            {newsFeed.length === 0 && (
-              <div className="rounded-[var(--r-wobbly)] border-2 border-dashed border-slate-300 bg-white/50 p-12 text-center">
-                <p className="text-lg font-semibold text-slate-700">No newsletters yet</p>
-                <p className="mt-2 text-sm text-slate-500">Check back tomorrow for fresh content!</p>
-              </div>
-            )}
           </div>
         )}
 
