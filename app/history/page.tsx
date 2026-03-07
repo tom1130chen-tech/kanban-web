@@ -15,12 +15,15 @@ interface NewsletterData {
   article: {
     title: string;
     subtitle?: string;
+    content: string;
     author?: string;
     tags?: string[];
+    sources?: Array<{ name: string; url: string; summary?: string; type?: string }>;
   };
   metadata: {
     readTime: string;
     wordCount: number;
+    language?: string;
   };
 }
 
