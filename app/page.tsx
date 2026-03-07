@@ -31,12 +31,6 @@ const calendarItems = [
   { id: "cal-03", title: "Investor prep", time: "16:30" },
 ];
 
-// Newsletter digest data - auto-updated daily by cron job
-import newsletterData from "../data/newsletter-digest.json";
-
-// Use article content if available, fallback to empty array
-const newsFeed = newsletterData.article?.sources || [];
-
 const financeWatch = [
   { id: "fin-01", label: "Liquidity", value: "Stable", detail: "Tier-one funds holding steady." },
   { id: "fin-02", label: "Currency", value: "USD strength", detail: "Dollar index up 0.4% week-over-week." },
