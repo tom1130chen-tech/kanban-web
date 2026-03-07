@@ -11,12 +11,12 @@ export async function GET(request: NextRequest) {
     const pathname = searchParams.get('pathname');
     
     if (pathname) {
-      // Get specific file
-      const blob = await get(pathname);
-      return NextResponse.json({
-        success: true,
-        data: blob
-      });
+      // Get specific file metadata (requires token from env)
+      // For now, return error - user needs to configure BLOB_READ_WRITE_TOKEN
+      return NextResponse.json(
+        { success: false, error: 'Blob token not configured. Use list endpoint instead.' },
+        { status: 503 }
+      );
     } else {
       // List all files (optional prefix filter)
       const prefix = searchParams.get('prefix') || '';
