@@ -64,7 +64,7 @@ const statusLabelMap: Record<BoardStatus, string> = {
 };
 
 export default function Page() {
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [activeTab, setActiveTab] = useState("news");
   const [activeCrew, setActiveCrew] = useState(teamMembers[0].id);
   const [boardStatus, setBoardStatus] = useState<BoardStatus>("synced");
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
