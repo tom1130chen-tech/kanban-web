@@ -103,14 +103,15 @@ h1, h2, h3 {
 
 /* News Article Typography - Clean & Minimal */
 .news-article {
-  font-size: 1.0625rem;
-  line-height: 1.85;
+  font-size: 1.125rem;
+  line-height: 1.9;
   color: var(--fg);
+  max-width: 100%;
 }
 
 .news-article h2 {
   font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--fg);
   margin: 2.5rem 0 1rem 0;
@@ -119,23 +120,23 @@ h1, h2, h3 {
 
 .news-article h3 {
   font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--fg);
   margin: 2rem 0 0.75rem 0;
 }
 
 .news-article p {
-  margin: 1.25rem 0;
+  margin: 1.5rem 0;
   text-align: left;
 }
 
 .news-article p.lead {
-  font-size: 1.25rem;
-  line-height: 1.9;
+  font-size: 1.35rem;
+  line-height: 2;
   color: #555;
   font-weight: 300;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .news-article strong {

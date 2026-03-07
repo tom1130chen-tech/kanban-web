@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Convert HTML to PDF using WeasyPrint"""
 
-from weasyprint import HTML, CSS
+import os
+from weasyprint import HTML
 
 # Convert HTML to PDF
 html_file = '/Users/tomchen/.openclaw/workspace-chat/kanban-board/temp/2028gic-chinese.html'

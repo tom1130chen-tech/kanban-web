@@ -223,7 +223,7 @@ export default function Page() {
         )}
 
         {activeTab === "news" && (
-          <div className="max-w-[720px] mx-auto">
+          <div className="max-w-[900px] mx-auto">
             {/* Article Header - Clean & Minimal */}
             <header className="mb-12">
               {/* Date badge */}
@@ -234,14 +234,14 @@ export default function Page() {
                 </span>
               </div>
 
-              {/* Title */}
-              <h1 className="text-5xl font-heading font-bold text-slate-900 leading-tight mb-4">
+              {/* Title - Reduced from 5xl to 3xl */}
+              <h1 className="text-3xl font-heading font-bold text-slate-900 leading-tight mb-4">
                 {newsletterData.article?.title || `Daily News`}
               </h1>
 
               {/* Subtitle */}
               {newsletterData.article?.subtitle && (
-                <p className="text-xl text-slate-600 font-light mb-6">
+                <p className="text-lg text-slate-600 font-light mb-6">
                   {newsletterData.article.subtitle}
                 </p>
               )}
