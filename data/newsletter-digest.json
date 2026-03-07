@@ -1,15 +1,110 @@
 {
-  "lastUpdated": "2026-03-07T12:30:00Z",
+  "lastUpdated": "2026-03-07T12:30:17.576756",
   "digestDate": "2026-03-07",
   "article": {
-    "title": "The State of AI, Product Marketing, and Tech Markets — March 7, 2026",
-    "content": "<p>Today's newsletter digest reveals converging themes across product strategy, AI governance, and market dynamics. Here's what caught our attention.</p><p><strong>Product Marketing's Evolution</strong></p><p>Emily Kramer's MKT1 Newsletter emphasizes that product marketing is no longer a standalone function but a core component of product strategy. The framework for building PMM from scratch includes three pillars: market positioning that resonates with actual user pain points, messaging that translates features into outcomes, and go-to-market strategies that align with buyer journeys. This echoes advice from Lenny's Newsletter on the first 90 days in a new PM role—understand before you execute.</p><p><strong>Apple's Silicon Strategy Deepens</strong></p><p>Ben Thompson's analysis on Stratechery highlights how Apple's M-series chips represent more than performance gains—they're about controlling the roadmap. The new MacBook Neo fills the gap between Air and Pro, but the real story is vertical integration paying off in an era where generic processors can't match optimized silicon. This is the same playbook that made the iPhone successful.</p><p><strong>AI's Governance Dilemma</strong></p><p>The Anthropic controversy raises uncomfortable questions. Can AI companies remain neutral while serving government contracts? Thompson argues this isn't just about one company—it's about whether open-source models will fragment along geopolitical lines. The tension between technical neutrality and national security isn't going away.</p><p><strong>Market Signals</strong></p><p>Morning Brew's daily briefing points to Fed rate adjustments on the horizon, with tech earnings (especially AI-related companies) outperforming expectations. The S&P 500's 0.8% gain and Nasdaq's 1.2% rise suggest investor confidence in the sector, even as EV competition intensifies and traditional automakers accelerate their transitions.</p><p><strong>Decision-Making Under Uncertainty</strong></p><p>Shreyas Doshi's latest framework tackles a universal challenge: how do product leaders make high-quality decisions with incomplete information? His answer involves identifying \"pseudo-problems\" early and using influence leverage—minimum effort for maximum impact. This pairs well with the product interview prep guide from Lenny's, which covers everything from product design to execution.</p><p><strong>Connecting the Dots</strong></p><p>The throughline today: control and leverage. Apple controls its silicon roadmap. Anthropic faces pressure to control AI's societal impact. Product marketers must control the narrative between product and market. And all of this happens against a backdrop of markets trying to control uncertainty through information.</p>",
+    "title": "The State of Tech, Product, and Markets — March 07, 2026",
+    "content": "<p>Today's newsletter digest reveals converging themes across product strategy, AI governance, and market dynamics. Here's what caught our attention.</p><p><strong>Morning Brew's Take:</strong></p><p><p>[翻译] US employers shed jobs last month...<a href=\"http://www.morningbrew.com\"><img src=\"https://link.morningbrew.com/img/69ab7cfc3e7b8fcc9b0384c3qizqz.26l9p/3bc55d17.gif\" alt=\"\" border=\"0\" /></a>...</p>\n<p>[翻译] March 07, 2026View Online | Sign Up | Shop\nMorning Brew\nPresented By...</p>\n<p>[翻译] Miso Robotics\nGood mushing. The 2026 Iditarod will ceremonially start this afternoon (10am Alaska time) in Anchorage, but the race officially starts Sunday in Willow, AK. It is expected to take 37 mushers and their dogs about eight d...</p></p>\n<p><strong>\"Mat Honan, Editor in chief, MIT Technology Review\"'s Take:</strong></p><p><p>[翻译] https://ter.li/1_Nurture_TR-Homepage https://ter.li/1_Nurture_TR-Homepage...</p>\n<p>[翻译] https://ter.li/1_Nurture_TR-Homepage\nHi Valued Reader,...</p>\n<p>[翻译] Thank you for joining MIT Technology Review’s community of readers....</p>\n<p>[翻译] We want to make sure you get the most out of your experience and are very excited to showcase everything we have to offer. From relevant, real-time reporting and expert analysis to curated newsletters and real-time conversations with industry leaders, MIT Technology Review offers limitless opportuni...</p></p>\n<p><strong>TechCrunch's Take:</strong></p><p></p>\n<p><strong>The Wall Street Journal's Take:</strong></p><p><p>[翻译] Email Address Verification...</p>\n<p>[翻译] Dear...</p></p>\n<p><strong>Barrons's Take:</strong></p><p><p>[翻译] Dear Reader,...</p>\n<p>[翻译] Thank you for your interest in Advisor Daily.  To start receiving the newsletter, please confirm this email address by clicking the button below....</p>\n<p>[翻译] Confirm [http://https://www.barrons.com/newsletters?mod=email_confirm&confirmToken=9d7e16587c7cd6797a809f26ca9173b1dc214f71-0]...</p>\n<p>[翻译] If for any reason you do not want to receive this newsletter, simply ignore or delete this email and you will not be subscribed.  Please reach out to Customer Service at 1-800-544-0422 or  [support@barrons.com]...</p></p>\n<p><strong>MarketWatch's Take:</strong></p><p><p>[翻译] Newsletter Sign Up Verification...</p>\n<p>[翻译] Thank you for your interest in Daily Briefing.  To start receiving the newsletter, please confirm this email address by clicking the button below....</p>\n<p>[翻译] Confirm [http://https://www.marketwatch.com/newsletters?mod=email_confirm&confirmToken=892de6573e8350e5c7dc962928944cc83f263f57-0]...</p>\n<p>[翻译] If for any reason you do not want to receive this newsletter, simply ignore or delete this email and you will not be subscribed.  Please reach out to Customer Service at  [mwfeedback@mark...</p></p>\n<p><strong>MarketWatch's Take:</strong></p><p><p>[翻译] Newsletter Sign Up Verification...</p>\n<p>[翻译] Thank you for your interest in The Barron's Daily.  To start receiving the newsletter, please confirm this email address by clicking the button below....</p>\n<p>[翻译] Confirm [http://https://www.marketwatch.com/newsletters?mod=email_confirm&confirmToken=759dd1d70378ef083ebef7eb54a4ef81577d6085-0]...</p>\n<p>[翻译] If for any reason you do not want to receive this newsletter, simply ignore or delete this email and you will not be subscribed.  Please reach out to Customer Service at  [mwfeedback@...</p></p>\n<p><strong>MarketWatch's Take:</strong></p><p></p>\n<p><strong>MIT Technology Review's Take:</strong></p><p><p>[翻译] Your daily dose of what's up in emerging technology....</p>\n<p>[翻译] https://www.technologyreview.com/login?utm_source=the_download&utm_medium=email&utm_campaign=the_download.unpaid.onboarding...</p>\n<p>[翻译] Welcome to The Download...</p>\n<p>[翻译] Hello differentwork984@agentmail.to,...</p>\n<p>[翻译] I’m Rhiannon Williams. I write The Download (https://forms.technologyreview.com/newsletters/briefing-the-download/?utm_source=the_download&utm_medium=email&utm_campaign=the_download.unpaid.onboarding)  at MIT Technology Review, our daily newsletter on the la...</p></p>\n<p><strong>MKT1's Take:</strong></p><p></p>\n<p><strong>Recomendo's Take:</strong></p><p></p>\n<p><strong>Lenny's Newsletter's Take:</strong></p><p></p>\n<p><strong>Morning Brew's Take:</strong></p><p></p>\n<p><strong>Shreyas Doshi's Take:</strong></p><p></p>\n<p><strong>Lenny's Newsletter's Take:</strong></p><p></p>\n<p><strong>Analysis from Stratechery:</strong></p><p><p>[翻译] An Interview with Gregory Allen About Anthropic and the U.S. Government...</p></p>\n<p><strong>Analysis from Stratechery:</strong></p><p><p>[翻译] 2026.10: Higher Powers and Lower Macs...</p></p>\n<p><strong>Analysis from Stratechery:</strong></p><p><p>[翻译] Ben owes John a steak...</p></p>\n<p><strong>Analysis from Stratechery:</strong></p><p><p>[翻译] Stratechery Interview with Gregory Allen of the Center for Strategic and International Studies...</p></p>\n<p><strong>Analysis from Stratechery:</strong></p><p><p>[翻译] my own thoughts on the Anthropic mess...</p></p><p><strong>Connecting the Dots:</strong></p><p>The throughline today: control and leverage. Each source offers a different lens on how organizations navigate uncertainty while maintaining strategic direction.</p>",
     "sources": [
-      { "name": "MKT1", "type": "email", "url": "https://mkt1.substack.com/p/welcome" },
-      { "name": "Stratechery", "type": "article", "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/" },
-      { "name": "Lenny's Newsletter", "type": "email", "url": "https://lennysnewsletter.com" },
-      { "name": "Morning Brew", "type": "email", "url": "https://morningbrew.com" },
-      { "name": "Shreyas Doshi", "type": "email", "url": "https://shreyas.substack.com" }
+      {
+        "name": "Morning Brew",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307052638.44556155.3666733@sailthru.com>"
+      },
+      {
+        "name": "\"Mat Honan, Editor in chief, MIT Technology Review\"",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<47c1a9cec9749a8f8cbc83e78.3f7ec237bd.20260307064716.b1b6dddf66.5cb34fa4@mail118.suw11.mcdlv.net>"
+      },
+      {
+        "name": "TechCrunch",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307055352.69abbd6e8353f1543e912e91@sailthru.com>"
+      },
+      {
+        "name": "The Wall Street Journal",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<D2.9E.51034.5CCBBA96@i-07fc8adbc7dc0e6ae.mta1vrest.sd.prd.sparkpost>"
+      },
+      {
+        "name": "Barrons",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<cm.1647497686611.oiibdd.l.d.2cc63e4b19e911f1b211d645be5e3141@cmail20.com>"
+      },
+      {
+        "name": "MarketWatch",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<cm.1646346923502.budpjt.l.d.0016c9d619e911f18305674c6f0cb6cf@cmail19.com>"
+      },
+      {
+        "name": "MarketWatch",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<cm.1646207699584.budpjt.l.d.f7c2c18719e811f19215204be61dc976@cmail20.com>"
+      },
+      {
+        "name": "MarketWatch",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307054609.69abbba027694d23200b1fbd@sailthru.com>"
+      },
+      {
+        "name": "MIT Technology Review",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<47c1a9cec9749a8f8cbc83e78.3f7ec237bd.20260307054514.b1abaaf9d3.f6a4fef6@mail53.suw11.mcdlv.net>"
+      },
+      {
+        "name": "MKT1",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307012746.3.dfb6008d5bec2d10.wn831lrs@mg-d0.substack.com>"
+      },
+      {
+        "name": "Recomendo",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307012746.3.2af576ea51a25607.yagxga88@mg2.substack.com>"
+      },
+      {
+        "name": "Lenny's Newsletter",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307012723.3.f07d54f6b0dfc9db.2ql5ahmo@mg-d0.substack.com>"
+      },
+      {
+        "name": "Morning Brew",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307012301.69ab7df5c9dd742c05b43629@sailthru.com>"
+      },
+      {
+        "name": "Shreyas Doshi",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307012223.3.7b7cc86a9a6e6ab3.a87wdzx6@mg2.substack.com>"
+      },
+      {
+        "name": "Lenny's Newsletter",
+        "type": "email",
+        "url": "https://agentmail.to/inbox/differentwork984@agentmail.to/<20260307012145.3.b298712a0b925b18.zru8fs0t@mg-d1.substack.com>"
+      },
+      {
+        "name": "Stratechery",
+        "type": "article",
+        "url": "https://stratechery.com/2026/an-interview-with-gregory-allen-about-anthropic-and-the-u-s-government/"
+      },
+      {
+        "name": "Stratechery",
+        "type": "article",
+        "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/"
+      },
+      {
+        "name": "Stratechery",
+        "type": "article",
+        "url": "https://daringfireball.net/linked/2026/03/03/apple-introduces-macbook-pro-models-with-m5-pro-and-m5-max-chips"
+      },
+      {
+        "name": "Stratechery",
+        "type": "article",
+        "url": "https://stratechery.com/2026/an-interview-with-gregory-allen-about-anthropic-and-the-u-s-government/"
+      },
+      {
+        "name": "Stratechery",
+        "type": "article",
+        "url": "https://sharptext.net/2026/the-end-of-the-world-as-we-know-it/"
+      }
     ]
   }
 }
