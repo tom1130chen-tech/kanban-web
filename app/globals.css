@@ -100,3 +100,135 @@ h1, h2, h3 {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* News Article Typography - Clean & Minimal */
+.news-article {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--fg);
+}
+
+.news-article h2 {
+  font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--fg);
+  margin: 2.5rem 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.news-article h3 {
+  font-family: var(--font-heading), system-ui, -apple-system, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 2rem 0 0.75rem 0;
+}
+
+.news-article p {
+  margin: 1.25rem 0;
+  text-align: left;
+}
+
+.news-article p.lead {
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: #555;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.news-article strong {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.news-article ul,
+.news-article ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.news-article li {
+  margin: 0.75rem 0;
+  position: relative;
+}
+
+.news-article blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 2rem 0;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  background: rgba(255, 77, 77, 0.05);
+  font-style: italic;
+  color: #666;
+  border-radius: 0 var(--r-wobbly) var(--r-wobbly) 0;
+}
+
+.news-article code {
+  background: rgba(45, 45, 45, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-family: 'Menlo', 'Monaco', monospace;
+  font-size: 0.85em;
+  color: var(--fg);
+}
+
+.news-article pre {
+  background: var(--fg);
+  color: #f8f8f2;
+  padding: 1.5rem;
+  border-radius: var(--r-wobbly-md);
+  overflow-x: auto;
+  margin: 2rem 0;
+  font-family: 'Menlo', 'Monaco', monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.news-article hr {
+  border: none;
+  border-top: 2px dashed var(--muted);
+  margin: 3rem 0;
+}
+
+/* Table styling - clean with hand-drawn touch */
+.news-article table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  background: white;
+  border-radius: var(--r-wobbly-md);
+  overflow: hidden;
+  box-shadow: 4px 4px 0px rgba(45, 45, 45, 0.1);
+}
+
+.news-article th {
+  background: var(--accent);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.news-article td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--muted);
+}
+
+.news-article tr:last-child td {
+  border-bottom: none;
+}
+
+.news-article tr:nth-child(even) {
+  background: rgba(255, 77, 77, 0.03);
+}
+
+.news-article tr:hover {
+  background: rgba(255, 77, 77, 0.08);
+}

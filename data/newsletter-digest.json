@@ -2,19 +2,19 @@
   "lastUpdated": "2026-03-07T12:30:00Z",
   "digestDate": "2026-03-07",
   "article": {
-    "title": "Apple Silicon 的战略深化与 AI 治理困境 — 2026 年 3 月 7 日",
-    "subtitle": "今日 Stratechery 精选分析",
+    "title": "Apple Silicon 的战略深化与 AI 治理困境",
+    "subtitle": "垂直整合的回报与技术中立的终结",
     "content": "<p class=\"lead\">今日的 Stratechery 分析揭示了 Apple 垂直整合战略的深层逻辑，以及 AI 公司面临的地缘政治挑战。</p><h2>Apple Silicon：控制路线图</h2><p>Ben Thompson 指出，Apple 的 M 系列芯片代表的不仅仅是性能提升——更重要的是<strong>控制产品路线图</strong>的能力。新的 MacBook Neo 填补了 Air 和 Pro 之间的空白，但真正的故事是：在通用处理器无法匹敌优化芯片的时代，垂直整合正在获得前所未有的回报。</p><p>这正是 iPhone 成功的相同剧本：<strong>硬件 + 软件 + 芯片的三位一体</strong>，让 Apple 能够在竞争对手依赖第三方供应商时，自主决定性能、功耗和发布节奏。</p><h2>AI 的治理困境</h2><p>Anthropic 的争议提出了令人不安的问题：<strong>AI 公司在承接政府合同的同时能否保持中立？</strong>Thompson 认为这不仅仅关乎一家公司——而是开源模型是否会沿着地缘政治路线分裂。</p><p>技术中立与国家安全之间的紧张关系不会消失。随着 AI 能力越来越接近 AGI，这种压力只会增加。</p><h2>关键洞察</h2><ul><li><strong>控制 vs 依赖：</strong>Apple 选择控制核心组件，而竞争对手依赖通用供应商</li><li><strong>优化的力量：</strong>专用芯片在特定工作负载下超越通用处理器</li><li><strong>地缘政治分裂：</strong>AI 技术可能沿着国家边界分裂成不同的生态系统</li></ul><h2>串联要点</h2><p>今天的贯穿线索是<strong>控制和自主权</strong>。Apple 控制其 Silicon 路线图以获得竞争优势。Anthropic 面临控制 AI 社会影响的压力。而在两者背后，都是关于谁掌握关键技术决定权的更大问题。</p>",
     "sources": [
       {
         "name": "Stratechery",
         "type": "article",
         "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/",
-        "summary": "Higher Powers and Lower Macs - Apple Silicon 战略分析"
+        "summary": "Higher Powers and Lower Macs"
       }
     ],
     "author": "Ben Thompson",
-    "tags": ["Apple", "AI", "Strategy", "Semiconductors"]
+    "tags": ["Apple", "AI", "Strategy"]
   },
   "metadata": {
     "wordCount": 450,
