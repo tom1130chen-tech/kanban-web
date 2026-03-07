@@ -222,44 +222,104 @@ export default function Page() {
         )}
 
         {activeTab === "news" && (
-          <div className="space-y-4">
-            <div className="mb-4 flex items-center justify-between">
-              <p className="text-sm uppercase tracking-[0.5em] text-slate-500">
-                Last updated: {newsletterData.lastUpdated ? new Date(newsletterData.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'N/A'}
-              </p>
+          <div className="space-y-6">
+            {/* Header with date and stats */}
+            <div className="flex items-end justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-heading">📬 Daily Digest</h2>
+                <p className="text-sm text-slate-600 mt-1">
+                  {newsletterData.digestDate ? new Date(newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Latest updates'}
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-xs uppercase tracking-[0.4em] text-slate-500">Last updated</p>
+                <p className="text-sm font-semibold text-slate-700">
+                  {newsletterData.lastUpdated ? new Date(newsletterData.lastUpdated).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) : 'N/A'}
+                </p>
+              </div>
             </div>
-            <ul className="space-y-4">
+
+            {/* Stats bar */}
+            {newsFeed.length > 0 && (
+              <div className="flex items-center gap-3 text-sm">
+                <span className="inline-flex items-center gap-1 rounded-full border-2 border-pencil bg-white/80 px-3 py-1 [border-radius:var(--r-wobbly)]">
+                  📧 {newsFeed.filter(item => item.type === 'email').length} emails
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full border-2 border-pencil bg-white/80 px-3 py-1 [border-radius:var(--r-wobbly)]">
+                  🌐 {newsFeed.filter(item => item.type === 'article').length} articles
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full border-2 border-pencil bg-white/80 px-3 py-1 [border-radius:var(--r-wobbly)]">
+                  📊 Total: {newsFeed.length} items
+                </span>
+              </div>
+            )}
+
+            {/* News cards */}
+            <div className="space-y-4">
               {newsFeed.map((item) => (
-                <li
+                <article
                   key={item.id}
-                  className="rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 px-5 py-4 shadow-hard"
+                  className="group rounded-[var(--r-wobbly)] border-[3px] border-slate-200 bg-white/90 p-5 shadow-hard transition-all hover:shadow-lg hover:border-accent/30"
                 >
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <p className="text-lg font-heading text-slate-900">{item.title}</p>
+                      {/* Source badge */}
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-[var(--r-wobbly)] bg-accent/10 px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
+                          {item.source}
+                        </span>
+                        {item.type === 'email' && (
+                          <span className="text-xs text-slate-400">📧 Email</span>
+                        )}
+                        {item.type === 'article' && (
+                          <span className="text-xs text-slate-400">🌐 Article</span>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-heading text-slate-900 group-hover:text-accent">
+                        {item.title}
+                      </h3>
+
+                      {/* Summary */}
                       {item.summary && (
-                        <p className="mt-2 text-sm text-slate-700">{item.summary}</p>
+                        <p className="mt-3 text-base leading-relaxed text-slate-700">
+                          {item.summary}
+                        </p>
                       )}
-                      <div className="mt-3 flex items-center gap-3">
-                        <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{item.source}</p>
-                        <span className="text-xs text-slate-400">•</span>
-                        <p className="text-xs text-slate-500">{item.date}</p>
+
+                      {/* Footer with date and link */}
+                      <div className="mt-4 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <time className="text-xs text-slate-500" dateTime={item.date}>
+                            📅 {new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                          </time>
+                        </div>
+                        {item.url && (
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-sm font-semibold text-accent transition-colors hover:text-accent/80"
+                          >
+                            Read full story
+                            <span className="transition-transform group-hover:translate-x-1">→</span>
+                          </a>
+                        )}
                       </div>
                     </div>
-                    {item.url && (
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 text-xs font-semibold text-accent hover:underline"
-                      >
-                        Read →
-                      </a>
-                    )}
                   </div>
-                </li>
+                </article>
               ))}
-            </ul>
+            </div>
+
+            {/* Empty state */}
+            {newsFeed.length === 0 && (
+              <div className="rounded-[var(--r-wobbly)] border-2 border-dashed border-slate-300 bg-white/50 p-8 text-center">
+                <p className="text-lg text-slate-600">No newsletters yet</p>
+                <p className="mt-1 text-sm text-slate-500">Check back tomorrow for fresh content!</p>
+              </div>
+            )}
           </div>
         )}
 

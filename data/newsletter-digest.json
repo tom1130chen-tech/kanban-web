@@ -1,14 +1,15 @@
 {
-  "lastUpdated": "2026-03-07T07:30:00-05:00",
+  "lastUpdated": "2026-03-07T12:30:00Z",
   "digestDate": "2026-03-07",
   "items": [
     {
       "id": "digest-001",
-      "source": "MKT1 Newsletter",
+      "source": "MKT1",
       "title": "Welcome to MKT1 Newsletter. Here's where to start",
       "summary": "欢迎订阅 MKT1 通讯，这是开始阅读的指南。",
       "date": "2026-03-07",
-      "url": "https://mkt1.substack.com"
+      "url": "https://mkt1.substack.com",
+      "type": "email"
     },
     {
       "id": "digest-002",
@@ -16,7 +17,26 @@
       "title": "Higher Powers and Lower Macs",
       "summary": "本周 Stratechery 讨论了 Apple 新发布的 MacBook Neo，以及 Anthropic 与军方的争议。",
       "date": "2026-03-07",
-      "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/"
+      "url": "https://stratechery.com/2026/higher-powers-and-lower-macs/",
+      "type": "article"
+    },
+    {
+      "id": "digest-003",
+      "source": "Lenny's Newsletter",
+      "title": "Welcome to the free edition of Lenny's Newsletter",
+      "summary": "欢迎订阅 Lenny 的免费通讯，专注于产品增长和职业发展。",
+      "date": "2026-03-07",
+      "url": "https://lennysnewsletter.com",
+      "type": "email"
+    },
+    {
+      "id": "digest-004",
+      "source": "Morning Brew",
+      "title": "☕️ Caution: Morning Brew coming in hot",
+      "summary": "每日商业新闻简报，涵盖科技、金融和市场动态。",
+      "date": "2026-03-07",
+      "url": "https://morningbrew.com",
+      "type": "email"
     }
   ]
 }
