@@ -1,4 +1,12 @@
-{
+#!/usr/bin/env python3
+import json
+
+# Read the original short version
+with open('/Users/tomchen/.openclaw/workspace-chat/kanban-board/data/newsletter-digest.json', 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# Find and replace just the content section with shorter version
+data = {
   "lastUpdated": "2026-03-07T12:30:00Z",
   "digestDate": "2026-03-07",
   "article": {
@@ -14,13 +22,7 @@
       }
     ],
     "author": "Citrini & Alap Shah",
-    "tags": [
-      "AI",
-      "Economy",
-      "Crisis",
-      "Future",
-      "Macro"
-    ]
+    "tags": ["AI", "Economy", "Crisis", "Future", "Macro"]
   },
   "metadata": {
     "wordCount": 8500,
@@ -29,3 +31,9 @@
     "template": "full-article"
   }
 }
+
+# Write valid JSON
+with open('/Users/tomchen/.openclaw/workspace-chat/kanban-board/data/newsletter-digest.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+
+print("✅ JSON file created successfully")
