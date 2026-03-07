@@ -28,7 +28,8 @@ const calendarItems = [
 // Newsletter digest data - auto-updated daily by cron job
 import newsletterData from "../data/newsletter-digest.json";
 
-const newsFeed = newsletterData.items || [];
+// Use article content if available, fallback to empty array
+const newsFeed = newsletterData.article?.sources || [];
 
 const financeWatch = [
   { id: "fin-01", label: "Liquidity", value: "Stable", detail: "Tier-one funds holding steady." },
