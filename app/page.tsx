@@ -1,9 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Board, type BoardStatus } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
+
+// Newsletter digest data - auto-updated daily by cron job
+import newsletterData from "../data/newsletter-digest.json";
+
+// Use article content if available, fallback to empty array
+const newsFeed = newsletterData.article?.sources || [];
 
 const tabs = [
   { id: "board", label: "KANBAN", title: "Project board" },
@@ -67,7 +73,50 @@ export default function Page() {
   const [activeTab, setActiveTab] = useState("news");
   const [activeCrew, setActiveCrew] = useState(teamMembers[0].id);
   const [boardStatus, setBoardStatus] = useState<BoardStatus>("synced");
+  const [selectedNewsDate, setSelectedNewsDate] = useState<string>(newsletterData.digestDate);
+  const [newsHistory, setNewsHistory] = useState<any[]>([]);
+  const [loadingHistory, setLoadingHistory] = useState(false);
+  
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
+
+  // Generate past 5 days + today for date buttons
+  const pastDates = useMemo(() => {
+    const dates = [];
+    for (let i = 0; i < 6; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      dates.push(date.toISOString().split('T')[0]); // YYYY-MM-DD
+    }
+    return dates;
+  }, []);
+
+  // Load news for selected date
+  useEffect(() => {
+    async function loadNewsForDate(date: string) {
+      setLoadingHistory(true);
+      try {
+        // For now, use local data. Later connect to Blob API
+        if (date === newsletterData.digestDate) {
+          // Already loaded
+        } else {
+          // Fetch from Blob API
+          const res = await fetch(`/api/blob?pathname=newsletter/${date}.json`);
+          const data = await res.json();
+          if (data.success) {
+            // Handle loaded data
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load news:', error);
+      } finally {
+        setLoadingHistory(false);
+      }
+    }
+    
+    if (selectedNewsDate) {
+      loadNewsForDate(selectedNewsDate);
+    }
+  }, [selectedNewsDate]);
 
   const refreshPage = () => {
     if (boardStatus === "synced") {
@@ -230,8 +279,42 @@ export default function Page() {
               <div className="inline-flex items-center gap-2 rounded-full border-2 border-accent px-4 py-1.5 mb-6" style={{ boxShadow: "3px 3px 0px var(--accent)" }}>
                 <span className="w-2 h-2 rounded-full bg-accent"></span>
                 <span className="text-xs font-heading uppercase tracking-[0.3em] text-accent">
-                  {new Date(newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                  {new Date(selectedNewsDate || newsletterData.digestDate).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
                 </span>
+              </div>
+
+              {/* Date Navigation Buttons */}
+              <div className="mb-6 flex flex-wrap items-center gap-2">
+                {pastDates.map((date, idx) => {
+                  const isSelected = date === selectedNewsDate;
+                  const isToday = idx === 0;
+                  const label = isToday ? 'Today' : new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                  
+                  return (
+                    <button
+                      key={date}
+                      type="button"
+                      onClick={() => setSelectedNewsDate(date)}
+                      className={`px-4 py-2 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 transition-all ${
+                        isSelected
+                          ? 'border-accent bg-accent text-white'
+                          : 'border-slate-300 bg-white text-slate-600 hover:border-accent'
+                      }`}
+                      style={{ boxShadow: isSelected ? '3px 3px 0px var(--accent)' : '2px 2px 0px rgba(45,45,45,0.3)' }}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+                
+                {/* History Button */}
+                <a
+                  href="/history"
+                  className="px-4 py-2 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 border-slate-300 bg-white text-slate-600 hover:border-accent hover:text-accent transition-all"
+                  style={{ boxShadow: '2px 2px 0px rgba(45,45,45,0.3)' }}
+                >
+                  📚 History →
+                </a>
               </div>
 
               {/* Title - Reduced from 5xl to 3xl */}
