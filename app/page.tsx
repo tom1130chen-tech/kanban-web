@@ -74,15 +74,29 @@ export default function Page() {
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
   // Generate past 5 days + today for date buttons
+  // Only show dates from 2026-03-07 onwards (first newsletter date)
   const pastDates = useMemo(() => {
     const dates = [];
+    const firstNewsDate = new Date('2026-03-07'); // First newsletter date
+    
     for (let i = 0; i < 6; i++) {
       const date = new Date();
       date.setDate(date.getDate() - i);
-      dates.push(date.toISOString().split('T')[0]); // YYYY-MM-DD
+      
+      // Only include dates on or after firstNewsDate
+      if (date >= firstNewsDate) {
+        dates.push(date.toISOString().split('T')[0]); // YYYY-MM-DD
+      }
     }
     return dates;
   }, []);
+
+  // Check if a date has special guest article
+  const isSpecialDate = (date: string) => {
+    // Add your special guest article dates here
+    const specialDates = ['2026-03-07']; // CKC335's article
+    return specialDates.includes(date);
+  };
 
   // Load news for selected date
   useEffect(() => {
@@ -284,6 +298,7 @@ export default function Page() {
                   {pastDates.map((date, idx) => {
                     const isSelected = date === selectedNewsDate;
                     const isToday = idx === 0;
+                    const hasSpecial = isSpecialDate(date);
                     const label = isToday ? 'Today' : new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
                     
                     return (
@@ -291,7 +306,7 @@ export default function Page() {
                         key={date}
                         type="button"
                         onClick={() => setSelectedNewsDate(date)}
-                        className={`px-4 py-1.5 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 transition-all ${
+                        className={`px-4 py-1.5 text-xs font-heading uppercase tracking-[0.2em] rounded-full border-2 transition-all relative ${
                           isSelected
                             ? 'border-accent bg-accent text-white'
                             : 'border-slate-300 bg-white text-slate-600 hover:border-accent'
@@ -299,6 +314,12 @@ export default function Page() {
                         style={{ boxShadow: isSelected ? '3px 3px 0px var(--accent)' : '2px 2px 0px rgba(45,45,45,0.3)' }}
                       >
                         {label}
+                        {hasSpecial && (
+                          <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+                          </span>
+                        )}
                       </button>
                     );
                   })}
