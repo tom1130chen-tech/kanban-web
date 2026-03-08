@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import UploadNewsletter from '../../components/UploadNewsletter';
+import UploadAllNewsletters from '../../components/UploadAllNewsletters';
 
 interface BlobFile {
   pathname: string;
@@ -75,8 +76,12 @@ export default function BlobManager() {
         </header>
 
         {/* Upload Section */}
-        <div className="mb-8">
-          <UploadNewsletter />
+        <div className="mb-8 space-y-6">
+          <UploadAllNewsletters />
+          
+          <div className="border-t-2 border-dashed border-slate-200 pt-6">
+            <UploadNewsletter />
+          </div>
         </div>
 
         {/* Stats */}
