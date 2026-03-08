@@ -11,27 +11,20 @@ const path = require('path');
 
 console.log('📤 Auto-uploading newsletters to Vercel Blob...\n');
 
-// Get files to upload
+// Get files to upload - look for all newsletter JSON files in data/
 const dataDir = path.join(__dirname, '..', 'data');
-const files = fs.readdirSync(dataDir)
-  .filter(f => f.startsWith('newsletter-') && f.endsWith('.json'))
-  .map(f => ({
-    src: path.join('data', f),
-    dest: `newsletter/${f.replace('newsletter-', '').replace('.json', '.json')}`,
-    label: f.replace('newsletter-', '').replace('.json', '').replace(/-/g, ' ')
-  }));
+const files = [];
 
-// Also include newsletter-digest.json if it exists
-const digestPath = path.join(dataDir, 'newsletter-digest.json');
-if (fs.existsSync(digestPath)) {
-  const digestData = JSON.parse(fs.readFileSync(digestPath, 'utf-8'));
-  const date = digestData.digestDate || new Date().toISOString().split('T')[0];
-  files.push({
-    src: 'data/newsletter-digest.json',
-    dest: `newsletter/${date}.json`,
-    label: `Latest Newsletter (${date})`
+// Find all newsletter files
+fs.readdirSync(dataDir)
+  .filter(f => f.startsWith('newsletter-') && f.endsWith('.json'))
+  .forEach(f => {
+    files.push({
+      src: path.join(dataDir, f),
+      dest: `newsletter/${f}`,
+      label: f.replace('.json', '').replace(/-/g, ' ')
+    });
   });
-}
 
 console.log(`Found ${files.length} files to upload:\n`);
 files.forEach(f => console.log(`  - ${f.label}`));
@@ -42,9 +35,7 @@ let successCount = 0;
 let failCount = 0;
 
 files.forEach(file => {
-  const srcPath = path.join(__dirname, '..', file.src);
-  
-  if (!fs.existsSync(srcPath)) {
+  if (!fs.existsSync(file.src)) {
     console.error(`❌ File not found: ${file.src}`);
     failCount++;
     return;
@@ -52,19 +43,20 @@ files.forEach(file => {
   
   try {
     // Use vercel blob put command
-    const cmd = `vercel blob put "${file.dest}" --file "${srcPath}" --yes 2>&1`;
+    const cmd = `vercel blob put "${file.dest}" --file "${file.src}" --yes 2>&1`;
+    console.log(`Uploading: ${file.label}`);
+    console.log(`  → ${file.dest}`);
+    
     const output = execSync(cmd, { 
       cwd: path.join(__dirname, '..'),
       encoding: 'utf-8',
       env: process.env
     });
     
-    console.log(`✅ ${file.label}`);
-    console.log(`   → ${file.dest}`);
+    console.log(`  ✅ Success!\n`);
     successCount++;
   } catch (error) {
-    console.error(`❌ ${file.label}`);
-    console.error(`   Error: ${error.message}`);
+    console.error(`  ❌ Failed: ${error.message}`);
     failCount++;
   }
 });
@@ -73,7 +65,5 @@ console.log('\n' + '='.repeat(60));
 console.log(`✅ Upload completed: ${successCount} succeeded, ${failCount} failed`);
 console.log('='.repeat(60));
 
-if (failCount > 0) {
-  console.log('\n⚠️  Some uploads failed. This is OK if files already exist in Blob.');
-  process.exit(0); // Don't fail the workflow
-}
+// Don't fail the workflow even if some uploads fail
+process.exit(0);
