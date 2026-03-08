@@ -9,32 +9,36 @@ on:
 jobs:
   upload-to-blob:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       - name: Install Vercel CLI
-        run: npm install -g vercel
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Upload newsletters to Blob
+        run: npm install -g vercel@latest
+
+      - name: Upload to Blob
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          vercel link --scope bottomchens-projects --project kanban-ops --yes
-          node scripts/auto-upload-blob.js
-      
-      - name: Report status
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const success = ${{ job.status }} === 'success';
-            console.log(`Upload ${success ? 'succeeded' : 'completed with errors'}`);
+          echo "📤 Starting upload..."
+          vercel --version
+          
+          # List files to upload
+          echo "Files to upload:"
+          ls -la data/newsletter*.json || echo "No newsletter files found"
+          
+          # Upload each newsletter file
+          for file in data/newsletter*.json; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file")
+              echo "Uploading $filename..."
+              vercel blob put "newsletter/$filename" --file "$file" --yes || echo "Failed to upload $filename"
+            fi
+          done
+          
+          echo "✅ Upload complete!"

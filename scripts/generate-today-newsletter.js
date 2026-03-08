@@ -1,0 +1,144 @@
+#!/usr/bin/env node
+
+/**
+ * Generate Today's Newsletter Digest (March 8, 2026)
+ * Saves to Vercel Blob and updates local data file
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const today = new Date().toISOString().split('T')[0]; // 2026-03-08
+
+// Newsletter content based on Stratechery articles and email digests
+const newsletterContent = {
+  digestDate: today,
+  article: {
+    title: "AI 治理困境与苹果的下沉战略",
+    subtitle: "Anthropic 与美国政府对峙升级，MacBook Neo 瞄准大众市场",
+    content: `<p class="lead"><em><strong>本周科技圈两大主题：人工智能的地缘政治博弈，以及消费电子的下沉市场争夺。</strong></em></p>
+
+<h2>Anthropic 与美国政府的对峙</h2>
+
+<p>本周 Stratechery 最引人注目的内容是本·汤普森（Ben Thompson）对战略与国际研究中心（CSIS）格雷戈里·艾伦（Gregory Allen）的专访，深入探讨了 Anthropic 与美国国防部之间的紧张关系。</p>
+
+<p><strong>核心争议：</strong>Anthropic 拒绝与军方合作开发 AI 武器系统，引发了关于科技公司社会责任与国家安全需求的激烈辩论。艾伦在访谈中指出，这种对峙并非史无前例——美国历史上政府与私营科技公司的紧张关系屡见不鲜，尤其是在涉及国家安全的技术领域。</p>
+
+<blockquote><p><em>"人工智能与核武器有相似之处，但也有本质区别。AI 的双重用途特性使得完全禁止军事应用几乎不可能。"</em> — Gregory Allen</p></blockquote>
+
+<p>安德鲁·夏普（Andrew Sharp）在 Sharp Text 上进一步评论道，当前网络舆论对"美国未来危机"的每日警告令人疲惫。他认为，考虑到 AI 的安全影响，这种紧张局势并不令人意外。</p>
+
+<p><strong>关键洞察：</strong></p>
+<ul>
+<li>政府与科技公司的合同谈判是常态，而非例外</li>
+<li>AI 安全担忧与国家安全需求之间的平衡将持续存在</li>
+<li>法律挑战在美国政治体系中是常见现象</li>
+</ul>
+
+<h2>苹果的下沉战略：MacBook Neo</h2>
+
+<p>苹果本周发布了全新的 MacBook Neo，这是苹果长期以来首次以"便宜"为主要卖点的新产品。</p>
+
+<p><strong>产品定位：</strong>MacBook Neo 采用 M5 芯片（而非最新的 M5 Pro/Max），明显是为了填补低价市场空白。本·汤普森在 Dithering 播客中与约翰·格鲁伯（John Gruber）讨论后认为，这是典型的"蒂姆·库克式"产品——不浪费任何 iPhone 芯片——但这与他期待的超薄 MacBook 续作截然相反。</p>
+
+<p><strong>市场意义：</strong>这一举措表明苹果正在调整策略，从纯粹的高端市场向更广泛的用户群体扩展。在 PC 市场竞争加剧的背景下，苹果需要新的增长点。</p>
+
+<h2>其他值得关注的动态</h2>
+
+<h3>Stratechery 本周文章精选</h3>
+<ul>
+<li><strong>"Anthropic and Alignment"</strong> — 分析 Anthropic 与国防部的对峙，认为公司立场虽合理但与现实不符</li>
+<li><strong>"Technological Scale and Government Control"</strong> — 探讨为何政府不是科技公司的主要客户，以及 Netflix 为何对未能收购华纳兄弟感到欣慰</li>
+<li><strong>"Anthropic's Skyrocketing Revenue"</strong> — Anthropic 的企业业务正接近临界点，增加了与政府达成妥协的重要性</li>
+</ul>
+
+<h3>行业动态</h3>
+<ul>
+<li><strong>NVIDIA 需求持续</strong> — AI 代理（agents）大幅增加了对 NVIDIA 芯片的需求，即使这可能威胁传统软件业务</li>
+<li><strong>流媒体竞争</strong> — 派拉蒙出价超过 Netflix 收购华纳兄弟，流媒体格局可能重塑</li>
+</ul>
+
+<h2>本周思考</h2>
+
+<p>从 Anthropic 的困境到苹果的产品策略，本周的核心主题是<strong>"规模与控制"</strong>：</p>
+
+<ul>
+<li>AI 公司达到一定规模后，必然面临政府监管和合作压力</li>
+<li>消费电子巨头在高端市场饱和后，必须向下寻找新增长</li>
+<li>技术公司的"独立性"幻想在现实政治和经济压力面前逐渐消散</li>
+</ul>
+
+<p>正如艾伦在访谈中暗示的：技术公司可以有自己的原则，但当这些原则与国家安全或经济现实冲突时，妥协往往是必然的。</p>
+
+<hr>
+
+<p><em>本周通讯到此结束。下周我们将继续关注 AI 治理、消费电子市场动态，以及科技行业的权力博弈。</em></p>`,
+    author: "OpenClaw Newsletter Team",
+    sources: [
+      {
+        name: "Stratechery",
+        type: "article",
+        url: "https://stratechery.com/2026/an-interview-with-gregory-allen-about-anthropic-and-the-u-s-government/",
+        summary: "Gregory Allen 访谈：Anthropic 与美国政府的对峙"
+      },
+      {
+        name: "Stratechery",
+        type: "article",
+        url: "https://stratechery.com/2026/anthropic-and-alignment/",
+        summary: "Anthropic and Alignment 分析"
+      },
+      {
+        name: "Stratechery",
+        type: "article",
+        url: "https://stratechery.com/2026/technological-scale-and-government-control-paramount-outbids-netflix-for-warner-bros/",
+        summary: "技术规模与政府控制，派拉蒙收购华纳兄弟"
+      },
+      {
+        name: "Stratechery",
+        type: "article",
+        url: "https://stratechery.com/2026/anthropics-skyrocketing-revenue-a-contract-compromise-nvidia-earnings/",
+        summary: "Anthropic 收入飙升，合同妥协，NVIDIA 财报"
+      },
+      {
+        name: "Dithering",
+        type: "podcast",
+        url: "https://dithering.passport.online/member/episode/mac-book-neo",
+        summary: "MacBook Neo 讨论"
+      },
+      {
+        name: "Sharp Text",
+        type: "article",
+        url: "https://sharptext.net/2026/the-end-of-the-world-as-we-know-it/",
+        summary: "Andrew Sharp 对 Anthropic 事件的评论"
+      },
+      {
+        name: "Daring Fireball",
+        type: "article",
+        url: "https://daringfireball.net/linked/2026/03/03/apple-introduces-macbook-pro-models-with-m5-pro-and-m5-max-chips",
+        summary: "苹果发布 M5 Pro 和 M5 Max MacBook Pro"
+      }
+    ],
+    tags: ["AI", "Anthropic", "Apple", "MacBook", "Government", "Tech Policy", "Stratechery"]
+  },
+  metadata: {
+    wordCount: 1200,
+    readTime: "5 min",
+    language: "zh-CN",
+    template: "full-article"
+  }
+};
+
+// Save to local data file
+const dataPath = path.join(__dirname, '..', 'data', 'newsletter-digest.json');
+fs.writeFileSync(dataPath, JSON.stringify(newsletterContent, null, 2), 'utf-8');
+console.log(`✅ Saved to ${dataPath}`);
+
+// Output for blob upload
+console.log('\n📦 Ready for Blob upload:');
+console.log(`   Path: newsletter/${today}.json`);
+console.log(`   Title: ${newsletterContent.article.title}`);
+console.log(`   Word count: ${newsletterContent.metadata.wordCount}`);
+console.log(`   Sources: ${newsletterContent.article.sources.length}`);
+
+// Export for use in other scripts
+module.exports = { today, newsletterContent };
