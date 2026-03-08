@@ -85,6 +85,7 @@ export default function Page() {
   const [currentArticle, setCurrentArticle] = useState<NewsletterArticle | null>(null);
   const [loadingArticle, setLoadingArticle] = useState(false);
   const [articleError, setArticleError] = useState<string | null>(null);
+  const [availableDates, setAvailableDates] = useState<string[]>([]);
   
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
@@ -106,12 +107,42 @@ export default function Page() {
     return dates;
   }, []);
 
-  // Check if a date has special guest article
+  // Check if a date has special guest article (latest article takes priority)
   const isSpecialDate = (date: string) => {
     // Add your special guest article dates here
     const specialDates = ['2026-03-07']; // CKC335's article
     return specialDates.includes(date);
   };
+
+  // Check available articles in Blob on mount
+  useEffect(() => {
+    async function checkAvailableArticles() {
+      try {
+        const res = await fetch('/api/blob?prefix=newsletter/');
+        const data = await res.json();
+        
+        if (data.success && data.data && data.data.length > 0) {
+          // Extract dates from blob file paths
+          const dates = data.data
+            .filter((f: any) => f.pathname.startsWith('newsletter/'))
+            .map((f: any) => f.pathname.replace('newsletter/', '').replace('.json', ''))
+            .sort((a: string, b: string) => b.localeCompare(a)); // Sort newest first
+          
+          setAvailableDates(dates);
+          
+          // Set default to latest article
+          if (dates.length > 0) {
+            const latestDate = dates[0];
+            setSelectedNewsDate(latestDate);
+          }
+        }
+      } catch (error) {
+        console.error('Failed to check available articles:', error);
+      }
+    }
+    
+    checkAvailableArticles();
+  }, []);
 
   // Load news for selected date from Blob
   useEffect(() => {
@@ -120,8 +151,29 @@ export default function Page() {
       setArticleError(null);
       
       try {
-        // Try to load from Blob API
-        const res = await fetch(`/api/blob?pathname=newsletter/${date}.json`);
+        // Try to load special article first if date has one
+        let pathname = `newsletter/${date}.json`;
+        
+        // Check if special article exists for this date
+        if (isSpecialDate(date)) {
+          const specialPathname = `newsletter/${date}-special.json`;
+          try {
+            const specialRes = await fetch(`/api/blob?pathname=${encodeURIComponent(specialPathname)}`);
+            const specialData = await specialRes.json();
+            
+            if (specialData.success && specialData.data?.body) {
+              const article = JSON.parse(specialData.data.body);
+              setCurrentArticle(article);
+              setLoadingArticle(false);
+              return;
+            }
+          } catch (e) {
+            // Fall through to regular article
+          }
+        }
+        
+        // Try to load regular article
+        const res = await fetch(`/api/blob?pathname=${encodeURIComponent(pathname)}`);
         const data = await res.json();
         
         if (data.success && data.data?.body) {
@@ -129,7 +181,7 @@ export default function Page() {
           const article = JSON.parse(data.data.body);
           setCurrentArticle(article);
         } else {
-          // Fallback to local data if it's today's date
+          // Fallback to local data if it's today's date and no Blob data
           if (date === newsletterData.digestDate) {
             setCurrentArticle(newsletterData);
           } else {

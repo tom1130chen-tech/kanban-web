@@ -16,3 +16,4 @@ out/
 # Newsletter (external workspace)
 ../newsletter-page/
 .vercel
+.env*.local
