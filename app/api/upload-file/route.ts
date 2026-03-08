@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
-import fs from 'fs';
-import path from 'path';
 
 export async function POST(request: NextRequest) {
   try {
@@ -14,20 +12,19 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Read file from local filesystem
-    const filePath = path.join(process.cwd(), 'data', src);
+    // Read file content from request body instead of filesystem
+    // This is safer for serverless environments
+    const body = await request.json();
     
-    if (!fs.existsSync(filePath)) {
+    if (!body.content) {
       return NextResponse.json(
-        { success: false, error: `File not found: ${src}` },
-        { status: 404 }
+        { success: false, error: 'content is required' },
+        { status: 400 }
       );
     }
     
-    const content = fs.readFileSync(filePath, 'utf-8');
-    
     // Upload to Blob
-    const blob = await put(dest, content, {
+    const blob = await put(dest, body.content, {
       contentType: 'application/json',
       access: 'public',
     });
@@ -36,10 +33,10 @@ export async function POST(request: NextRequest) {
       success: true,
       data: blob
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Upload error:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to upload to blob' },
+      { success: false, error: error.message || 'Failed to upload to blob' },
       { status: 500 }
     );
   }

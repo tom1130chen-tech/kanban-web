@@ -19,16 +19,22 @@ export default function UploadAllNewsletters() {
 
     for (const file of files) {
       try {
-        const res = await fetch(`/api/upload-file`, {
+        // Fetch file content from public folder
+        const res = await fetch(`/data/${file.name}`);
+        const content = await res.text();
+        
+        // Upload to Blob via API
+        const uploadRes = await fetch(`/api/upload-file`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             src: file.name,
-            dest: file.dest
+            dest: file.dest,
+            content: content
           })
         });
 
-        const data = await res.json();
+        const data = await uploadRes.json();
         
         if (data.success) {
           results.push({
