@@ -5,11 +5,25 @@ import { useEffect, useMemo, useState } from "react";
 import { Board, type BoardStatus } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
 
-// Newsletter digest data - auto-updated daily by cron job
+// Newsletter digest data - fallback if Blob is empty
 import newsletterData from "../data/newsletter-digest.json";
 
-// Use article content if available, fallback to empty array
-const newsFeed = newsletterData.article?.sources || [];
+interface NewsletterArticle {
+  digestDate: string;
+  article: {
+    title: string;
+    subtitle?: string;
+    content: string;
+    author?: string;
+    sources: Array<{ name: string; url: string; summary?: string; type?: string }>;
+    tags?: string[];
+  };
+  metadata: {
+    wordCount: number;
+    readTime: string;
+    language: string;
+  };
+}
 
 const tabs = [
   { id: "board", label: "KANBAN", title: "Project board" },
@@ -68,8 +82,9 @@ export default function Page() {
   const [activeCrew, setActiveCrew] = useState(teamMembers[0].id);
   const [boardStatus, setBoardStatus] = useState<BoardStatus>("synced");
   const [selectedNewsDate, setSelectedNewsDate] = useState<string>(newsletterData.digestDate);
-  const [newsHistory, setNewsHistory] = useState<any[]>([]);
-  const [loadingHistory, setLoadingHistory] = useState(false);
+  const [currentArticle, setCurrentArticle] = useState<NewsletterArticle | null>(null);
+  const [loadingArticle, setLoadingArticle] = useState(false);
+  const [articleError, setArticleError] = useState<string | null>(null);
   
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
@@ -98,26 +113,41 @@ export default function Page() {
     return specialDates.includes(date);
   };
 
-  // Load news for selected date
+  // Load news for selected date from Blob
   useEffect(() => {
     async function loadNewsForDate(date: string) {
-      setLoadingHistory(true);
+      setLoadingArticle(true);
+      setArticleError(null);
+      
       try {
-        // For now, use local data. Later connect to Blob API
-        if (date === newsletterData.digestDate) {
-          // Already loaded
+        // Try to load from Blob API
+        const res = await fetch(`/api/blob?pathname=newsletter/${date}.json`);
+        const data = await res.json();
+        
+        if (data.success && data.data?.body) {
+          // Successfully loaded from Blob
+          const article = JSON.parse(data.data.body);
+          setCurrentArticle(article);
         } else {
-          // Fetch from Blob API
-          const res = await fetch(`/api/blob?pathname=newsletter/${date}.json`);
-          const data = await res.json();
-          if (data.success) {
-            // Handle loaded data
+          // Fallback to local data if it's today's date
+          if (date === newsletterData.digestDate) {
+            setCurrentArticle(newsletterData);
+          } else {
+            setArticleError(`No article found for ${date}`);
+            setCurrentArticle(null);
           }
         }
       } catch (error) {
         console.error('Failed to load news:', error);
+        // Fallback to local data for today
+        if (date === newsletterData.digestDate) {
+          setCurrentArticle(newsletterData);
+        } else {
+          setArticleError('Failed to load article');
+          setCurrentArticle(null);
+        }
       } finally {
-        setLoadingHistory(false);
+        setLoadingArticle(false);
       }
     }
     
@@ -337,39 +367,54 @@ export default function Page() {
 
               {/* Title - Reduced from 5xl to 3xl */}
               <h1 className="text-3xl font-heading font-bold text-slate-900 leading-tight mb-4">
-                {newsletterData.article?.title || `Daily News`}
+                {loadingArticle ? 'Loading...' : currentArticle?.article?.title || 'No Article'}
               </h1>
 
               {/* Subtitle */}
-              {newsletterData.article?.subtitle && (
+              {currentArticle?.article?.subtitle && (
                 <p className="text-lg text-slate-600 font-light mb-6">
-                  {newsletterData.article.subtitle}
+                  {currentArticle.article.subtitle}
                 </p>
               )}
 
               {/* Meta line */}
               <div className="flex items-center gap-4 text-sm">
-                {newsletterData.article?.author && (
+                {currentArticle?.article?.author && (
                   <span className="text-slate-600">
-                    By <strong className="text-slate-900">{newsletterData.article.author}</strong>
+                    By <strong className="text-slate-900">{currentArticle.article.author}</strong>
                   </span>
                 )}
-                {newsletterData.metadata?.readTime && (
+                {currentArticle?.metadata?.readTime && (
                   <>
                     <span className="text-slate-300">•</span>
-                    <span className="text-slate-600">{newsletterData.metadata.readTime} read</span>
+                    <span className="text-slate-600">{currentArticle.metadata.readTime} read</span>
                   </>
+                )}
+                {articleError && (
+                  <span className="text-red-600">📴 {articleError}</span>
                 )}
               </div>
             </header>
 
             {/* Main Article Content - Clean typography */}
             <article className="news-article">
-              {newsletterData.article?.content ? (
+              {loadingArticle ? (
+                <div className="rounded-[var(--r-wobbly)] border-2 border-dashed border-slate-300 bg-white/50 p-12 text-center">
+                  <p className="text-lg text-slate-600">Loading article...</p>
+                </div>
+              ) : currentArticle?.article?.content ? (
                 <div 
                   className="news-content"
-                  dangerouslySetInnerHTML={{ __html: newsletterData.article.content }}
+                  dangerouslySetInnerHTML={{ __html: currentArticle.article.content }}
                 />
+              ) : articleError ? (
+                <div className="rounded-[var(--r-wobbly)] border-2 border-dashed border-red-300 bg-red-50/50 p-12 text-center">
+                  <p className="text-lg text-red-600">{articleError}</p>
+                  <p className="mt-2 text-sm text-red-500">Article not found in Blob storage</p>
+                  <a href="/blob-manager" className="mt-4 inline-block px-4 py-2 bg-accent text-white rounded-full text-xs uppercase tracking-wider hover:bg-accent/90">
+                    Upload Article →
+                  </a>
+                </div>
               ) : (
                 <div className="rounded-[var(--r-wobbly)] border-2 border-dashed border-slate-300 bg-white/50 p-12 text-center">
                   <p className="text-lg text-slate-600">No content yet</p>
@@ -379,13 +424,13 @@ export default function Page() {
             </article>
 
             {/* Sources Section - Minimal cards */}
-            {newsletterData.article?.sources && newsletterData.article.sources.length > 0 && (
+            {currentArticle?.article?.sources && currentArticle.article.sources.length > 0 && (
               <section className="mt-16 pt-8 border-t-[3px] border-dashed border-slate-200">
                 <h2 className="text-sm font-heading uppercase tracking-[0.4em] text-slate-500 mb-6">
                   Sources
                 </h2>
                 <div className="space-y-3">
-                  {newsletterData.article.sources.map((source, idx) => (
+                  {currentArticle.article.sources.map((source, idx) => (
                     <a
                       key={idx}
                       href={source.url}
