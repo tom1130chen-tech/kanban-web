@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import UploadNewsletter from '../../components/UploadNewsletter';
 
 interface BlobFile {
   pathname: string;
@@ -72,6 +73,11 @@ export default function BlobManager() {
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Blob Storage Manager</h1>
           <p className="text-slate-600">Manage files in Vercel Blob storage</p>
         </header>
+
+        {/* Upload Section */}
+        <div className="mb-8">
+          <UploadNewsletter />
+        </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">

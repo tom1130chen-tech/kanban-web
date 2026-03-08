@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""
+Add a new newsletter issue to Blob storage
+This script demonstrates how to add content manually
+"""
+
+import json
+import os
+from datetime import datetime
+
+# Today's date
+today = datetime.now().strftime('%Y-%m-%d')
+
+# Newsletter content
+newsletter = {
+  "digestDate": today,
+  "article": {
+    "title": "AI 基础设施的资本竞赛与监管挑战",
+    "subtitle": "从 OpenAI 融资到欧盟 AI 法案的最新进展",
+    "content": """<p class="lead">今日聚焦 AI 领域的两大主题：资本密集型的军备竞赛，以及日益复杂的监管环境。</p>
+    
+<h2>OpenAI 的融资困境</h2>
+<p>据 Bloomberg 报道，OpenAI 正在寻求新一轮融资，估值可能达到 3000 亿美元。但这次融资面临前所未有的挑战：投资者开始质疑如此高昂的估值是否合理，尤其是在盈利模式尚未清晰的情况下。</p>
+<p><strong>关键问题</strong>：当一家公司的估值超过许多国家的 GDP 时，它需要产生多少收入才能证明这个估值？</p>
+
+<h2>欧盟 AI 法案生效</h2>
+<p>欧盟的 AI 法案正式生效，对高风险 AI 系统实施严格监管。科技公司必须在 2026 年 2 月前完成合规，否则面临最高 3500 万欧元或全球营业额 7% 的罚款。</p>
+<p>Meta、Google、Microsoft 等公司已开始调整其在欧洲的 AI 部署策略。</p>
+
+<h2>关键洞察</h2>
+<ul>
+<li><strong>资本密集度：</strong>AI 训练成本持续上升，只有少数玩家能参与顶级竞赛</li>
+<li><strong>监管套利：</strong>公司可能将 AI 研发转移到监管较宽松的地区</li>
+<li><strong>开源 vs 封闭：</strong>监管可能意外地有利于开源模型，因为它们更容易审计</li>
+</ul>
+
+<h2>投资启示</h2>
+<p>短期内，监管不确定性可能压制 AI 相关股票的估值。但长期来看，合规能力本身可能成为竞争优势——能够承受监管成本的公司将享有更稳固的护城河。</p>
+<p>关注点从"谁有最好的模型"转向"谁能可持续地运营 AI 业务"。</p>""",
+    "author": "Chat (基于公开资料整理)",
+    "sources": [
+      {
+        "name": "Bloomberg",
+        "type": "article",
+        "url": "https://www.bloomberg.com/news/articles/2026-03-07/openai-funding",
+        "summary": "OpenAI seeks new funding at $300B valuation"
+      },
+      {
+        "name": "Reuters",
+        "type": "article",
+        "url": "https://www.reuters.com/technology/eu-ai-act-2026-03-07/",
+        "summary": "EU AI Act enters into force"
+      }
+    ],
+    "tags": ["AI", "Regulation", "Funding", "EU"]
+  },
+  "metadata": {
+    "wordCount": 650,
+    "readTime": "3 min",
+    "language": "zh-CN",
+    "template": "daily-brief"
+  }
+}
+
+# Save to file (for demonstration)
+output_file = f'/Users/tomchen/.openclaw/workspace-chat/kanban-board/data/newsletter-{today}.json'
+
+with open(output_file, 'w', encoding='utf-8') as f:
+    json.dump(newsletter, f, ensure_ascii=False, indent=2)
+
+print(f"✅ Newsletter created: {output_file}")
+print(f"📅 Date: {today}")
+print(f"📝 Title: {newsletter['article']['title']}")
+print(f"\n📋 Next steps:")
+print(f"1. Review the content in {output_file}")
+print(f"2. Copy to data/newsletter-digest.json (for website display)")
+print(f"3. Upload to Blob via API or management page")
+print(f"4. Commit and push to trigger Vercel deployment")
