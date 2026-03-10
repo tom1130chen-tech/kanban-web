@@ -304,6 +304,179 @@ const focusRituals = [
   "Daily recap with a teammate at 5 PM.",
 ];
 
+// Financial Watch Component
+function FinancialWatchView() {
+  const portfolioTrend = [55, 58, 57, 61, 64, 68, 66, 71, 73, 75, 79, 82];
+  const max = Math.max(...portfolioTrend);
+  const min = Math.min(...portfolioTrend);
+  const points = portfolioTrend
+    .map((value, index) => {
+      const x = (index / (portfolioTrend.length - 1)) * 100;
+      const y = 100 - ((value - min) / (max - min || 1)) * 100;
+      return `${x},${y}`;
+    })
+    .join(" ");
+
+  const holdings = [
+    { ticker: "SCHD", name: "Schwab U.S. Dividend Equity ETF", account: "IBKR Taxable", value: "$128,400", cost: "$119,200", change: "+7.7%", weight: "26.8%" },
+    { ticker: "VTI", name: "Vanguard Total Stock Market ETF", account: "Fidelity Brokerage", value: "$102,850", cost: "$95,600", change: "+7.6%", weight: "21.5%" },
+    { ticker: "JEPI", name: "JPMorgan Equity Premium Income ETF", account: "Chase Investment", value: "$74,300", cost: "$78,900", change: "-5.8%", weight: "15.5%" },
+    { ticker: "MSFT", name: "Microsoft", account: "IBKR Taxable", value: "$52,600", cost: "$41,300", change: "+27.4%", weight: "11.0%" },
+    { ticker: "BND", name: "Vanguard Total Bond Market ETF", account: "Fidelity IRA", value: "$41,900", cost: "$42,500", change: "-1.4%", weight: "8.8%" },
+  ];
+
+  const recentTrades = [
+    { date: "Mar 8", action: "Buy", ticker: "SCHD", account: "IBKR Taxable", amount: "$4,200", note: "Added on weakness after yield moved up." },
+    { date: "Mar 5", action: "Sell", ticker: "TSLA", account: "Fidelity Brokerage", amount: "$3,850", note: "Trimmed to reduce concentration." },
+    { date: "Mar 2", action: "Buy", ticker: "BND", account: "Fidelity IRA", amount: "$2,500", note: "Rebalanced cash into lower-volatility bucket." },
+  ];
+
+  const accountSummary = [
+    { name: "IBKR Taxable", value: "$211,700", change: "+9.2% YTD" },
+    { name: "Fidelity Brokerage", value: "$126,400", change: "+4.8% YTD" },
+    { name: "Fidelity IRA", value: "$61,500", change: "+2.1% YTD" },
+    { name: "Chase Investment", value: "$78,300", change: "-1.7% YTD" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Portfolio Summary */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="rounded-[26px_30px_22px_34px/28px_22px_30px_24px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+          <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Total portfolio</p>
+          <div className="mt-1 flex items-end gap-3">
+            <span className="text-3xl font-semibold">$477,900</span>
+            <span className="rounded-full px-2.5 py-1 text-sm font-medium text-white bg-[var(--accent)]">+6.4% YTD</span>
+          </div>
+          <p className="mt-2 text-sm text-slate-500">Estimated annual dividend income: $4,860</p>
+        </div>
+
+        <div className="rounded-[32px_22px_30px_24px/24px_31px_21px_29px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+          <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Accounts</p>
+          <div className="mt-3 space-y-2">
+            {accountSummary.map((acc, idx) => (
+              <div key={idx} className="flex items-center justify-between text-sm">
+                <span className="text-slate-700">{acc.name}</span>
+                <div className="flex items-center gap-2">
+                  <span className="font-medium">{acc.value}</span>
+                  <span className={`text-xs ${acc.change.includes('+') ? 'text-emerald-600' : 'text-rose-600'}`}>{acc.change}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Portfolio Trend */}
+      <section className="rounded-[24px_34px_20px_28px/29px_24px_32px_20px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-semibold">Portfolio trend</h2>
+            <p className="text-sm text-slate-500">12-month portfolio value snapshot</p>
+          </div>
+          <div className="flex gap-2 text-xs">
+            <button className="rounded-full border-2 border-dashed border-gray-300 px-3 py-1.5 text-white bg-[var(--accent)]">1Y</button>
+            <button className="rounded-full border-2 border-dashed border-gray-300 px-3 py-1.5 text-slate-500 bg-white">6M</button>
+            <button className="rounded-full border-2 border-dashed border-gray-300 px-3 py-1.5 text-slate-500 bg-white">1M</button>
+          </div>
+        </div>
+        <div className="mt-6 rounded-[22px_28px_20px_26px/26px_20px_28px_22px] border-2 border-dashed border-gray-200 bg-white/70 p-4">
+          <div className="h-64">
+            <svg viewBox="0 0 100 100" className="h-full w-full overflow-visible">
+              {[0, 25, 50, 75, 100].map((line) => (
+                <line key={line} x1="0" y1={line} x2="100" y2={line} stroke="currentColor" className="text-gray-200" strokeWidth="0.6" strokeDasharray="2 3" vectorEffect="non-scaling-stroke" />
+              ))}
+              <polyline fill="none" stroke="#ff4d4d" strokeWidth="2.8" vectorEffect="non-scaling-stroke" points={points} strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+        </div>
+        <div className="mt-4 grid grid-cols-6 gap-3 text-sm text-slate-500">
+          {['Apr','Jun','Aug','Oct','Dec','Feb'].map((m) => <div key={m}>{m}</div>)}
+        </div>
+      </section>
+
+      {/* Holdings Table */}
+      <section className="rounded-[30px_25px_34px_22px/22px_30px_24px_31px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+        <h2 className="text-lg font-semibold">Positions</h2>
+        <p className="text-sm text-slate-500">Current portfolio allocation</p>
+        <div className="mt-4 overflow-hidden rounded-[26px_30px_22px_34px/28px_22px_30px_24px] border-2 border-dashed border-gray-200">
+          <div className="grid grid-cols-[1fr_0.8fr_0.8fr_0.8fr_0.8fr] gap-3 bg-[#fff6f6] px-4 py-3 text-xs uppercase tracking-[0.16em] text-slate-500">
+            <div>Asset</div>
+            <div>Cost</div>
+            <div>Gain</div>
+            <div>Weight</div>
+            <div>Account</div>
+          </div>
+          <div className="divide-y divide-gray-200/70">
+            {holdings.map((h, idx) => (
+              <div key={h.ticker} className="grid grid-cols-[1fr_0.8fr_0.8fr_0.8fr_0.8fr] gap-3 px-4 py-4 items-center">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center text-xs font-semibold text-white" style={{backgroundColor: idx%2===0?'#ff4d4d':'#1f1f1f', borderRadius:'28px 22px 26px 18px / 20px 28px 18px 24px'}}>{h.ticker}</div>
+                  <div>
+                    <p className="font-medium">{h.name}</p>
+                  </div>
+                </div>
+                <div className="text-sm">{h.cost}</div>
+                <div className={`text-sm font-medium ${h.change.startsWith('+')?'text-emerald-700':'text-rose-700'}`}>{h.change}</div>
+                <div className="text-sm">{h.weight}</div>
+                <div className="text-sm text-slate-600">{h.account}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Trades & Notes */}
+      <section className="grid gap-6 xl:grid-cols-2">
+        <div className="rounded-[24px_34px_20px_28px/29px_24px_32px_20px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+          <h2 className="text-lg font-semibold">Actions</h2>
+          <p className="text-sm text-slate-500">Recent buy / sell decisions</p>
+          <div className="mt-5 space-y-3">
+            {recentTrades.map((trade, idx) => (
+              <div key={`${trade.date}-${trade.ticker}`} className={`rounded-[26px_30px_22px_34px/28px_22px_30px_24px] border-2 border-dashed border-gray-200 p-4 bg-[#fffdfa]`}>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium text-white ${trade.action==='Buy'?'bg-[var(--accent)]':'bg-gray-900'}`}>{trade.action}</span>
+                      <span className="text-sm text-slate-500">{trade.date}</span>
+                    </div>
+                    <p className="mt-2 font-medium">{trade.ticker}</p>
+                    <p className="text-sm text-slate-500">{trade.account}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold">{trade.amount}</p>
+                  </div>
+                </div>
+                <p className="mt-3 text-sm text-slate-600">{trade.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[30px_25px_34px_22px/22px_30px_24px_31px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+          <h2 className="text-lg font-semibold">Investment note</h2>
+          <p className="text-sm text-slate-500">Your reasoning for a trade</p>
+          <div className="mt-5 rounded-[32px_22px_30px_24px/24px_31px_21px_29px] border-2 border-dashed border-gray-200 p-5 bg-[#fffdfa]">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Selected idea</p>
+                <h3 className="mt-2 text-xl font-semibold">Why I bought more SCHD</h3>
+              </div>
+              <span className="rounded-full border-2 border-dashed border-gray-300 bg-white px-3 py-1 text-sm text-slate-500">Updated Mar 8</span>
+            </div>
+            <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
+              <p>My goal here is to increase the portion of the portfolio that can generate reliable dividend income without requiring constant monitoring.</p>
+              <p>I still want equity exposure, but I want the position to be easier to hold emotionally during market volatility compared with pure growth names.</p>
+              <p>This buy also fits the broader plan of building toward a target monthly income stream while keeping the portfolio structure simple.</p>
+            </div>
+            <button className="mt-5 rounded-full border-2 border-dashed border-gray-300 px-4 py-2 text-sm text-white bg-[var(--accent)]">Open full investment journal</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 const teamMembers = [
   { id: "crew-01", name: "Tom", role: "Ops", initials: "TC", avatar: "/avatar.png" },
   { id: "crew-02", name: "Chat", role: "Admin", initials: "CH", avatar: "/avatar-chat.png" },
@@ -700,18 +873,7 @@ export default function Page() {
         )}
 
         {activeTab === "finance" && (
-          <div className="grid gap-4 md:grid-cols-3">
-            {financeWatch.map((item) => (
-              <div
-                key={item.id}
-                className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 p-4 shadow-hard"
-              >
-                <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{item.label}</p>
-                <p className="mt-2 text-2xl font-bold text-slate-900">{item.value}</p>
-                <p className="mt-1 text-sm text-slate-600">{item.detail}</p>
-              </div>
-            ))}
-          </div>
+          <FinancialWatchView />
         )}
 
         {activeTab === "focus" && (
