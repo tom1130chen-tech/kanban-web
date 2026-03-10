@@ -202,6 +202,16 @@ export default function Page() {
   
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
+  // Handle tab change - redirect to full page for todo tab
+  const handleTabChange = (tabId: string) => {
+    if (tabId === "todo") {
+      // Redirect to full calendar-todo page
+      window.location.href = "/calendar-todo";
+    } else {
+      setActiveTab(tabId);
+    }
+  };
+
   // Generate past 5 days + today for date buttons
   // Only show dates from 2026-03-07 onwards (first newsletter date)
   const pastDates = useMemo(() => {
@@ -231,13 +241,15 @@ export default function Page() {
   useEffect(() => {
     async function checkAvailableArticles() {
       try {
-        // Use new newsletter API instead of blob
         const res = await fetch('/api/newsletter');
         const data = await res.json();
         
         if (data.success && data.data) {
           // Set default to latest article
-          setSelectedNewsDate(data.data.digestDate || newsletterData.digestDate);
+          setSelectedNewsDate(data.data.latest || newsletterData.digestDate);
+          if (data.data.available) {
+            setAvailableDates(data.data.available);
+          }
         }
       } catch (error) {
         console.error('Failed to check available articles:', error);
@@ -254,36 +266,15 @@ export default function Page() {
       setArticleError(null);
       
       try {
-        // Use new newsletter API
-        const res = await fetch('/api/newsletter');
+        const res = await fetch(`/api/newsletter?date=${date}`);
         const data = await res.json();
         
         if (data.success && data.data) {
-          if (data.data.digestDate === date) {
-            setCurrentArticle(data.data);
-          } else {
-            // Try to load from blob for historical dates
-            const pathname = `newsletter/${date}.json`;
-            const blobRes = await fetch(`/api/blob?pathname=${encodeURIComponent(pathname)}`);
-            const blobData = await blobRes.json();
-            
-            if (blobData.success && blobData.data?.body) {
-              try {
-                const article = JSON.parse(blobData.data.body);
-                setCurrentArticle(article);
-              } catch {
-                setArticleError(`Invalid article for ${date}`);
-              }
-            } else if (date === newsletterData.digestDate) {
-              setCurrentArticle(newsletterData);
-            } else {
-              setArticleError(`No article found for ${date}`);
-            }
-          }
+          setCurrentArticle(data.data);
         } else if (date === newsletterData.digestDate) {
           setCurrentArticle(newsletterData);
         } else {
-          setArticleError('Failed to load article');
+          setArticleError(data.error || `No article found for ${date}`);
           setCurrentArticle(null);
         }
       } catch (error) {
@@ -325,7 +316,7 @@ export default function Page() {
                     : "border-transparent bg-white/60 text-pencil hover:border-accent"
                 }`}
                 style={{ boxShadow: activeTab === tab.id ? "4px 4px 0px #2d2d2d" : "3px 3px 0px rgba(45,45,45,0.4)" }}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => handleTabChange(tab.id)}
               >
                 {tab.label}
               </button>
