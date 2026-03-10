@@ -9,7 +9,7 @@ Template-based system: **Pre-built components + Data injection = Zero re-renderi
 │                    DATA SOURCES                              │
 ├─────────────────────┬─────────────────────┬─────────────────┤
 │   Apple Calendar    │   Chat Memory       │   Manual Input  │
-│   (calendarutil)    │   (YYYY-MM-DD.md)   │   (API)         │
+│   (Automation + ICS)│   (YYYY-MM-DD.md)   │   (API)         │
 └──────────┬──────────┴──────────┬──────────┴────────┬────────┘
            │                     │                   │
            ▼                     ▼                   ▼
@@ -43,7 +43,7 @@ Template-based system: **Pre-built components + Data injection = Zero re-renderi
 | 9:00 AM | `6479db38-d69b-4d0b-9f6f-5dc5e2689dfd` | Run auto-update |
 | 12:00 PM | `833e565d-57cf-48a5-895a-ac8d4745ec8d` | Run auto-update |
 | 6:00 PM | `4bf4eaac-66db-482c-9d2f-d1f8f235ae39` | Run auto-update |
-| 9:00 PM | `45bf00fb-19e4-42a4-a7ce-5c6fae5634d4` | Run auto-update |
+| 12:00 AM | `45bf00fb-19e4-42a4-a7ce-5c6fae5634d4` | Run auto-update |
 
 All times in **America/New_York** timezone.
 
@@ -79,15 +79,14 @@ Chat: [Lists current todos]
 ```
 Apple Calendar
     ↓
-calendarutil -export (or ICS file)
+`osascript -l JavaScript` (JXA) → `scripts/auto-update-data.js`
     ↓
-parseCalendarOutput() / parseICS()
-    ↓
-Filter: next 3 days only
+Parse events (next 3 days) with ICS fallback
     ↓
 data/calendar.json
+    ↓
+Upload to Vercel Blob: calendar/events.json
 ```
-
 ### 2. Todo Data
 ```
 Chat conversations

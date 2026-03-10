@@ -12,55 +12,41 @@
 
 ### 2. API 接口
 - **位置**: `app/api/calendar-todo/route.ts`
-- **功能**: 读取 calendar.json 和 todos.json 并返回数据
+- **功能**: 读取 `calendar.json` 和 `todos.json` 并返回数据给前端
 
 ### 3. 数据存储
-- **Calendar**: `data/calendar.json`
-- **Todos**: `data/todos.json`
+- **Calendar**: `data/calendar.json`（自动生成）
+- **Todos**: `data/todos.json`（Chat 会话生成）
+- **Blob 备份**: `calendar/events.json`（同步到 Vercel Blob，供其他页面/工具使用）
 
 ### 4. 更新脚本
-- **位置**: `scripts/update-calendar-todo-data.js`
+- **位置**: `scripts/auto-update-data.js`
 - **功能**: 
-  - 获取 Google Calendar 事件（当前为示例数据）
-  - 读取 todo 列表
-  - 保存数据文件
+  - 使用 macOS Automation（JavaScript for Automation/`osascript`）抓取未来 3 天的 Apple Calendar 事件
+  - 解析 `memory/YYYY-MM-DD.md` + `CHAT-TODO.md` 中的 todo 条目
+  - 写入 `data/calendar.json` + `data/todos.json`
+  - 自动上传 `calendar/events.json` 到 Vercel Blob（`BLOB_READ_WRITE_TOKEN`）作为备份
+  - 如果 Automation 失效则自动 fallback 到 `calendar-export.ics`
 
 ### 5. 定时任务 (Cron Jobs)
 | 时间 | Cron ID |
 |------|---------|
-| 9:00 AM | 07235d67-d30b-4ff6-8e19-826ea5254383 |
-| 12:00 PM | 3a1c0792-b459-45fa-a41e-6675b68a0113 |
-| 6:00 PM | e4ea5414-d545-4552-b6fa-1cc9301c2617 |
-| 9:00 PM | 78bda693-9d8b-4d31-a17b-2d1e4950f49c |
+| 9:00 AM | `6479db38-d69b-4d0b-9f6f-5dc5e2689dfd` |
+| 12:00 PM | `833e565d-57cf-48a5-895a-ac8d4745ec8d` |
+| 6:00 PM | `4bf4eaac-66db-482c-9d2f-d1f8f235ae39` |
+| 12:00 AM | `45bf00fb-19e4-42a4-a7ce-5c6fae5634d4` |
 
 所有任务都在 America/New_York 时区运行，通过 Discord #claw 频道汇报结果。
 
 ### 6. Chat Agent Todo 管理
 - **文档**: `CHAT-TODO.md`
-- Chat 负责记录和管​​理 todo 项目
-- Todo 格式包含：id, title, completed, createdAt, source
-
-## 🔧 待完成
-
-### Google Calendar 集成
-当前脚本使用示例数据。要启用真实的 Google Calendar：
-
-1. 配置 gog skill:
-```bash
-openclaw configure --section gog
-```
-
-2. 更新脚本中的 `fetchGoogleCalendarEvents()` 函数，使用 gog CLI:
-```javascript
-const { execSync } = require('child_process');
-const events = execSync('gog calendar list --week', 'utf-8');
-```
-
-### 页面访问
-- **本地开发**: `http://localhost:3000/calendar-todo`
-- **生产环境**: `https://kanban-ops-eta.vercel.app/calendar-todo`
+- Chat 负责记录和管理 todo 项目
+- Todo 格式包含：`id`, `title`, `completed`, `createdAt`, `source`
 
 ## 📋 使用说明
+
+### 授权提示
+`node`/`osascript` 需要控制 Calendar 的 Automation 权限；系统会弹窗询问，允许后 cron 任务即可直接运行。
 
 ### 添加 Todo
 告诉 Chat：
@@ -70,7 +56,7 @@ const events = execSync('gog calendar list --week', 'utf-8');
 ### 手动更新数据
 ```bash
 cd /Users/tomchen/.openclaw/workspace-chat/kanban-board
-node scripts/update-calendar-todo-data.js
+node scripts/auto-update-data.js
 ```
 
 ### 查看 Cron 任务
@@ -91,6 +77,6 @@ kanban-board/
 │   ├── calendar.json         # 日历数据
 │   └── todos.json            # Todo 数据
 ├── scripts/
-│   └── update-calendar-todo-data.js  # 更新脚本
+│   └── auto-update-data.js   # 自动更新脚本
 └── CALNDAR-TODO-README.md    # 文档
 ```

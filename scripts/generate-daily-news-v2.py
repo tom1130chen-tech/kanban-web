@@ -57,12 +57,15 @@ def fetch_emails(limit=30):
     return filtered_messages
 
 def get_email_content(message_id):
-    """Get full email content"""
+    """Get full email content using messages.get()"""
     try:
-        # Use the correct API call format
-        message = client.inboxes.messages.get(INBOX_ID, message_id)
-        # Try different attribute names
-        content = getattr(message, 'html_body', None) or getattr(message, 'body_html', None) or getattr(message, 'body', None) or ''
+        full_msg = client.inboxes.messages.get(INBOX_ID, message_id)
+        # Try html first, then text, then extracted versions
+        content = (getattr(full_msg, 'html', None) or 
+                   getattr(full_msg, 'text', None) or 
+                   getattr(full_msg, 'extracted_html', None) or 
+                   getattr(full_msg, 'extracted_text', None) or 
+                   '')
         return str(content) if content else ""
     except Exception as e:
         print(f"  ⚠️  Failed to get message {message_id}: {e}")
@@ -124,7 +127,7 @@ def categorize_emails(emails):
     return sources
 
 def generate_module(source_name, emails):
-    """Generate HTML module for a source"""
+    """Generate HTML module for a source using full email content"""
     if not emails:
         return ""
     
@@ -132,23 +135,40 @@ def generate_module(source_name, emails):
     
     for email in emails[:3]:  # Max 3 emails per source
         subject = email['subject']
-        preview = email['preview']
+        content = email.get('content', '')
         
-        # Clean preview - remove common noise
-        preview = preview.replace('~', '').strip()
-        preview = re.sub(r'\[Sign up\][^\|]*\|', '', preview, flags=re.IGNORECASE)
-        preview = re.sub(r'\[Follow us[^\]]*\][^\|]*\|', '', preview, flags=re.IGNORECASE)
-        preview = re.sub(r'\[Sponsor\][^\|]*\|', '', preview, flags=re.IGNORECASE)
-        preview = re.sub(r'View image:[^ ]*', '', preview)
-        preview = re.sub(r'View this post on the web at [^ ]*', '', preview)
-        preview = re.sub(r'http[s]?://[^\s]+', '', preview)
-        preview = ' '.join(preview.split())[:200].strip()
+        # Extract content from HTML
+        if content:
+            # Extract main content paragraphs
+            paragraphs = re.findall(r'<p[^>]*>(.*?)</p>', content, re.DOTALL)
+            # Filter out noise
+            meaningful = []
+            for p in paragraphs:
+                text = re.sub(r'<[^>]+>', '', p).strip()
+                # Skip dates, greetings, unsubscribe, etc.
+                if (text and 
+                    len(text) > 40 and 
+                    len(text) < 500 and
+                    not re.match(r'^[A-Z][a-z]+ \d+, \d+$', text) and  # Skip dates
+                    not text.startswith('Happy ') and  # Skip greetings
+                    not text.startswith('Hey there') and
+                    'unsubscribe' not in text.lower() and
+                    'sign up' not in text.lower() and
+                    'forwarded message' not in text.lower() and
+                    'read online' not in text.lower()):
+                    meaningful.append(text)
+            
+            # Use first 2-3 meaningful paragraphs as key points
+            key_points = meaningful[:3] if meaningful else [subject]
+            # Summary is first meaningful paragraph
+            summary = meaningful[0][:250] if meaningful else (email['preview'][:200] if email.get('preview') else '点击标题查看原文')
+        else:
+            # Fallback to preview
+            preview = email['preview'].replace('~', '').strip()[:200] if email.get('preview') else ''
+            summary = preview if preview else '点击标题查看原文'
+            key_points = [subject]
         
-        # Use subject as the key point
-        key_points_html = f'<li>{subject}</li>'
-        
-        # Summary is cleaned preview
-        summary = preview if preview else '点击标题查看原文'
+        key_points_html = ''.join([f'<li>{point}</li>' for point in key_points])
         
         module_html += f'''
 <div class="article-card">
