@@ -25,24 +25,137 @@ interface NewsletterArticle {
   };
 }
 
+interface CalendarEvent {
+  id: string;
+  title: string;
+  date: string;
+  time?: string;
+  description?: string;
+}
+
+interface TodoItem {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+  source?: string;
+}
+
+// Todo + Calendar Tab Component
+function TodoCalendarTab() {
+  const [data, setData] = useState<{ calendarEvents: CalendarEvent[]; todos: TodoItem[] } | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/calendar-todo")
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-slate-500">Loading calendar and todos...</p>
+      </div>
+    );
+  }
+
+  const calendarEvents = data?.calendarEvents || [];
+  const todos = data?.todos || [];
+
+  return (
+    <div className="grid gap-6 lg:grid-cols-2">
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-lg font-semibold text-slate-800">To Do</div>
+          <a
+            href="/calendar-todo"
+            className="text-xs font-heading uppercase tracking-[0.3em] text-[var(--accent)] hover:underline"
+          >
+            View All →
+          </a>
+        </div>
+        <ul className="space-y-3">
+          {todos.length === 0 ? (
+            <li className="text-center py-8 text-slate-400">
+              No tasks yet. Ask Chat to add some!
+            </li>
+          ) : (
+            todos.slice(0, 5).map((item) => (
+              <li
+                key={item.id}
+                className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
+              >
+                <div className="flex items-start gap-3">
+                  <div className={`flex-shrink-0 w-4 h-4 rounded-full border-2 mt-0.5 ${
+                    item.completed ? "border-gray-400 bg-gray-400" : "border-slate-400"
+                  }`} />
+                  <div className="flex-1">
+                    <p className={`text-base ${item.completed ? "text-slate-400 line-through" : "text-slate-900"}`}>
+                      {item.title}
+                    </p>
+                    {item.source && (
+                      <p className="text-xs text-slate-400 mt-1">via {item.source}</p>
+                    )}
+                  </div>
+                </div>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
+
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-lg font-semibold text-slate-800">Calendar</div>
+          <a
+            href="/calendar-todo"
+            className="text-xs font-heading uppercase tracking-[0.3em] text-[var(--accent)] hover:underline"
+          >
+            Full View →
+          </a>
+        </div>
+        <ul className="space-y-3">
+          {calendarEvents.length === 0 ? (
+            <li className="text-center py-8 text-slate-400">
+              No events this week
+            </li>
+          ) : (
+            calendarEvents.slice(0, 5).map((item) => (
+              <li
+                key={item.id}
+                className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
+              >
+                <p className="text-lg font-semibold text-slate-900">{item.title}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  {item.time && (
+                    <p className="text-xs uppercase tracking-[0.4em] text-[var(--blue)]">{item.time}</p>
+                  )}
+                  {item.date && (
+                    <p className="text-xs text-slate-500">
+                      {new Date(item.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 const tabs = [
   { id: "board", label: "KANBAN", title: "Project board" },
   { id: "todo", label: "TO DO + CALENDAR", title: "Schedule + tasks" },
   { id: "news", label: "DAILY NEWS", title: "Signals + headlines" },
   { id: "finance", label: "FINANCIAL WATCH", title: "Markets + liquidity" },
   { id: "focus", label: "FOCUS", title: "Rituals" },
-];
-
-const todoList = [
-  { id: "todo-01", title: "Refine weekly sprint plan", owner: "Ops", due: "Wed" },
-  { id: "todo-02", title: "Review deployment log", owner: "Dev", due: "Thu" },
-  { id: "todo-03", title: "Prep customer update deck", owner: "Product", due: "Fri" },
-];
-
-const calendarItems = [
-  { id: "cal-01", title: "Stand-up + blockers", time: "09:30" },
-  { id: "cal-02", title: "Research sync", time: "14:00" },
-  { id: "cal-03", title: "Investor prep", time: "16:30" },
 ];
 
 const financeWatch = [
@@ -325,40 +438,7 @@ export default function Page() {
         )}
 
         {activeTab === "todo" && (
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div>
-              <div className="mb-3 text-lg font-semibold text-slate-800">To do</div>
-              <ul className="space-y-3">
-                {todoList.map((item) => (
-                  <li
-                    key={item.id}
-                    className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
-                  >
-                    <div className="flex items-center justify-between text-sm text-slate-500">
-                      <span>{item.owner}</span>
-                      <span>Due {item.due}</span>
-                    </div>
-                    <p className="mt-2 text-base text-slate-900">{item.title}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <div className="mb-3 text-lg font-semibold text-slate-800">Calendar</div>
-              <ul className="space-y-3">
-                {calendarItems.map((item) => (
-                  <li
-                    key={item.id}
-                    className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
-                  >
-                    <p className="text-lg font-semibold text-slate-900">{item.title}</p>
-                    <p className="text-xs uppercase tracking-[0.4em] text-slate-500">{item.time}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <TodoCalendarTab />
         )}
 
         {activeTab === "news" && (
