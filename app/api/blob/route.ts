@@ -15,17 +15,24 @@ export async function GET(request: NextRequest) {
       try {
         const blob = await get(pathname, { token: process.env.BLOB_READ_WRITE_TOKEN!, access: 'public' });
         if (blob) {
-          // blob is already the content object in newer @vercel/blob versions
-          const body = typeof (blob as any).text === 'function' 
-            ? await (blob as any).text()
-            : JSON.stringify(blob);
+          // For newer @vercel/blob, use blob.text() or fetch from downloadUrl
+          let body = '';
+          if (typeof (blob as any).text === 'function') {
+            body = await (blob as any).text();
+          } else if ((blob as any).downloadUrl) {
+            const res = await fetch((blob as any).downloadUrl);
+            body = await res.text();
+          } else {
+            body = JSON.stringify(blob);
+          }
+          
           return NextResponse.json({
             success: true,
             data: {
               pathname,
               body,
               contentType: (blob as any).contentType || 'application/json',
-              size: (blob as any).size || 0
+              size: body.length
             }
           });
         } else {
