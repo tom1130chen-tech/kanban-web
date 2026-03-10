@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       try {
         const blob = await get(pathname, { token: process.env.BLOB_READ_WRITE_TOKEN!, access: 'public' });
         if (blob) {
-          const body = await blob.text();
+          const body = await blob.body?.text() || '';
           return NextResponse.json({
             success: true,
             data: {
