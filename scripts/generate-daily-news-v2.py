@@ -27,6 +27,18 @@ def fetch_emails(limit=20):
     messages = client.inboxes.messages.list(inbox_id=INBOX_ID, limit=limit)
     return messages.messages
 
+def get_email_content(message_id):
+    """Get full email content"""
+    try:
+        # Use the correct API call format
+        message = client.inboxes.messages.get(INBOX_ID, message_id)
+        # Try different attribute names
+        content = getattr(message, 'html_body', None) or getattr(message, 'body_html', None) or getattr(message, 'body', None) or ''
+        return str(content) if content else ""
+    except Exception as e:
+        print(f"  ⚠️  Failed to get message {message_id}: {e}")
+        return ""
+
 def categorize_emails(emails):
     """Categorize emails by source"""
     sources = {}
@@ -68,11 +80,15 @@ def categorize_emails(emails):
         if source not in sources:
             sources[source] = []
         
+        # Get full email content
+        content = get_email_content(email.message_id)
+        
         sources[source].append({
             'id': email.message_id,
             'subject': email.subject or "No Subject",
             'from': email.from_,
             'preview': email.preview[:200] if email.preview else '',
+            'content': content,
             'labels': email.labels or []
         })
     
@@ -87,20 +103,52 @@ def generate_module(source_name, emails):
     
     for email in emails[:3]:  # Max 3 emails per source
         subject = email['subject']
-        preview = email['preview'].replace('\n', ' ').strip()
+        preview = email['preview'].replace('\n', ' ').replace('~', '').strip()
+        
+        # Extract key points from preview
+        key_points = extract_key_points_from_preview(preview)
+        
+        key_points_html = ''.join([f'<li>{point}</li>' for point in key_points])
         
         module_html += f'''
 <div class="article-card">
 <h3>{subject}</h3>
-<p class="summary">{preview}...</p>
+<p class="summary">{preview}</p>
 <ul class="key-points">
-<li>核心观点待提取</li>
+{key_points_html}
 </ul>
 </div>
 '''
     
     module_html += '</section>\n'
     return module_html
+
+def extract_key_points_from_preview(preview):
+    """Extract key points from email preview"""
+    if not preview:
+        return ['内容加载中']
+    
+    # Clean up preview text
+    preview = preview.replace('[Sign up]', '').replace('[Follow us]', '').replace('[Sponsor]', '').strip()
+    
+    # Split by common delimiters and take meaningful parts
+    sentences = []
+    for sep in ['. ', '! ', '? ']:
+        if sep in preview:
+            sentences.extend(preview.split(sep))
+        else:
+            sentences.append(preview)
+    
+    # Filter meaningful sentences
+    key_points = []
+    for sent in sentences:
+        sent = sent.strip()
+        if sent and len(sent) > 20 and len(sent) < 250:
+            # Skip unsubscribe links, etc.
+            if not any(skip in sent.lower() for skip in ['unsubscribe', 'click here', 'view online', 'sign up', 'follow us', 'sponsor']):
+                key_points.append(sent[:250])
+    
+    return key_points[:3] if key_points else ['内容摘要待补充']
 
 def generate_newsletter(sources):
     """Generate full newsletter HTML"""
