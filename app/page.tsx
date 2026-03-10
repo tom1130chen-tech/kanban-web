@@ -41,9 +41,9 @@ interface TodoItem {
   source?: string;
 }
 
-// Todo + Calendar Tab Component
-function TodoCalendarTab() {
-  const [data, setData] = useState<{ calendarEvents: CalendarEvent[]; todos: TodoItem[] } | null>(null);
+// Full Calendar + Todo View Component (for TODO tab)
+function TodoCalendarFullView() {
+  const [data, setData] = useState<{ calendarEvents: CalendarEvent[]; todos: TodoItem[]; lastUpdated: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -66,89 +66,223 @@ function TodoCalendarTab() {
 
   const calendarEvents = data?.calendarEvents || [];
   const todos = data?.todos || [];
+  const lastUpdated = data?.lastUpdated || new Date().toISOString();
+
+  // Group events by date for next 3 days
+  const next3Days = getNext3Days();
+  const eventsByDate = calendarEvents.reduce((acc, event) => {
+    const date = event.date;
+    if (!acc[date]) acc[date] = [];
+    acc[date].push(event);
+    return acc;
+  }, {} as Record<string, CalendarEvent[]>);
+
+  const timeSlots = getTimeSlots();
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-lg font-semibold text-slate-800">To Do</div>
-          <a
-            href="/calendar-todo"
-            className="text-xs font-heading uppercase tracking-[0.3em] text-[var(--accent)] hover:underline"
-          >
-            View All →
-          </a>
+    <div className="grid grid-cols-3 gap-6" style={{ height: 'calc(100vh - 200px)', minHeight: '600px' }}>
+      {/* Calendar - Left 2/3 */}
+      <div className="col-span-2 bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-xl border-2 border-dashed border-gray-400 overflow-hidden flex flex-col">
+        {/* Calendar Header - 3 Days */}
+        <div className="grid grid-cols-3 border-b-2 border-dashed border-gray-300">
+          {next3Days.map((day) => (
+            <div
+              key={day.date}
+              className={`p-4 text-center border-r-2 border-dashed border-gray-200 last:border-r-0 ${
+                day.isToday ? 'bg-[var(--accent)]/10' : ''
+              }`}
+            >
+              <div className="text-sm font-handwritten text-gray-500 uppercase tracking-wide">
+                {day.display.split(',')[0]}
+              </div>
+              <div className={`text-2xl font-bold mt-1 ${
+                day.isToday ? 'text-[var(--accent)]' : 'text-gray-900'
+              }`}>
+                {day.display.split(',')[1]}
+              </div>
+            </div>
+          ))}
         </div>
-        <ul className="space-y-3">
-          {todos.length === 0 ? (
-            <li className="text-center py-8 text-slate-400">
-              No tasks yet. Ask Chat to add some!
-            </li>
-          ) : (
-            todos.slice(0, 5).map((item) => (
-              <li
-                key={item.id}
-                className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
+
+        {/* Calendar Grid with Time Slots */}
+        <div className="flex-1 overflow-auto relative">
+          <div className="flex min-h-[960px]">
+            {/* Time Column */}
+            <div className="w-20 flex-shrink-0 border-r-2 border-dashed border-gray-200 bg-gray-50">
+              {timeSlots.map((time, idx) => (
+                <div key={idx} className="h-[60px] text-xs text-gray-400 text-right pr-2 pt-2">
+                  {time}
+                </div>
+              ))}
+            </div>
+
+            {/* 3 Day Columns */}
+            <div className="flex-1 grid grid-cols-3">
+              {next3Days.map((day) => {
+                const dayEvents = eventsByDate[day.date] || [];
+                return (
+                  <div
+                    key={day.date}
+                    className={`relative border-r-2 border-dashed border-gray-200 last:border-r-0 ${
+                      day.isToday ? 'bg-blue-50/30' : ''
+                    }`}
+                  >
+                    {/* Hour Lines */}
+                    {timeSlots.map((_, idx) => (
+                      <div key={idx} className="h-[60px] border-b border-dashed border-gray-100" />
+                    ))}
+
+                    {/* Events */}
+                    {dayEvents.map((event) => {
+                      const { top, height } = getEventPosition(event.time);
+                      return (
+                        <div
+                          key={event.id}
+                          className="absolute left-1 right-1 p-2 rounded-[18px] border-2 border-dashed cursor-pointer transition-all hover:shadow-lg"
+                          style={{
+                            top: `${top}px`,
+                            height: `${height}px`,
+                            backgroundColor: day.isToday 
+                              ? 'rgba(45, 93, 161, 0.1)' 
+                              : 'rgba(255, 77, 77, 0.1)',
+                            borderColor: day.isToday 
+                              ? 'var(--blue)' 
+                              : 'var(--accent)',
+                          }}
+                        >
+                          <div className="font-handwritten text-sm text-gray-900 truncate">
+                            {event.title}
+                          </div>
+                          {event.time && (
+                            <div className="text-xs text-gray-500 mt-0.5">
+                              {event.time}
+                            </div>
+                          )}
+                          {event.description && (
+                            <div className="text-xs text-gray-400 mt-1 truncate">
+                              {event.description}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* To Do - Right 1/3 */}
+      <div className="bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-xl border-2 border-dashed border-gray-400 p-6 overflow-auto">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-handwritten flex items-center gap-2">
+            <span>✅</span> To Do
+          </h2>
+          <span className="text-xs text-gray-400">{todos.length} tasks</span>
+        </div>
+        
+        {todos.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-4xl mb-4">📝</div>
+            <p className="text-gray-500">No tasks yet</p>
+            <p className="text-sm text-gray-400 mt-2">Ask Chat to add some!</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {todos.map((todo) => (
+              <div
+                key={todo.id}
+                className={`group p-4 rounded-[225px_18px_255px_18px/18px_255px_18px_225px] border-2 transition-all ${
+                  todo.completed
+                    ? "bg-gray-100 border-gray-300 border-dashed"
+                    : "bg-white border-gray-400 border-dashed hover:border-[var(--accent)] hover:shadow-md cursor-pointer"
+                }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`flex-shrink-0 w-4 h-4 rounded-full border-2 mt-0.5 ${
-                    item.completed ? "border-gray-400 bg-gray-400" : "border-slate-400"
-                  }`} />
+                  <div className={`flex-shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center mt-0.5 ${
+                    todo.completed
+                      ? "border-gray-400 bg-gray-400"
+                      : "border-gray-400 group-hover:border-[var(--accent)]"
+                  }`}>
+                    {todo.completed && (
+                      <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </div>
                   <div className="flex-1">
-                    <p className={`text-base ${item.completed ? "text-slate-400 line-through" : "text-slate-900"}`}>
-                      {item.title}
-                    </p>
-                    {item.source && (
-                      <p className="text-xs text-slate-400 mt-1">via {item.source}</p>
+                    <div
+                      className={`text-sm ${
+                        todo.completed ? "text-gray-500 line-through" : "text-gray-900 font-handwritten"
+                      }`}
+                    >
+                      {todo.title}
+                    </div>
+                    {todo.source && (
+                      <div className="text-xs text-gray-400 mt-1">
+                        via {todo.source}
+                      </div>
                     )}
                   </div>
                 </div>
-              </li>
-            ))
-          )}
-        </ul>
-      </div>
-
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <div className="text-lg font-semibold text-slate-800">Calendar</div>
-          <a
-            href="/calendar-todo"
-            className="text-xs font-heading uppercase tracking-[0.3em] text-[var(--accent)] hover:underline"
-          >
-            Full View →
-          </a>
-        </div>
-        <ul className="space-y-3">
-          {calendarEvents.length === 0 ? (
-            <li className="text-center py-8 text-slate-400">
-              No events this week
-            </li>
-          ) : (
-            calendarEvents.slice(0, 5).map((item) => (
-              <li
-                key={item.id}
-                className="rounded-[var(--r-wobbly-md)] border-[3px] border-slate-200 bg-white/90 px-4 py-3 shadow-hard"
-              >
-                <p className="text-lg font-semibold text-slate-900">{item.title}</p>
-                <div className="flex items-center gap-2 mt-1">
-                  {item.time && (
-                    <p className="text-xs uppercase tracking-[0.4em] text-[var(--blue)]">{item.time}</p>
-                  )}
-                  {item.date && (
-                    <p className="text-xs text-slate-500">
-                      {new Date(item.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
-                    </p>
-                  )}
-                </div>
-              </li>
-            ))
-          )}
-        </ul>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
+// Helper functions for calendar view
+function getNext3Days() {
+  const days = [];
+  for (let i = 0; i < 3; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    days.push({
+      date: date.toISOString().split('T')[0],
+      display: date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+      }),
+      full: date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+      isToday: i === 0,
+    });
+  }
+  return days;
+}
+
+function getTimeSlots() {
+  const slots = [];
+  for (let hour = 6; hour <= 22; hour++) {
+    const h = hour % 12 || 12;
+    const ampm = hour < 12 ? 'AM' : 'PM';
+    slots.push(`${h} ${ampm}`);
+  }
+  return slots;
+}
+
+function getEventPosition(time?: string) {
+  if (!time) return { top: 0, height: 40 };
+  const [timeStr, ampm] = time.split(' ');
+  let hour = parseInt(timeStr);
+  if (ampm === 'PM' && hour !== 12) hour += 12;
+  if (ampm === 'AM' && hour === 12) hour = 0;
+  
+  const top = (hour - 6) * 60;
+  return { top, height: 50 };
+}
+
+// Todo + Calendar Tab Component removed - replaced with TodoCalendarFullView
 
 const tabs = [
   { id: "board", label: "KANBAN", title: "Project board" },
@@ -202,14 +336,9 @@ export default function Page() {
   
   const tabMeta = useMemo(() => tabs.find((tab) => tab.id === activeTab), [activeTab]);
 
-  // Handle tab change - redirect to full page for todo tab
+  // Handle tab change
   const handleTabChange = (tabId: string) => {
-    if (tabId === "todo") {
-      // Redirect to full calendar-todo page
-      window.location.href = "/calendar-todo";
-    } else {
-      setActiveTab(tabId);
-    }
+    setActiveTab(tabId);
   };
 
   // Generate past 5 days + today for date buttons
@@ -412,7 +541,7 @@ export default function Page() {
         )}
 
         {activeTab === "todo" && (
-          <TodoCalendarTab />
+          <TodoCalendarFullView />
         )}
 
         {activeTab === "news" && (
