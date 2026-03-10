@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     if (pathname) {
       // Get specific file content
       try {
-        const blob = await get(pathname, { token: process.env.BLOB_READ_WRITE_TOKEN });
+        const blob = await get(pathname, { token: process.env.BLOB_READ_WRITE_TOKEN!, access: 'public' });
         if (blob) {
           const body = await blob.text();
           return NextResponse.json({
