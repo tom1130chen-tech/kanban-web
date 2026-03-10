@@ -15,15 +15,20 @@ export async function GET(request: NextRequest) {
       try {
         const blob = await get(pathname, { token: process.env.BLOB_READ_WRITE_TOKEN!, access: 'public' });
         if (blob) {
-          // For newer @vercel/blob, use blob.text() or fetch from downloadUrl
+          // Always fetch from downloadUrl for actual content
+          const downloadUrl = (blob as any).downloadUrl || (blob as any).url;
           let body = '';
-          if (typeof (blob as any).text === 'function') {
-            body = await (blob as any).text();
-          } else if ((blob as any).downloadUrl) {
-            const res = await fetch((blob as any).downloadUrl);
-            body = await res.text();
+          
+          if (downloadUrl) {
+            try {
+              const res = await fetch(downloadUrl);
+              body = await res.text();
+            } catch (fetchErr) {
+              console.warn('Fetch from downloadUrl failed:', fetchErr);
+              body = typeof (blob as any).text === 'function' ? await (blob as any).text() : JSON.stringify(blob);
+            }
           } else {
-            body = JSON.stringify(blob);
+            body = typeof (blob as any).text === 'function' ? await (blob as any).text() : JSON.stringify(blob);
           }
           
           return NextResponse.json({
