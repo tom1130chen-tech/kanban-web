@@ -15,14 +15,23 @@ export async function GET(request: NextRequest) {
       try {
         const blob = await get(pathname, { token: process.env.BLOB_READ_WRITE_TOKEN!, access: 'public' });
         if (blob) {
-          // Always fetch from downloadUrl for actual content
+          // Fetch from private blob URL with auth token
           const downloadUrl = (blob as any).downloadUrl || (blob as any).url;
           let body = '';
           
-          if (downloadUrl) {
+          if (downloadUrl && process.env.BLOB_READ_WRITE_TOKEN) {
             try {
-              const res = await fetch(downloadUrl);
-              body = await res.text();
+              const res = await fetch(downloadUrl, {
+                headers: {
+                  'Authorization': `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`
+                }
+              });
+              if (res.ok) {
+                body = await res.text();
+              } else {
+                console.warn('Blob fetch returned:', res.status);
+                body = typeof (blob as any).text === 'function' ? await (blob as any).text() : JSON.stringify(blob);
+              }
             } catch (fetchErr) {
               console.warn('Fetch from downloadUrl failed:', fetchErr);
               body = typeof (blob as any).text === 'function' ? await (blob as any).text() : JSON.stringify(blob);
