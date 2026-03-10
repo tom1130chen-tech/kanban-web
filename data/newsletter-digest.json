@@ -2,41 +2,68 @@
   "digestDate": "2026-03-10",
   "article": {
     "title": "2026-03-10 每日科技简报",
-    "subtitle": "AI 代理安全危机与微软生态反击",
-    "content": "<div class=\"newsletter-modules\">\n\n<!-- 模块 1: Stratechery -->\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Stratechery</h2>\n\n<div class=\"article-card\">\n<h3>The Agent Security Problem（AI 代理安全问题）</h3>\n<p class=\"summary\">提示注入链攻击首次大规模暴露，多家企业受影响，行业急需统一安全标准。</p>\n<ul class=\"key-points\">\n<li>攻击者通过多层代理传递恶意提示，诱导执行未授权操作</li>\n<li>某金融科技公司客服代理泄露 5000 名客户账户信息</li>\n<li>电商平台采购代理被操纵完成 20 万美元未授权订单</li>\n<li>本·汤普森：代理安全不是技术问题，而是信任问题</li>\n</ul>\n<a href=\"https://stratechery.com/2026/the-agent-security-problem/\" class=\"read-more\">阅读原文 →</a>\n</div>\n\n<div class=\"article-card\">\n<h3>Microsoft's Agent Layer Strategy（微软代理层战略）</h3>\n<p class=\"summary\">微软发布 Microsoft 365 Agent Layer，定义企业代理安全新标准。</p>\n<ul class=\"key-points\">\n<li>策略引擎：管理员可定义代理行为规则</li>\n<li>审计日志：所有代理操作自动记录，支持事后追溯</li>\n<li>沙箱执行：代理在隔离环境中运行，限制对核心系统直接访问</li>\n<li>纳德拉：代理不是取代人类，而是增强人类</li>\n</ul>\n<a href=\"https://stratechery.com/2026/microsofts-agent-layer-strategy/\" class=\"read-more\">阅读原文 →</a>\n</div>\n\n<div class=\"article-card\">\n<h3>Google's Search Pivot: Early Results（谷歌搜索转型早期结果）</h3>\n<p class=\"summary\">追踪谷歌\"代理友好广告\"的早期采用情况。</p>\n<ul class=\"key-points\">\n<li>谷歌面临搜索危机，尝试代理友好广告模式</li>\n<li>早期采用数据显示用户接受度中等</li>\n<li>与微软的主动出击形成对比</li>\n</ul>\n<a href=\"https://stratechery.com/2026/googles-search-pivot-early-results/\" class=\"read-more\">阅读原文 →</a>\n</div>\n</section>\n\n<!-- 模块 2: The Verge -->\n<section class=\"source-module\">\n<h2 class=\"source-header\">🔷 The Verge</h2>\n\n<div class=\"article-card\">\n<h3>AI Agent Prompt Injection Attack Disclosed（AI 代理提示注入攻击披露）</h3>\n<p class=\"summary\">安全研究人员披露首个针对 AI 代理的大规模攻击向量。</p>\n<ul class=\"key-points\">\n<li>\"提示注入链\"（Prompt Injection Chain）成新威胁</li>\n<li>攻击可诱导代理执行数据泄露、未授权交易、系统配置更改</li>\n<li>多家早期采用 AI 代理的企业报告安全事件</li>\n</ul>\n<a href=\"https://www.theverge.com/2026/3/9/ai-agent-prompt-injection-attack\" class=\"read-more\">阅读原文 →</a>\n</div>\n</section>\n\n<!-- 模块 3: Reuters -->\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Reuters</h2>\n\n<div class=\"article-card\">\n<h3>Microsoft Unveils Agent Layer（微软发布代理层）</h3>\n<p class=\"summary\">微软正式发布 Microsoft 365 Agent Layer，整合现有 M365 生态。</p>\n<ul class=\"key-points\">\n<li>内置安全沙箱和权限隔离机制</li>\n<li>与企业现有身份系统深度整合</li>\n<li>可能成为企业代理安全事实标准</li>\n</ul>\n<a href=\"https://www.reuters.com/technology/microsoft-unveils-agent-layer-2026-03-10/\" class=\"read-more\">阅读原文 →</a>\n</div>\n</section>\n\n<!-- 模块 4: TechCrunch -->\n<section class=\"source-module\">\n<h2 class=\"source-header\">🚀 TechCrunch</h2>\n\n<div class=\"article-card\">\n<h3>AgentShield Raises $50M（AgentShield 完成 A 轮融资）</h3>\n<p class=\"summary\">代理安全初创公司 AgentShield 完成 5000 万美元 A 轮融资。</p>\n<ul class=\"key-points\">\n<li>融资将用于扩展代理安全监控平台</li>\n<li>投资者包括顶级 VC 和企业战略投资者</li>\n<li>反映市场对代理安全解决方案的需求激增</li>\n</ul>\n<a href=\"https://techcrunch.com/2026/03/10/agentshield-raises-50m/\" class=\"read-more\">阅读原文 →</a>\n</div>\n</section>\n\n<!-- 模块 5: 行业动态 -->\n<section class=\"source-module\">\n<h2 class=\"source-header\">📊 行业动态</h2>\n\n<div class=\"article-card\">\n<h3>英伟达股价波动</h3>\n<p class=\"summary\">受代理安全担忧影响，NVDA 单日下跌 7%。</p>\n<ul class=\"key-points\">\n<li>分析师认为长期需求不变</li>\n<li>短期波动反映市场对代理安全的担忧</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>欧盟 AI 法案更新</h3>\n<p class=\"summary\">新增\"自主代理系统\"分类，要求高风险代理必须有人类监督。</p>\n<ul class=\"key-points\">\n<li>高风险代理需人类监督</li>\n<li>企业需调整代理部署策略以符合新规</li>\n</ul>\n</div>\n</section>\n\n<!-- 本周思考 -->\n<section class=\"source-module\" style=\"border-color: #666;\">\n<h2 class=\"source-header\" style=\"color: #666; border-color: #666;\">💡 本周思考</h2>\n\n<div class=\"article-card\">\n<h3>信任与控制的再平衡</h3>\n<p class=\"summary\">从代理安全危机到微软的生态反击，本周的核心主题是\"信任与控制的再平衡\"。</p>\n<ul class=\"key-points\">\n<li>AI 代理的自主性带来了效率，也带来了风险</li>\n<li>企业需要在\"完全自主\"和\"完全手动\"之间找到平衡点</li>\n<li>平台提供商（微软、谷歌、Anthropic）正在争夺代理时代的\"信任基础设施\"角色</li>\n<li>代理时代的安全不是\"零信任\"，而是\"可恢复信任\"</li>\n</ul>\n</div>\n</section>\n\n</div>",
+    "subtitle": "来自 8 个来源的科技与商业洞察",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 AI Valley</h2>\n\n<div class=\"article-card\">\n<h3>A Pentagon lawsuit</h3>\n<p class=\"summary\">~[Sign up](https://www.theaivalley.com/)~~ | ~~[Follow us on X](https://twitter.com/heyBarsee)~~ | ~~[Sponsor](mailto:barsee@aivalley.ai)~  View image: (https://media.beehiiv.com/cdn-cgi/image/fit=sca...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Claude helped identify 1,000 targets in 24 hours</h3>\n<p class=\"summary\">~[Sign up](https://www.theaivalley.com/)~~ | ~~[Follow us on X](https://twitter.com/heyBarsee)~~ | ~~[Sponsor](mailto:barsee@aivalley.ai)~  View image: (https://media.beehiiv.com/cdn-cgi/image/fit=sca...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n\n<div class=\"article-card\">\n<h3>A guide to advanced B2B positioning</h3>\n<p class=\"summary\">View this post on the web at https://www.lennysnewsletter.com/p/a-guide-to-advanced-b2b-positioning  👋  Hey there, I’m Lenny. Each week, I answer reader questions about building product, driving grow...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>🎙️ This week on How I AI: Mastering Midjourney: How to create consistent, beautiful brand imagery without complex…</h3>\n<p class=\"summary\">View this post on the web at https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-mastering-midjourney  Every Monday, host Claire Vo shares a 30- to 45-minute episode with a new guest demoing a pr...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️  Aria of ire</h3>\n<p class=\"summary\">All eyes are on the price of oil...<a href=\"http://www.morningbrew.com\"><img src=\"https://link.morningbrew.com/img/69ab7cfc3e7b8fcc9b0384c3qjo8o.2h05p/d74036a5.gif\" alt=\"\" border=\"0\" /></a>       Marc...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>☕ In the hopper</h3>\n<p class=\"summary\">OpenAI has changed its mind about online shopping...<a href=\"http://www.morningbrew.com\"><img src=\"https://link.morningbrew.com/img/69ab7cfc3e7b8fcc9b0384c3qjauf.2h0ij/1792bf8f.gif\" alt=\"\" border=\"0\"...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>☕ Sobriety Brew</h3>\n<p class=\"summary\">Oops! Looks like your email provider is scrambling the email :( Click here to read it in full online: https://www.morningbrew.com/issues/sobriety-brew?from_plain_text=true&mid=35ee37e141136d63e60b7e3c...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Recomendo</h2>\n\n<div class=\"article-card\">\n<h3>Articles of Interest / Still Here</h3>\n<p class=\"summary\">View this post on the web at https://www.recomendo.com/p/articles-of-interest-still-here  Nerdy podcast on clothes A podcast I am enjoying is Articles of Interest [ https://substack.com/redirect/19f0b...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Anthropic sues Pentagon ⚖️, Siri delays Apple products 🖥️, Claude Code Review 👨‍💻</h3>\n<p class=\"summary\">Anthropic has filed two lawsuits against the Department of War to change the Pentagon's decision to label it a 'supply chain risk' ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Cutting development time ✂️, relationships not features 🤝, the interface was the product 🖥️</h3>\n<p class=\"summary\">Generative UI builds interfaces dynamically using approved components, contextual data, and a trained language model instead of fixed layouts ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Claude finds Firefox bugs 🐛, Claude Marketplace 🤝, Codex Security 🤖</h3>\n<p class=\"summary\">Claude Opus 4.6 found more high-severity bugs in Firefox over a two-week period than the rest of the world typically reports in two months ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌  ‌ ‌ ‌ ‌...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TechCrunch</h2>\n\n<div class=\"article-card\">\n<h3>Welcome to TechCrunch News Alerts!</h3>\n<p class=\"summary\">...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🛢️ Markets A.M.: Feast to Famine in the Oil Market</h3>\n<p class=\"summary\">...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: One CEO’s Bet on a Burgeoning Healthcare Labor Market</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. › https://ceobrief.cmail19.com/t/d-e-ghjqkk-hrlrikkdkd-z/         Sponsored by                       One CEO’s Bet on a Burgeoning Healthcare...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>😑 Markets A.M.: U.S. Stocks Are the World’s Least-Dirty Shirt</h3>\n<p class=\"summary\">...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 其他来源</h2>\n\n<div class=\"article-card\">\n<h3>Fwd: 📈 Markets A.M.: Why Berkshire Is Buying Its Stock Again</h3>\n<p class=\"summary\">---------- Forwarded message --------- From: Spencer Jakab, WSJ <access@interactive.wsj.com> Date: Fri, Mar 6, 2026 at 6:42 AM Subject: 📈 Markets A.M.: Why Berkshire Is Buying Its Stock Again To: <to...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Fwd: The Morning: Hanging up</h3>\n<p class=\"summary\">---------- Forwarded message --------- From: The New York Times <nytdirect@nytimes.com> Date: Sat, Mar 7, 2026 at 6:12 AM Subject: The Morning: Hanging up To: <tom1130chen@gmail.com>   Reducing phone...</p>\n<ul class=\"key-points\">\n<li>核心观点待提取</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
-        "name": "Stratechery",
+        "name": "AI Valley",
+        "url": "",
         "type": "newsletter",
-        "url": "https://stratechery.com",
-        "summary": "AI 代理安全问题分析 + 微软代理层战略 + 谷歌搜索转型"
+        "summary": "2封邮件"
       },
       {
-        "name": "The Verge",
-        "type": "news",
-        "url": "https://www.theverge.com",
-        "summary": "AI 代理提示注入攻击披露"
+        "name": "Lenny's Newsletter",
+        "url": "",
+        "type": "newsletter",
+        "summary": "2封邮件"
       },
       {
-        "name": "Reuters",
-        "type": "news",
-        "url": "https://www.reuters.com",
-        "summary": "微软发布 Microsoft 365 Agent Layer"
+        "name": "Wall Street Journal",
+        "url": "",
+        "type": "newsletter",
+        "summary": "4封邮件"
+      },
+      {
+        "name": "TLDR",
+        "url": "",
+        "type": "newsletter",
+        "summary": "5封邮件"
+      },
+      {
+        "name": "Morning Brew",
+        "url": "",
+        "type": "newsletter",
+        "summary": "3封邮件"
+      },
+      {
+        "name": "Recomendo",
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
       },
       {
         "name": "TechCrunch",
-        "type": "news",
-        "url": "https://techcrunch.com",
-        "summary": "AgentShield 完成 A 轮融资"
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
+      },
+      {
+        "name": "Other",
+        "url": "",
+        "type": "newsletter",
+        "summary": "2封邮件"
       }
     ],
     "author": "Chat",
-    "tags": ["AI", "Agents", "Security", "Microsoft", "Google", "Enterprise", "Stratechery"]
+    "tags": [
+      "Tech",
+      "Business",
+      "Daily"
+    ]
   },
   "metadata": {
-    "wordCount": 1500,
+    "wordCount": 3398,
     "readTime": "8 min",
-    "language": "zh-CN",
-    "template": "modular"
+    "language": "zh-CN"
   }
 }
