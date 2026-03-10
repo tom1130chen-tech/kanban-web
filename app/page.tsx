@@ -238,6 +238,52 @@ function TodoCalendarFullView() {
 
 // Todo + Calendar Tab Component removed - replaced with TodoCalendarFullView
 
+// Helper functions for calendar view
+function getNext3Days() {
+  const days = [];
+  for (let i = 0; i < 3; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    days.push({
+      date: date.toISOString().split('T')[0],
+      display: date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+      }),
+      full: date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+      isToday: i === 0,
+    });
+  }
+  return days;
+}
+
+function getTimeSlots() {
+  const slots = [];
+  for (let hour = 6; hour <= 22; hour++) {
+    const h = hour % 12 || 12;
+    const ampm = hour < 12 ? 'AM' : 'PM';
+    slots.push(`${h} ${ampm}`);
+  }
+  return slots;
+}
+
+function getEventPosition(time?: string) {
+  if (!time) return { top: 0, height: 40 };
+  const [timeStr, ampm] = time.split(' ');
+  let hour = parseInt(timeStr);
+  if (ampm === 'PM' && hour !== 12) hour += 12;
+  if (ampm === 'AM' && hour === 12) hour = 0;
+  
+  const top = (hour - 6) * 60;
+  return { top, height: 50 };
+}
+
 const tabs = [
   { id: "board", label: "KANBAN", title: "Project board" },
   { id: "todo", label: "TO DO + CALENDAR", title: "Schedule + tasks" },
