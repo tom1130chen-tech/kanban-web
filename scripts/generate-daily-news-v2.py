@@ -21,11 +21,39 @@ INBOX_ID = "differentwork984@agentmail.to"
 NEWSLETTER_DIR = "/Users/tomchen/.openclaw/workspace-chat/kanban-board/data"
 BLOB_BASE = "/api/blob"
 
-def fetch_emails(limit=20):
-    """Fetch recent emails from inbox"""
+def fetch_emails(limit=30):
+    """Fetch recent emails from inbox (last 24h since 9AM)"""
     print(f"📬 Fetching emails from {INBOX_ID}...")
     messages = client.inboxes.messages.list(inbox_id=INBOX_ID, limit=limit)
-    return messages.messages
+    
+    # Filter emails received since yesterday 9AM
+    now = datetime.now()
+    yesterday_9am = now.replace(hour=9, minute=0, second=0, microsecond=0)
+    if now.hour < 9:
+        yesterday_9am = yesterday_9am.replace(day=yesterday_9am.day - 1)
+    
+    filtered_messages = []
+    for msg in messages.messages:
+        # Use timestamp or created_at field
+        msg_time = getattr(msg, 'timestamp', None) or getattr(msg, 'created_at', None)
+        if msg_time:
+            if isinstance(msg_time, (int, float)):
+                msg_datetime = datetime.fromtimestamp(msg_time)
+            else:
+                try:
+                    msg_datetime = datetime.fromisoformat(str(msg_time).replace('Z', '+00:00'))
+                    # Convert to naive datetime for comparison
+                    if msg_datetime.tzinfo is not None:
+                        msg_datetime = msg_datetime.replace(tzinfo=None)
+                except:
+                    msg_datetime = now
+            if msg_datetime >= yesterday_9am:
+                filtered_messages.append(msg)
+        else:
+            filtered_messages.append(msg)  # Include if no timestamp
+    
+    print(f"   Filtered to {len(filtered_messages)} emails since {yesterday_9am.strftime('%Y-%m-%d %H:%M')}")
+    return filtered_messages
 
 def get_email_content(message_id):
     """Get full email content"""
@@ -152,7 +180,12 @@ def extract_key_points_from_preview(preview):
 
 def generate_newsletter(sources):
     """Generate full newsletter HTML"""
-    today = datetime.now().strftime('%Y-%m-%d')
+    now = datetime.now()
+    # Newsletter date is today if after 9AM, otherwise yesterday
+    if now.hour >= 9:
+        newsletter_date = now.strftime('%Y-%m-%d')
+    else:
+        newsletter_date = now.replace(day=now.day-1).strftime('%Y-%m-%d')
     
     modules_html = '<div class="newsletter-modules">\n'
     
@@ -168,10 +201,10 @@ def generate_newsletter(sources):
     modules_html += '</div>'
     
     newsletter = {
-        "digestDate": today,
+        "digestDate": newsletter_date,
         "article": {
-            "title": f"{today} 每日科技简报",
-            "subtitle": f"来自 {len(sources)} 个来源的科技与商业洞察",
+            "title": f"{newsletter_date} 每日科技简报",
+            "subtitle": f"来自 {len(sources)} 个来源的科技与商业洞察（过去 24 小时）",
             "content": modules_html,
             "sources": [
                 {"name": name, "url": "", "type": "newsletter", "summary": f"{len(emails)}封邮件"}
@@ -217,11 +250,11 @@ def save_newsletter(newsletter):
 def main():
     """Main execution"""
     print("=" * 60)
-    print("📬 Daily Newsletter Generator v2")
+    print("📬 Daily Newsletter Generator v3 (24h window since 9AM)")
     print("=" * 60)
     
-    # Step 1: Fetch emails
-    emails = fetch_emails(limit=20)
+    # Step 1: Fetch emails (since yesterday 9AM)
+    emails = fetch_emails(limit=30)
     print(f"✅ Fetched {len(emails)} emails")
     
     # Step 2: Categorize by source
