@@ -14,6 +14,13 @@ import json
 from datetime import datetime
 from agentmail import AgentMail
 
+# Try to import OpenAI for translation/summary
+try:
+    import openai
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
+
 # Initialize AgentMail client
 AGENTMAIL_API_KEY = os.getenv("AGENTMAIL_API_KEY")
 client = AgentMail(api_key=AGENTMAIL_API_KEY)
@@ -71,6 +78,28 @@ def get_email_content(message_id):
         print(f"  ⚠️  Failed to get message {message_id}: {e}")
         return ""
 
+def translate_and_summarize(text, max_length=200):
+    """Translate English text to Chinese and create summary"""
+    if not text or not OPENAI_AVAILABLE:
+        return text[:max_length] if text else ''
+    
+    try:
+        # Simple translation using OpenAI (if available)
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "Translate the following English text to concise Chinese (max 100 characters). Keep key facts and names in English."},
+                {"role": "user", "content": text[:500]}
+            ],
+            max_tokens=150,
+            temperature=0.3
+        )
+        translation = response.choices[0].message.content.strip()
+        return f"{translation}"
+    except Exception as e:
+        # Fallback to original text
+        return text[:max_length]
+
 def categorize_emails(emails):
     """Categorize emails by source"""
     sources = {}
@@ -127,7 +156,7 @@ def categorize_emails(emails):
     return sources
 
 def generate_module(source_name, emails):
-    """Generate HTML module for a source using full email content"""
+    """Generate HTML module for a source with Chinese translation and summary"""
     if not emails:
         return ""
     
@@ -152,21 +181,38 @@ def generate_module(source_name, emails):
                     not re.match(r'^[A-Z][a-z]+ \d+, \d+$', text) and  # Skip dates
                     not text.startswith('Happy ') and  # Skip greetings
                     not text.startswith('Hey there') and
+                    not text.startswith('Hi ') and
                     'unsubscribe' not in text.lower() and
                     'sign up' not in text.lower() and
                     'forwarded message' not in text.lower() and
-                    'read online' not in text.lower()):
+                    'read online' not in text.lower() and
+                    'view this post' not in text.lower()):
                     meaningful.append(text)
             
-            # Use first 2-3 meaningful paragraphs as key points
-            key_points = meaningful[:3] if meaningful else [subject]
-            # Summary is first meaningful paragraph
-            summary = meaningful[0][:250] if meaningful else (email['preview'][:200] if email.get('preview') else '点击标题查看原文')
+            # Generate summary and key points with translation
+            if meaningful:
+                # Summary: Translate first meaningful paragraph
+                summary_en = meaningful[0][:200]
+                summary_zh = translate_and_summarize(summary_en)
+                summary = f"{summary_zh}"
+                
+                # Key points: Translate and summarize top 3 points
+                key_points = []
+                for point in meaningful[:3]:
+                    point_zh = translate_and_summarize(point, max_length=150)
+                    if point_zh:
+                        key_points.append(point_zh)
+                
+                if not key_points:
+                    key_points = [translate_and_summarize(subject)]
+            else:
+                summary = translate_and_summarize(subject)
+                key_points = [translate_and_summarize(subject)]
         else:
             # Fallback to preview
             preview = email['preview'].replace('~', '').strip()[:200] if email.get('preview') else ''
-            summary = preview if preview else '点击标题查看原文'
-            key_points = [subject]
+            summary = translate_and_summarize(preview) if preview else translate_and_summarize(subject)
+            key_points = [translate_and_summarize(subject)]
         
         key_points_html = ''.join([f'<li>{point}</li>' for point in key_points])
         
