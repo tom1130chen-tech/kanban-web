@@ -24,10 +24,49 @@ interface PageData {
   lastUpdated: string;
 }
 
+// Generate next 3 days starting from today
+function getNext3Days() {
+  const days = [];
+  for (let i = 0; i < 3; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    days.push({
+      date: date.toISOString().split('T')[0],
+      display: date.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+      }),
+      full: date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+      isToday: i === 0,
+    });
+  }
+  return days;
+}
+
+// Generate time slots (6 AM to 10 PM)
+function getTimeSlots() {
+  const slots = [];
+  for (let hour = 6; hour <= 22; hour++) {
+    const h = hour % 12 || 12;
+    const ampm = hour < 12 ? 'AM' : 'PM';
+    slots.push(`${h} ${ampm}`);
+  }
+  return slots;
+}
+
 export default function CalendarTodoPage() {
   const [data, setData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const next3Days = getNext3Days();
+  const timeSlots = getTimeSlots();
 
   useEffect(() => {
     fetch("/api/calendar-todo")
@@ -79,7 +118,7 @@ export default function CalendarTodoPage() {
 
   const { calendarEvents, todos, lastUpdated } = data;
 
-  // Group calendar events by date
+  // Group events by date
   const eventsByDate = calendarEvents.reduce((acc, event) => {
     const date = event.date;
     if (!acc[date]) acc[date] = [];
@@ -87,7 +126,22 @@ export default function CalendarTodoPage() {
     return acc;
   }, {} as Record<string, CalendarEvent[]>);
 
-  const sortedDates = Object.keys(eventsByDate).sort();
+  // Get events for a specific day
+  const getEventsForDay = (date: string) => {
+    return eventsByDate[date] || [];
+  };
+
+  // Get position for an event based on time
+  const getEventPosition = (time?: string) => {
+    if (!time) return { top: 0, height: 40 };
+    const [timeStr, ampm] = time.split(' ');
+    let hour = parseInt(timeStr);
+    if (ampm === 'PM' && hour !== 12) hour += 12;
+    if (ampm === 'AM' && hour === 12) hour = 0;
+    
+    const top = (hour - 6) * 60; // 60px per hour
+    return { top, height: 50 };
+  };
 
   return (
     <div className="min-h-screen pb-12" style={{
@@ -96,18 +150,20 @@ export default function CalendarTodoPage() {
       backgroundSize: '24px 24px',
     }}>
       {/* Header */}
-      <header className="border-b-2 border-dashed border-gray-400 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-6">
+      <header className="border-b-2 border-dashed border-gray-400 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
+        <div className="max-w-[1600px] mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-handwritten" style={{ fontFamily: 'var(--font-heading)' }}>
                 📅 Calendar + To Do
               </h1>
-              <p className="text-gray-600 mt-1">Your week at a glance</p>
+              <p className="text-gray-600 mt-1">
+                {next3Days[0].full} - {next3Days[2].full}
+              </p>
             </div>
             <div className="text-right">
               <div className="text-sm text-gray-500">
-                Last updated: {new Date(lastUpdated).toLocaleString()}
+                Updated: {new Date(lastUpdated).toLocaleTimeString()}
               </div>
             </div>
           </div>
@@ -115,72 +171,115 @@ export default function CalendarTodoPage() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-3 gap-6" style={{ height: 'calc(100vh - 180px)' }}>
+      <main className="max-w-[1600px] mx-auto px-6 py-6">
+        <div className="grid grid-cols-3 gap-6" style={{ height: 'calc(100vh - 160px)', minHeight: '600px' }}>
           {/* Calendar - Left 2/3 */}
-          <div className="col-span-2 bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-xl border-2 border-dashed border-gray-400 p-6 overflow-auto">
-            <h2 className="text-xl font-handwritten mb-6 flex items-center gap-2">
-              <span>📆</span> This Week&apos;s Calendar
-            </h2>
-            
-            {sortedDates.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="text-4xl mb-4">📭</div>
-                <p className="text-gray-500">No events this week</p>
-              </div>
-            ) : (
-              <div className="space-y-6">
-                {sortedDates.map((date) => {
-                  const dateObj = new Date(date);
-                  const isToday = date === new Date().toISOString().split('T')[0];
-                  return (
-                    <div key={date}>
-                      <div className="flex items-center gap-3 mb-3">
-                        <h3 className="text-lg font-handwritten" style={{ fontFamily: 'var(--font-heading)' }}>
-                          {dateObj.toLocaleDateString("en-US", {
-                            weekday: "long",
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </h3>
-                        {isToday && (
-                          <span className="px-3 py-1 bg-[var(--accent)] text-white text-xs rounded-full font-medium">
-                            TODAY
-                          </span>
-                        )}
-                      </div>
-                      <div className="space-y-2">
-                        {eventsByDate[date].map((event) => (
+          <div className="col-span-2 bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-xl border-2 border-dashed border-gray-400 overflow-hidden flex flex-col">
+            {/* Calendar Header - 3 Days */}
+            <div className="grid grid-cols-3 border-b-2 border-dashed border-gray-300">
+              {next3Days.map((day) => (
+                <div
+                  key={day.date}
+                  className={`p-4 text-center border-r-2 border-dashed border-gray-200 last:border-r-0 ${
+                    day.isToday ? 'bg-[var(--accent)]/10' : ''
+                  }`}
+                >
+                  <div className="text-sm font-handwritten text-gray-500 uppercase tracking-wide">
+                    {day.display.split(',')[0]}
+                  </div>
+                  <div className={`text-2xl font-bold mt-1 ${
+                    day.isToday ? 'text-[var(--accent)]' : 'text-gray-900'
+                  }`}>
+                    {day.display.split(',')[1]}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Calendar Grid with Time Slots */}
+            <div className="flex-1 overflow-auto relative">
+              <div className="flex min-h-[960px]"> {/* 16 hours * 60px = 960px */}
+                {/* Time Column */}
+                <div className="w-20 flex-shrink-0 border-r-2 border-dashed border-gray-200 bg-gray-50">
+                  {timeSlots.map((time, idx) => (
+                    <div
+                      key={idx}
+                      className="h-[60px] text-xs text-gray-400 text-right pr-2 pt-2"
+                    >
+                      {time}
+                    </div>
+                  ))}
+                </div>
+
+                {/* 3 Day Columns */}
+                <div className="flex-1 grid grid-cols-3">
+                  {next3Days.map((day) => {
+                    const dayEvents = getEventsForDay(day.date);
+                    return (
+                      <div
+                        key={day.date}
+                        className={`relative border-r-2 border-dashed border-gray-200 last:border-r-0 ${
+                          day.isToday ? 'bg-blue-50/30' : ''
+                        }`}
+                      >
+                        {/* Hour Lines */}
+                        {timeSlots.map((_, idx) => (
                           <div
-                            key={event.id}
-                            className="group flex items-start gap-4 p-4 rounded-[225px_18px_255px_18px/18px_255px_18px_225px] border-2 border-dashed border-gray-300 hover:border-[var(--blue)] hover:bg-blue-50 transition-all cursor-pointer"
-                          >
-                            {event.time && (
-                              <div className="flex-shrink-0 w-20 text-center">
-                                <div className="text-lg font-bold text-[var(--blue)]">{event.time}</div>
+                            key={idx}
+                            className="h-[60px] border-b border-dashed border-gray-100"
+                          />
+                        ))}
+
+                        {/* Events */}
+                        {dayEvents.map((event) => {
+                          const { top, height } = getEventPosition(event.time);
+                          return (
+                            <div
+                              key={event.id}
+                              className="absolute left-1 right-1 p-2 rounded-[18px] border-2 border-dashed cursor-pointer transition-all hover:shadow-lg"
+                              style={{
+                                top: `${top}px`,
+                                height: `${height}px`,
+                                backgroundColor: day.isToday 
+                                  ? 'rgba(45, 93, 161, 0.1)' 
+                                  : 'rgba(255, 77, 77, 0.1)',
+                                borderColor: day.isToday 
+                                  ? 'var(--blue)' 
+                                  : 'var(--accent)',
+                              }}
+                            >
+                              <div className="font-handwritten text-sm text-gray-900 truncate">
+                                {event.title}
                               </div>
-                            )}
-                            <div className="flex-1">
-                              <div className="font-handwritten text-lg text-gray-900">{event.title}</div>
+                              {event.time && (
+                                <div className="text-xs text-gray-500 mt-0.5">
+                                  {event.time}
+                                </div>
+                              )}
                               {event.description && (
-                                <div className="text-sm text-gray-500 mt-2">{event.description}</div>
+                                <div className="text-xs text-gray-400 mt-1 truncate">
+                                  {event.description}
+                                </div>
                               )}
                             </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            )}
+            </div>
           </div>
 
           {/* To Do - Right 1/3 */}
           <div className="bg-white rounded-[255px_15px_225px_15px/15px_225px_15px_255px] shadow-xl border-2 border-dashed border-gray-400 p-6 overflow-auto">
-            <h2 className="text-xl font-handwritten mb-6 flex items-center gap-2">
-              <span>✅</span> To Do
-            </h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-xl font-handwritten flex items-center gap-2">
+                <span>✅</span> To Do
+              </h2>
+              <span className="text-xs text-gray-400">{todos.length} tasks</span>
+            </div>
             
             {todos.length === 0 ? (
               <div className="text-center py-12">
@@ -221,7 +320,7 @@ export default function CalendarTodoPage() {
                         </div>
                         {todo.source && (
                           <div className="text-xs text-gray-400 mt-1">
-                            Added by {todo.source}
+                            via {todo.source}
                           </div>
                         )}
                       </div>
@@ -235,7 +334,7 @@ export default function CalendarTodoPage() {
       </main>
 
       {/* Back to Home Link */}
-      <div className="max-w-7xl mx-auto px-6 mt-6">
+      <div className="max-w-[1600px] mx-auto px-6 mt-6">
         <a
           href="/"
           className="inline-flex items-center gap-2 text-[var(--blue)] hover:underline font-handwritten"
