@@ -9,6 +9,7 @@ Daily Newsletter Generator v2
 """
 
 import os
+import re
 import json
 from datetime import datetime
 from agentmail import AgentMail
@@ -131,17 +132,28 @@ def generate_module(source_name, emails):
     
     for email in emails[:3]:  # Max 3 emails per source
         subject = email['subject']
-        preview = email['preview'].replace('\n', ' ').replace('~', '').strip()
+        preview = email['preview']
         
-        # Extract key points from preview
-        key_points = extract_key_points_from_preview(preview)
+        # Clean preview - remove common noise
+        preview = preview.replace('~', '').strip()
+        preview = re.sub(r'\[Sign up\][^\|]*\|', '', preview, flags=re.IGNORECASE)
+        preview = re.sub(r'\[Follow us[^\]]*\][^\|]*\|', '', preview, flags=re.IGNORECASE)
+        preview = re.sub(r'\[Sponsor\][^\|]*\|', '', preview, flags=re.IGNORECASE)
+        preview = re.sub(r'View image:[^ ]*', '', preview)
+        preview = re.sub(r'View this post on the web at [^ ]*', '', preview)
+        preview = re.sub(r'http[s]?://[^\s]+', '', preview)
+        preview = ' '.join(preview.split())[:200].strip()
         
-        key_points_html = ''.join([f'<li>{point}</li>' for point in key_points])
+        # Use subject as the key point
+        key_points_html = f'<li>{subject}</li>'
+        
+        # Summary is cleaned preview
+        summary = preview if preview else '点击标题查看原文'
         
         module_html += f'''
 <div class="article-card">
 <h3>{subject}</h3>
-<p class="summary">{preview}</p>
+<p class="summary">{summary}</p>
 <ul class="key-points">
 {key_points_html}
 </ul>
@@ -154,29 +166,45 @@ def generate_module(source_name, emails):
 def extract_key_points_from_preview(preview):
     """Extract key points from email preview"""
     if not preview:
-        return ['内容加载中']
+        return ['暂无摘要']
     
-    # Clean up preview text
-    preview = preview.replace('[Sign up]', '').replace('[Follow us]', '').replace('[Sponsor]', '').strip()
+    # Clean up common newsletter headers/footers
+    preview = preview.replace('~', '').strip()
     
-    # Split by common delimiters and take meaningful parts
-    sentences = []
-    for sep in ['. ', '! ', '? ']:
-        if sep in preview:
-            sentences.extend(preview.split(sep))
-        else:
-            sentences.append(preview)
+    # Remove common unsubscribe/header patterns
+    patterns_to_remove = [
+        r'\[Sign up\].*?\|',
+        r'\[Follow us.*?\].*?\|',
+        r'\[Sponsor\].*?\|',
+        r'View this post on the web at.*?  ',
+        r'View image:.*?  ',
+        r'All eyes are on.*?\.\.\.',
+    ]
+    
+    for pattern in patterns_to_remove:
+        preview = re.sub(pattern, '', preview, flags=re.IGNORECASE)
+    
+    # Split by sentences and take meaningful ones
+    sentences = re.split(r'[.!?]\s+', preview)
     
     # Filter meaningful sentences
     key_points = []
     for sent in sentences:
         sent = sent.strip()
-        if sent and len(sent) > 20 and len(sent) < 250:
-            # Skip unsubscribe links, etc.
-            if not any(skip in sent.lower() for skip in ['unsubscribe', 'click here', 'view online', 'sign up', 'follow us', 'sponsor']):
-                key_points.append(sent[:250])
+        # Skip if too short, too long, or contains common noise
+        if (sent and 
+            20 < len(sent) < 200 and 
+            not any(skip in sent.lower() for skip in ['unsubscribe', 'click here', 'view online', 'sign up', 'follow us', 'sponsor', 'forwarded message'])):
+            key_points.append(sent[:200])
     
-    return key_points[:3] if key_points else ['内容摘要待补充']
+    # If no good sentences, use first meaningful part
+    if not key_points and preview:
+        # Take first 150 chars that aren't all links
+        clean_preview = re.sub(r'http[s]?://\S+', '', preview).strip()
+        if clean_preview and len(clean_preview) > 20:
+            key_points.append(clean_preview[:200])
+    
+    return key_points[:3] if key_points else ['暂无摘要']
 
 def generate_newsletter(sources):
     """Generate full newsletter HTML"""
