@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "todo-001",
+    "title": "测试 todo 项目",
+    "completed": false,
+    "createdAt": "2026-03-10T12:00:00.000Z",
+    "source": "chat"
+  },
+  {
+    "id": "todo-002",
+    "title": "完成项目报告",
+    "completed": false,
+    "createdAt": "2026-03-10T12:30:00.000Z",
+    "source": "chat",
+    "dueDate": "2026-03-11"
+  },
+  {
+    "id": "todo-1773164874594-gch1o",
+    "title": "测试从命令行添加 todo",
+    "completed": false,
+    "createdAt": "2026-03-10T17:47:54.594Z",
+    "source": "chat"
+  }
+]
