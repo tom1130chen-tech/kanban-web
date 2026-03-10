@@ -11,12 +11,34 @@ export async function GET(request: NextRequest) {
     const pathname = searchParams.get('pathname');
     
     if (pathname) {
-      // Get specific file metadata (requires token from env)
-      // For now, return error - user needs to configure BLOB_READ_WRITE_TOKEN
-      return NextResponse.json(
-        { success: false, error: 'Blob token not configured. Use list endpoint instead.' },
-        { status: 503 }
-      );
+      // Get specific file content
+      try {
+        const blob = await get(pathname);
+        if (blob) {
+          const body = await blob.text();
+          return NextResponse.json({
+            success: true,
+            data: {
+              pathname,
+              body,
+              contentType: blob.contentType,
+              size: blob.size
+            }
+          });
+        } else {
+          return NextResponse.json(
+            { success: false, error: 'File not found' },
+            { status: 404 }
+          );
+        }
+      } catch (error: any) {
+        // If token not configured, try direct URL fetch
+        console.warn('Blob get failed, trying direct fetch:', error.message);
+        return NextResponse.json(
+          { success: false, error: 'Blob token not configured for read' },
+          { status: 503 }
+        );
+      }
     } else {
       // List all files (optional prefix filter)
       const prefix = searchParams.get('prefix') || '';
