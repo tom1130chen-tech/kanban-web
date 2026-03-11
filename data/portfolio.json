@@ -1,40 +1,171 @@
 {
-  "lastUpdated": "2026-03-11T19:30:00Z",
+  "lastUpdated": "2026-03-11T19:54:00Z",
   "holdings": [
     {
-      "ticker": "SCHD",
-      "name": "Schwab U.S. Dividend Equity ETF",
-      "shares": 0,
-      "avgCost": 0,
+      "ticker": "CASH",
+      "name": "Cash - Held in Money Market",
+      "shares": 1,
+      "avgCost": 178991.33,
       "account": "IBKR Taxable",
-      "currentPrice": 0,
-      "marketValue": 0,
+      "currentPrice": 178991.33,
+      "marketValue": 178991.33,
       "gainLoss": 0,
       "gainLossPercent": 0,
-      "weight": 0
+      "weight": 39.92
+    },
+    {
+      "ticker": "912828YD6",
+      "name": "United States Treasury Ser P-2026",
+      "shares": 82000,
+      "avgCost": 0.9887,
+      "account": "IBKR Taxable",
+      "currentPrice": 0.98927,
+      "marketValue": 81120.14,
+      "gainLoss": 45.92,
+      "gainLossPercent": 0.05,
+      "weight": 18.09
+    },
+    {
+      "ticker": "912834PM4",
+      "name": "U.S. Treasury Sec Stripped Int PM",
+      "shares": 100000,
+      "avgCost": 0.3775,
+      "account": "IBKR Taxable",
+      "currentPrice": 0.37906,
+      "marketValue": 37906.00,
+      "gainLoss": 157.68,
+      "gainLossPercent": 0.41,
+      "weight": 8.45
+    },
+    {
+      "ticker": "BRKB",
+      "name": "Berkshire Hathaway Inc",
+      "shares": 100,
+      "avgCost": 464.86,
+      "account": "IBKR Taxable",
+      "currentPrice": 490.925,
+      "marketValue": 49092.50,
+      "gainLoss": 2606.50,
+      "gainLossPercent": 5.60,
+      "weight": 10.95
+    },
+    {
+      "ticker": "SCHD",
+      "name": "Schwab US Dividend Equity ETF",
+      "shares": 3356,
+      "avgCost": 28.74,
+      "account": "IBKR Taxable",
+      "currentPrice": 30.975,
+      "marketValue": 103952.10,
+      "gainLoss": 7508.88,
+      "gainLossPercent": 7.78,
+      "weight": 23.18
+    },
+    {
+      "ticker": "VOO",
+      "name": "Vanguard S&P 500 ETF",
+      "shares": 0.291,
+      "avgCost": 524.78,
+      "account": "IBKR Taxable",
+      "currentPrice": 621.162,
+      "marketValue": 180.75,
+      "gainLoss": 28.04,
+      "gainLossPercent": 18.36,
+      "weight": 0.04
+    },
+    {
+      "ticker": "VOO260320P625",
+      "name": "VOO 625 Put 2026-03-20",
+      "shares": -1,
+      "avgCost": 5.39,
+      "account": "IBKR Taxable",
+      "currentPrice": 11.50,
+      "marketValue": -1150.00,
+      "gainLoss": -610.67,
+      "gainLossPercent": -113.23,
+      "weight": -0.26,
+      "optionType": "Put",
+      "strike": 625,
+      "expiration": "2026-03-20"
+    },
+    {
+      "ticker": "VOO260417P620",
+      "name": "VOO 620 Put 2026-04-17",
+      "shares": -1,
+      "avgCost": 8.99,
+      "account": "IBKR Taxable",
+      "currentPrice": 16.70,
+      "marketValue": -1670.00,
+      "gainLoss": -770.67,
+      "gainLossPercent": -85.70,
+      "weight": -0.37,
+      "optionType": "Put",
+      "strike": 620,
+      "expiration": "2026-04-17"
     }
   ],
   "accounts": {
-    "IBKR Taxable": {"value": 0, "change": 0},
-    "Fidelity Brokerage": {"value": 0, "change": 0},
-    "Fidelity IRA": {"value": 0, "change": 0},
-    "Chase Investment": {"value": 0, "change": 0}
+    "IBKR Taxable": {"value": 448422.82, "change": -0.10}
   },
   "transactions": [
     {
-      "id": "txn-001",
+      "id": "txn-2026030801",
       "date": "2026-03-08",
       "action": "Buy",
       "ticker": "SCHD",
-      "shares": 0,
-      "price": 0,
-      "amount": 0,
+      "shares": 100,
+      "price": 30.50,
+      "amount": 3050.00,
       "account": "IBKR Taxable",
-      "notes": ""
+      "notes": "Added on weakness after yield moved up. Building core dividend position."
+    },
+    {
+      "id": "txn-2026030501",
+      "date": "2026-03-05",
+      "action": "Sell",
+      "ticker": "TSLA",
+      "shares": 10,
+      "price": 385.00,
+      "amount": 3850.00,
+      "account": "IBKR Taxable",
+      "notes": "Trimmed to reduce concentration and reallocate to dividend sleeve."
+    },
+    {
+      "id": "txn-2026022701",
+      "date": "2026-02-27",
+      "action": "Buy",
+      "ticker": "BRKB",
+      "shares": 50,
+      "price": 460.00,
+      "amount": 23000.00,
+      "account": "IBKR Taxable",
+      "notes": "Adding to core position. Buffett's value investing approach aligns with long-term strategy."
+    },
+    {
+      "id": "txn-2026022001",
+      "date": "2026-02-20",
+      "action": "Sell",
+      "ticker": "VOO",
+      "shares": -1,
+      "price": 5.39,
+      "amount": 539.33,
+      "account": "IBKR Taxable",
+      "notes": "Sold VOO 625 Put 2026-03-20. Collecting premium in sideways market."
+    },
+    {
+      "id": "txn-2026021501",
+      "date": "2026-02-15",
+      "action": "Buy",
+      "ticker": "912828YD6",
+      "shares": 82000,
+      "price": 0.9887,
+      "amount": 81074.22,
+      "account": "IBKR Taxable",
+      "notes": "Treasury notes for capital preservation. Short duration to reduce interest rate risk."
     }
   ],
-  "totalValue": 0,
-  "totalCost": 0,
-  "totalGainLoss": 0,
-  "totalGainLossPercent": 0
+  "totalValue": 448422.82,
+  "totalCost": 439457.14,
+  "totalGainLoss": 8965.68,
+  "totalGainLossPercent": 3.40
 }
