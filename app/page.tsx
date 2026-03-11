@@ -5,8 +5,21 @@ import { useEffect, useMemo, useState } from "react";
 import { Board, type BoardStatus } from "../components/board/Board";
 import { Button } from "../components/ui/Button";
 
-// Newsletter digest data - fallback if Blob is empty
-import newsletterData from "../data/newsletter-digest.json";
+// Newsletter digest data - fallback if API fails
+const newsletterData = {
+  digestDate: new Date().toISOString().split('T')[0],
+  article: {
+    title: "每日科技简报",
+    subtitle: "来自多个来源的科技与商业洞察",
+    content: "<p>加载中...</p>",
+    sources: []
+  },
+  metadata: {
+    wordCount: 0,
+    readTime: "3 min",
+    language: "zh-CN"
+  }
+};
 
 interface NewsletterArticle {
   digestDate: string;
