@@ -1,0 +1,81 @@
+{
+  "lastUpdated": "2026-03-11T14:30:00",
+  "projects": [
+    {
+      "id": "proj-1",
+      "name": "Website Redesign",
+      "status": "In Progress",
+      "progress": 75,
+      "dueDate": "2026-03-20",
+      "tasks": [
+        {"id": "t1", "title": "Design mockups", "status": "done", "assignee": "Tom"},
+        {"id": "t2", "title": "Frontend development", "status": "in-progress", "assignee": "Tom"},
+        {"id": "t3", "title": "Backend API", "status": "in-progress", "assignee": "Chat"},
+        {"id": "t4", "title": "Testing", "status": "pending", "assignee": "Gem"}
+      ]
+    },
+    {
+      "id": "proj-2",
+      "name": "Daily Newsletter",
+      "status": "Active",
+      "progress": 90,
+      "dueDate": "2026-03-15",
+      "tasks": [
+        {"id": "t5", "title": "Email extraction", "status": "done", "assignee": "Chat"},
+        {"id": "t6", "title": "Chinese translation", "status": "done", "assignee": "Chat"},
+        {"id": "t7", "title": "Deep analysis", "status": "done", "assignee": "Chat"},
+        {"id": "t8", "title": "Auto deployment", "status": "in-progress", "assignee": "Claw"}
+      ]
+    },
+    {
+      "id": "proj-3",
+      "name": "Portfolio Tracker",
+      "status": "Launched",
+      "progress": 100,
+      "dueDate": "2026-03-11",
+      "tasks": [
+        {"id": "t9", "title": "Yahoo Finance API", "status": "done", "assignee": "Claw"},
+        {"id": "t10", "title": "Portfolio JSON", "status": "done", "assignee": "Claw"},
+        {"id": "t11", "title": "Daily cron job", "status": "done", "assignee": "Claw"}
+      ]
+    }
+  ],
+  "columns": [
+    {
+      "id": "todo",
+      "name": "To Do",
+      "color": "#f1f5f9",
+      "tasks": []
+    },
+    {
+      "id": "in-progress",
+      "name": "In Progress",
+      "color": "#fef3c7",
+      "tasks": [
+        {"id": "t2", "title": "Frontend development", "project": "Website Redesign", "assignee": "Tom", "priority": "high"},
+        {"id": "t3", "title": "Backend API", "project": "Website Redesign", "assignee": "Chat", "priority": "medium"},
+        {"id": "t8", "title": "Auto deployment", "project": "Daily Newsletter", "assignee": "Claw", "priority": "medium"}
+      ]
+    },
+    {
+      "id": "review",
+      "name": "Review",
+      "color": "#dbeafe",
+      "tasks": []
+    },
+    {
+      "id": "done",
+      "name": "Done",
+      "color": "#dcfce7",
+      "tasks": [
+        {"id": "t1", "title": "Design mockups", "project": "Website Redesign", "assignee": "Tom"},
+        {"id": "t5", "title": "Email extraction", "project": "Daily Newsletter", "assignee": "Chat"},
+        {"id": "t6", "title": "Chinese translation", "project": "Daily Newsletter", "assignee": "Chat"},
+        {"id": "t7", "title": "Deep analysis", "project": "Daily Newsletter", "assignee": "Chat"},
+        {"id": "t9", "title": "Yahoo Finance API", "project": "Portfolio Tracker", "assignee": "Claw"},
+        {"id": "t10", "title": "Portfolio JSON", "project": "Portfolio Tracker", "assignee": "Claw"},
+        {"id": "t11", "title": "Daily cron job", "project": "Portfolio Tracker", "assignee": "Claw"}
+      ]
+    }
+  ]
+}
