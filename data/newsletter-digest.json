@@ -3,13 +3,13 @@
   "article": {
     "title": "2026-03-11 每日科技简报",
     "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️ Space mirrors</h3>\n<p class=\"summary\">. Apple is releasing eight new emoji concepts for iOS 26.4—Distorted Face, Fight Cloud, Ballet Dancer, Orca, Hairy Creature, Trombone, Landslide, and Treasure Chest. You’re either super excited about </p>\n<ul class=\"key-points\">\n<li>. Apple is releasing eight new emoji concepts for iOS 26.4—Distorted Face, Fight Cloud, Ballet Dancer, Orca, Hairy Creature, Trombone, Landslide, and </li><li>—Matty Merritt, Dave Lozo, Sam Klebanov, Neal Freyman, Abby Rubenstein</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>AI headwinds 🤖, data agent context 📊, AI-native org charts 💼</h3>\n<p class=\"summary\">Without a unified framework, even a small product change can cascade through sales, product, engineering, and finance.</p>\n<ul class=\"key-points\">\n<li>Without a unified framework, even a small product change can cascade through sales, product, engineering, and finance.</li><li>But leaders like OpenAI are shifting to a new model — one that tracks value, not features. It's called the monetization operating model.</li><li>In this Metronome whitepaper, you'll learn:</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>📉 Markets A.M.: Technically Speaking, Stocks Look Vulnerable</h3>\n<p class=\"summary\">Is help on the way for beleaguered oil consumers? The International Energy Agency has proposed the largest release of oil reserves in its history. After some initial relief, and a big plunge from Mond</p>\n<ul class=\"key-points\">\n<li>Is help on the way for beleaguered oil consumers? The International Energy Agency has proposed the largest release of oil reserves in its history. Aft</li><li>​📈 Follow our live markets data and coverage.</li><li>Was it a prescient warning or a bunch of hot air?</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: The CEO of Hims & Hers on Monday’s Big Win</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>It was a twist ending to a long-running David-and-Goliath style feud.</li><li>Earlier this week, the Danish pharmaceutical heavyweight Novo Nordisk dropped a lawsuit against Hims &amp; Hers, the San Francisco-based telehealth co</li>\n</ul>\n</div>\n</section>\n</div>",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️ Space mirrors</h3>\n<p class=\"summary\">市场动态：投资者情绪与行业趋势分析</p>\n<ul class=\"key-points\">\n<li>最新动态与行业分析</li>\n<li>最新动态与行业分析</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Gemini Embedding 2 🧩, Meta acquires Moltbook 🤖, Nvidia + Thinky ⚡</h3>\n<p class=\"summary\">英伟达发布 AI 新平台，开源策略引发行业关注</p>\n<ul class=\"key-points\">\n<li>最新动态与行业分析</li>\n<li>AI 技术最新进展</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>AI headwinds 🤖, data agent context 📊, AI-native org charts 💼</h3>\n<p class=\"summary\">B2B 产品定位指南：在 AI 时代如何有效分发产品</p>\n<ul class=\"key-points\">\n<li>新产品发布</li>\n<li>AI 技术最新进展</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>📉 Markets A.M.: Technically Speaking, Stocks Look Vulnerable</h3>\n<p class=\"summary\">油价波动分析：地缘政治与市场需求影响</p>\n<ul class=\"key-points\">\n<li>市场投资动态</li>\n<li>市场投资动态</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: The CEO of Hims & Hers on Monday’s Big Win</h3>\n<p class=\"summary\">Anthropic 起诉五角大楼，AI 安全与政府合同引发争议</p>\n<ul class=\"key-points\">\n<li>最新动态与行业分析</li>\n<li>最新动态与行业分析</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
         "name": "TLDR",
         "url": "",
         "type": "newsletter",
-        "summary": "1封邮件"
+        "summary": "2封邮件"
       },
       {
         "name": "Wall Street Journal",
@@ -26,13 +26,13 @@
     ],
     "author": "Chat",
     "tags": [
-      "Tech",
-      "Business",
-      "Daily"
+      "科技",
+      "商业",
+      "每日简报"
     ]
   },
   "metadata": {
-    "wordCount": 600,
+    "wordCount": 800,
     "readTime": "3 min",
     "language": "zh-CN"
   }
