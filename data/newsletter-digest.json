@@ -1,22 +1,39 @@
 {
-  "digestDate": "2026-03-10",
+  "digestDate": "2026-03-11",
   "article": {
-    "title": "2026-03-10 每日科技简报",
-    "subtitle": "来自 5 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 AI Valley</h2>\n<div class=\"article-card\">\n<h3>A Pentagon lawsuit</h3>\n<p class=\"summary\">英伟达计划推出开源 AI 代理平台，同时 Anthropic 起诉五角大楼。</p>\n<ul class=\"key-points\">\n<li>英伟达计划推出开源 AI 代理平台</li>\n<li>Anthropic 起诉五角大楼</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n<div class=\"article-card\">\n<h3>A guide to advanced B2B positioning</h3>\n<p class=\"summary\">随着 AI 让产品发布变得容易，分发（distribution）成为产品团队面临的最大挑战。</p>\n<ul class=\"key-points\">\n<li>AI 让产品发布变得简单，分发成为新挑战</li>\n<li>如何在越来越多的产品发布中脱颖而出</li>\n<li>成为 Insider 订阅用户可获得一年免费工具使用</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n<div class=\"article-card\">\n<h3>☕️ Aria of ire</h3>\n<p class="summary">3 月 10 日是"马里奥日"（Mar10），市场因油价回落而反弹。</p>\n<ul class="key-points\">\n<li>3 月 10 日 = Mar10 = Mario Day</li>\n<li>油价回落，美股反弹</li>\n<li>特朗普称伊朗战争"很快结束"</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n<div class=\"article-card\">\n<h3>Anthropic sues Pentagon ⚖️</h3>\n<p class="summary\">Anthropic 起诉五角大楼，Siri 延迟影响苹果产品。</p>\n<ul class="key-points\">\n<li>Anthropic 起诉五角大楼</li>\n<li>Siri 延迟影响苹果产品开发</li>\n<li>2026 年代理式 AI 状态报告发布</li>\n</ul>\n</div>\n<div class=\"article-card\">\n<h3>Cutting development time ✂️</h3>\n<p class="summary\">AI 开发工具对比：关系比功能更重要。</p>\n<ul class="key-points\">\n<li>减少开发时间的策略</li>\n<li>人际关系比产品功能更重要</li>\n<li>界面即产品的时代</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n<div class=\"article-card\">\n<h3>🛢️ Markets A.M.: Feast to Famine in the Oil Market</h3>\n<p class="summary">油价回落缓解市场担忧，投资者注意力转向私人信贷和 AI 基础设施成本。</p>\n<ul class="key-points\">\n<li>油价回落，美股反弹</li>\n<li>特朗普称伊朗战争很快结束</li>\n<li>市场担忧转向私人信贷和 AI 基建成本</li>\n</ul>\n</div>\n<div class=\"article-card\">\n<h3>CEO Brief: Healthcare Labor Market</h3>\n<p class="summary">医疗保健就业引擎 2 月消失，Covista CEO 计划通过教育项目提供更多医疗工作者。</p>\n<ul class="key-points\">\n<li>医疗保健就业增长停滞</li>\n<li>Covista 重新品牌化</li>\n<li>通过教育项目培养医疗人才</li>\n</ul>\n</div>\n</section>\n\n</div>",
+    "title": "2026-03-11 每日科技简报",
+    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️ Space mirrors</h3>\n<p class=\"summary\">. Apple is releasing eight new emoji concepts for iOS 26.4—Distorted Face, Fight Cloud, Ballet Dancer, Orca, Hairy Creature, Trombone, Landslide, and Treasure Chest. You’re either super excited about </p>\n<ul class=\"key-points\">\n<li>. Apple is releasing eight new emoji concepts for iOS 26.4—Distorted Face, Fight Cloud, Ballet Dancer, Orca, Hairy Creature, Trombone, Landslide, and </li><li>—Matty Merritt, Dave Lozo, Sam Klebanov, Neal Freyman, Abby Rubenstein</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>AI headwinds 🤖, data agent context 📊, AI-native org charts 💼</h3>\n<p class=\"summary\">Without a unified framework, even a small product change can cascade through sales, product, engineering, and finance.</p>\n<ul class=\"key-points\">\n<li>Without a unified framework, even a small product change can cascade through sales, product, engineering, and finance.</li><li>But leaders like OpenAI are shifting to a new model — one that tracks value, not features. It's called the monetization operating model.</li><li>In this Metronome whitepaper, you'll learn:</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>📉 Markets A.M.: Technically Speaking, Stocks Look Vulnerable</h3>\n<p class=\"summary\">Is help on the way for beleaguered oil consumers? The International Energy Agency has proposed the largest release of oil reserves in its history. After some initial relief, and a big plunge from Mond</p>\n<ul class=\"key-points\">\n<li>Is help on the way for beleaguered oil consumers? The International Energy Agency has proposed the largest release of oil reserves in its history. Aft</li><li>​📈 Follow our live markets data and coverage.</li><li>Was it a prescient warning or a bunch of hot air?</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: The CEO of Hims & Hers on Monday’s Big Win</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>It was a twist ending to a long-running David-and-Goliath style feud.</li><li>Earlier this week, the Danish pharmaceutical heavyweight Novo Nordisk dropped a lawsuit against Hims &amp; Hers, the San Francisco-based telehealth co</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
-      {"name": "AI Valley", "count": 1},
-      {"name": "Lenny's Newsletter", "count": 1},
-      {"name": "Morning Brew", "count": 1},
-      {"name": "TLDR", "count": 2},
-      {"name": "Wall Street Journal", "count": 2}
+      {
+        "name": "TLDR",
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
+      },
+      {
+        "name": "Wall Street Journal",
+        "url": "",
+        "type": "newsletter",
+        "summary": "2封邮件"
+      },
+      {
+        "name": "Morning Brew",
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
+      }
     ],
     "author": "Chat",
-    "tags": ["科技", "商业", "每日简报"]
+    "tags": [
+      "Tech",
+      "Business",
+      "Daily"
+    ]
   },
   "metadata": {
-    "wordCount": 1500,
-    "readTime": "5 min",
+    "wordCount": 600,
+    "readTime": "3 min",
     "language": "zh-CN"
   }
 }
