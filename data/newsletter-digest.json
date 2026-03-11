@@ -3,48 +3,19 @@
   "article": {
     "title": "2026-03-10 每日科技简报",
     "subtitle": "来自 5 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 AI Valley</h2>\n\n<div class=\"article-card\">\n<h3>A Pentagon lawsuit</h3>\n<p class=\"summary\">PLUS: Nvidia is planning to launch an Open-Source AI Agent Platform</p>\n<ul class=\"key-points\">\n<li>PLUS: Nvidia is planning to launch an Open-Source AI Agent Platform</li><li>Today’s climb through the Valley reveals:</li><li>Nvidia is planning to launch an Open-Source AI Agent Platform</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n\n<div class=\"article-card\">\n<h3>A guide to advanced B2B positioning</h3>\n<p class=\"summary\">👋  Hey there, I’m Lenny. Each week, I answer reader questions about building product, driving growth, and accelerating your career. For more: Lenny’s Podcast | Lennybot | How I AI |  My favorite AI/PM</p>\n<ul class=\"key-points\">\n<li>👋  Hey there, I’m Lenny. Each week, I answer reader questions about building product, driving growth, and accelerating your career. For more: Lenny’s </li><li>P.S. Get a full free year of Lovable, Replit, Manus, Gamma, n8n, Canva, ElevenLabs, Amp, Factory, Devin, Bolt, Wispr Flow, Linear, PostHog, Framer, Ra</li><li>As AI makes it trivial to build and launch products (and, soon, even come up with product ideas), the biggest challenge for product teams is quickly b</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️  Aria of ire</h3>\n<p class=\"summary\">It’s-a me. Today has been dubbed Mario Day…because it’s March 10, and if you squish that to Mar10, it looks a lot like “Mario.” Take that Wario.</p>\n<ul class=\"key-points\">\n<li>It’s-a me. Today has been dubbed Mario Day…because it’s March 10, and if you squish that to Mar10, it looks a lot like “Mario.” Take that Wario.</li><li>—Dave Lozo, Molly Liebergall, Sam Klebanov, Neal Freyman, Abby Rubenstein</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Anthropic sues Pentagon ⚖️, Siri delays Apple products 🖥️, Claude Code Review 👨‍💻</h3>\n<p class=\"summary\">Their fully managed, AI-native service delivers 80% automated E2E test coverage in weeks and helps teams ship 5× faster by cutting QA cycles from hours to minutes.</p>\n<ul class=\"key-points\">\n<li>Their fully managed, AI-native service delivers 80% automated E2E test coverage in weeks and helps teams ship 5× faster by cutting QA cycles from hour</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Cutting development time ✂️, relationships not features 🤝, the interface was the product 🖥️</h3>\n<p class=\"summary\">The State of Agentic AI 2026 report explores what that shift looks like in practice:</p>\n<ul class=\"key-points\">\n<li>The State of Agentic AI 2026 report explores what that shift looks like in practice:</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🛢️ Markets A.M.: Feast to Famine in the Oil Market</h3>\n<p class=\"summary\">U.S. stocks look set to continue their Monday afternoon bounce when trading begins. There’s a palpable sense of relief as oil prices retreat. The trigger was President Trump’s statement that the war i</p>\n<ul class=\"key-points\">\n<li>U.S. stocks look set to continue their Monday afternoon bounce when trading begins. There’s a palpable sense of relief as oil prices retreat. The trig</li><li>​📈 Follow our live markets data and coverage.</li><li>A funny thing happened to the oil market six years ago: The benchmark U.S. crude price plunged by nearly $56 a barrel in one day. The oddest part is t</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: One CEO’s Bet on a Burgeoning Healthcare Labor Market</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>The healthcare jobs engine that rescued January’s employment report disappeared in February, raising doubts about whether the sector can continue its </li><li>Stephen Beard sounds like he has few doubts about the direction of the sector’s job market. The CEO’s plan for the newly rebranded Covista revolves ar</li>\n</ul>\n</div>\n</section>\n</div>",
+    "content": "<div class=\"newsletter-modules\">\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 AI Valley</h2>\n<div class=\"article-card\">\n<h3>A Pentagon lawsuit</h3>\n<p class=\"summary\">英伟达计划推出开源 AI 代理平台，同时 Anthropic 起诉五角大楼。</p>\n<ul class=\"key-points\">\n<li>英伟达计划推出开源 AI 代理平台</li>\n<li>Anthropic 起诉五角大楼</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n<div class=\"article-card\">\n<h3>A guide to advanced B2B positioning</h3>\n<p class=\"summary\">随着 AI 让产品发布变得容易，分发（distribution）成为产品团队面临的最大挑战。</p>\n<ul class=\"key-points\">\n<li>AI 让产品发布变得简单，分发成为新挑战</li>\n<li>如何在越来越多的产品发布中脱颖而出</li>\n<li>成为 Insider 订阅用户可获得一年免费工具使用</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n<div class=\"article-card\">\n<h3>☕️ Aria of ire</h3>\n<p class="summary">3 月 10 日是"马里奥日"（Mar10），市场因油价回落而反弹。</p>\n<ul class="key-points\">\n<li>3 月 10 日 = Mar10 = Mario Day</li>\n<li>油价回落，美股反弹</li>\n<li>特朗普称伊朗战争"很快结束"</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n<div class=\"article-card\">\n<h3>Anthropic sues Pentagon ⚖️</h3>\n<p class="summary\">Anthropic 起诉五角大楼，Siri 延迟影响苹果产品。</p>\n<ul class="key-points\">\n<li>Anthropic 起诉五角大楼</li>\n<li>Siri 延迟影响苹果产品开发</li>\n<li>2026 年代理式 AI 状态报告发布</li>\n</ul>\n</div>\n<div class=\"article-card\">\n<h3>Cutting development time ✂️</h3>\n<p class="summary\">AI 开发工具对比：关系比功能更重要。</p>\n<ul class="key-points\">\n<li>减少开发时间的策略</li>\n<li>人际关系比产品功能更重要</li>\n<li>界面即产品的时代</li>\n</ul>\n</div>\n</section>\n\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n<div class=\"article-card\">\n<h3>🛢️ Markets A.M.: Feast to Famine in the Oil Market</h3>\n<p class="summary">油价回落缓解市场担忧，投资者注意力转向私人信贷和 AI 基础设施成本。</p>\n<ul class="key-points\">\n<li>油价回落，美股反弹</li>\n<li>特朗普称伊朗战争很快结束</li>\n<li>市场担忧转向私人信贷和 AI 基建成本</li>\n</ul>\n</div>\n<div class=\"article-card\">\n<h3>CEO Brief: Healthcare Labor Market</h3>\n<p class="summary">医疗保健就业引擎 2 月消失，Covista CEO 计划通过教育项目提供更多医疗工作者。</p>\n<ul class="key-points\">\n<li>医疗保健就业增长停滞</li>\n<li>Covista 重新品牌化</li>\n<li>通过教育项目培养医疗人才</li>\n</ul>\n</div>\n</section>\n\n</div>",
     "sources": [
-      {
-        "name": "AI Valley",
-        "url": "",
-        "type": "newsletter",
-        "summary": "1封邮件"
-      },
-      {
-        "name": "Lenny's Newsletter",
-        "url": "",
-        "type": "newsletter",
-        "summary": "1封邮件"
-      },
-      {
-        "name": "Wall Street Journal",
-        "url": "",
-        "type": "newsletter",
-        "summary": "2封邮件"
-      },
-      {
-        "name": "TLDR",
-        "url": "",
-        "type": "newsletter",
-        "summary": "2封邮件"
-      },
-      {
-        "name": "Morning Brew",
-        "url": "",
-        "type": "newsletter",
-        "summary": "1封邮件"
-      }
+      {"name": "AI Valley", "count": 1},
+      {"name": "Lenny's Newsletter", "count": 1},
+      {"name": "Morning Brew", "count": 1},
+      {"name": "TLDR", "count": 2},
+      {"name": "Wall Street Journal", "count": 2}
     ],
     "author": "Chat",
-    "tags": [
-      "Tech",
-      "Business",
-      "Daily"
-    ]
+    "tags": ["科技", "商业", "每日简报"]
   },
   "metadata": {
-    "wordCount": 1199,
+    "wordCount": 1500,
     "readTime": "5 min",
     "language": "zh-CN"
   }
