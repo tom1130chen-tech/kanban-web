@@ -317,8 +317,37 @@ const focusRituals = [
   "Daily recap with a teammate at 5 PM.",
 ];
 
-// Financial Watch Component
+// Financial Watch Component - Live Portfolio Data
 function FinancialWatchView() {
+  const [portfolio, setPortfolio] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/portfolio")
+      .then((res) => res.json())
+      .then((data) => {
+        setPortfolio(data.data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-slate-500">Loading portfolio data...</p>
+      </div>
+    );
+  }
+
+  if (!portfolio) {
+    return (
+      <div className="text-center py-12">
+        <p className="text-slate-500">Failed to load portfolio</p>
+      </div>
+    );
+  }
+
   const portfolioTrend = [55, 58, 57, 61, 64, 68, 66, 71, 73, 75, 79, 82];
   const max = Math.max(...portfolioTrend);
   const min = Math.min(...portfolioTrend);
@@ -330,27 +359,6 @@ function FinancialWatchView() {
     })
     .join(" ");
 
-  const holdings = [
-    { ticker: "SCHD", name: "Schwab U.S. Dividend Equity ETF", account: "IBKR Taxable", value: "$128,400", cost: "$119,200", change: "+7.7%", weight: "26.8%" },
-    { ticker: "VTI", name: "Vanguard Total Stock Market ETF", account: "Fidelity Brokerage", value: "$102,850", cost: "$95,600", change: "+7.6%", weight: "21.5%" },
-    { ticker: "JEPI", name: "JPMorgan Equity Premium Income ETF", account: "Chase Investment", value: "$74,300", cost: "$78,900", change: "-5.8%", weight: "15.5%" },
-    { ticker: "MSFT", name: "Microsoft", account: "IBKR Taxable", value: "$52,600", cost: "$41,300", change: "+27.4%", weight: "11.0%" },
-    { ticker: "BND", name: "Vanguard Total Bond Market ETF", account: "Fidelity IRA", value: "$41,900", cost: "$42,500", change: "-1.4%", weight: "8.8%" },
-  ];
-
-  const recentTrades = [
-    { date: "Mar 8", action: "Buy", ticker: "SCHD", account: "IBKR Taxable", amount: "$4,200", note: "Added on weakness after yield moved up." },
-    { date: "Mar 5", action: "Sell", ticker: "TSLA", account: "Fidelity Brokerage", amount: "$3,850", note: "Trimmed to reduce concentration." },
-    { date: "Mar 2", action: "Buy", ticker: "BND", account: "Fidelity IRA", amount: "$2,500", note: "Rebalanced cash into lower-volatility bucket." },
-  ];
-
-  const accountSummary = [
-    { name: "IBKR Taxable", value: "$211,700", change: "+9.2% YTD" },
-    { name: "Fidelity Brokerage", value: "$126,400", change: "+4.8% YTD" },
-    { name: "Fidelity IRA", value: "$61,500", change: "+2.1% YTD" },
-    { name: "Chase Investment", value: "$78,300", change: "-1.7% YTD" },
-  ];
-
   return (
     <div className="space-y-6">
       {/* Portfolio Summary */}
@@ -358,21 +366,24 @@ function FinancialWatchView() {
         <div className="rounded-[26px_30px_22px_34px/28px_22px_30px_24px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
           <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Total portfolio</p>
           <div className="mt-1 flex items-end gap-3">
-            <span className="text-3xl font-semibold">$477,900</span>
-            <span className="rounded-full px-2.5 py-1 text-sm font-medium text-white bg-[var(--accent)]">+6.4% YTD</span>
+            <span className="text-3xl font-semibold">${portfolio.totalValue?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
+            <span className={`rounded-full px-2.5 py-1 text-sm font-medium text-white ${portfolio.totalGainLossPercent >= 0 ? 'bg-emerald-600' : 'bg-rose-600'}`}>
+              {portfolio.totalGainLossPercent >= 0 ? '+' : ''}{portfolio.totalGainLossPercent?.toFixed(2)}%
+            </span>
           </div>
-          <p className="mt-2 text-sm text-slate-500">Estimated annual dividend income: $4,860</p>
+          <p className="mt-2 text-sm text-slate-500">Total Gain/Loss: ${portfolio.totalGainLoss?.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
+          <p className="mt-1 text-xs text-slate-400">Updated: {new Date(portfolio.lastUpdated).toLocaleString()}</p>
         </div>
 
         <div className="rounded-[32px_22px_30px_24px/24px_31px_21px_29px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
           <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Accounts</p>
           <div className="mt-3 space-y-2">
-            {accountSummary.map((acc, idx) => (
-              <div key={idx} className="flex items-center justify-between text-sm">
-                <span className="text-slate-700">{acc.name}</span>
+            {Object.entries(portfolio.accounts || {}).map(([name, data]: [string, any]) => (
+              <div key={name} className="flex items-center justify-between text-sm">
+                <span className="text-slate-700">{name}</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-medium">{acc.value}</span>
-                  <span className={`text-xs ${acc.change.includes('+') ? 'text-emerald-600' : 'text-rose-600'}`}>{acc.change}</span>
+                  <span className="font-medium">${data.value?.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                  <span className={`text-xs ${data.change >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>{data.change >= 0 ? '+' : ''}{data.change?.toFixed(2)}%</span>
                 </div>
               </div>
             ))}
@@ -421,68 +432,21 @@ function FinancialWatchView() {
             <div>Account</div>
           </div>
           <div className="divide-y divide-gray-200/70">
-            {holdings.map((h, idx) => (
+            {portfolio.holdings?.map((h: any, idx: number) => (
               <div key={h.ticker} className="grid grid-cols-[1fr_0.8fr_0.8fr_0.8fr_0.8fr] gap-3 px-4 py-4 items-center">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center text-xs font-semibold text-white" style={{backgroundColor: idx%2===0?'#ff4d4d':'#1f1f1f', borderRadius:'28px 22px 26px 18px / 20px 28px 18px 24px'}}>{h.ticker}</div>
                   <div>
                     <p className="font-medium">{h.name}</p>
+                    <p className="text-xs text-slate-500">${h.currentPrice?.toFixed(2)}</p>
                   </div>
                 </div>
-                <div className="text-sm">{h.cost}</div>
-                <div className={`text-sm font-medium ${h.change.startsWith('+')?'text-emerald-700':'text-rose-700'}`}>{h.change}</div>
-                <div className="text-sm">{h.weight}</div>
+                <div className="text-sm">${h.avgCost?.toFixed(2)}</div>
+                <div className={`text-sm font-medium ${h.gainLossPercent >= 0 ? 'text-emerald-700' : 'text-rose-700'}`}>{h.gainLossPercent >= 0 ? '+' : ''}{h.gainLossPercent?.toFixed(2)}%</div>
+                <div className="text-sm">{h.weight?.toFixed(1)}%</div>
                 <div className="text-sm text-slate-600">{h.account}</div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recent Trades & Notes */}
-      <section className="grid gap-6 xl:grid-cols-2">
-        <div className="rounded-[24px_34px_20px_28px/29px_24px_32px_20px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
-          <h2 className="text-lg font-semibold">Actions</h2>
-          <p className="text-sm text-slate-500">Recent buy / sell decisions</p>
-          <div className="mt-5 space-y-3">
-            {recentTrades.map((trade, idx) => (
-              <div key={`${trade.date}-${trade.ticker}`} className={`rounded-[26px_30px_22px_34px/28px_22px_30px_24px] border-2 border-dashed border-gray-200 p-4 bg-[#fffdfa]`}>
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium text-white ${trade.action==='Buy'?'bg-[var(--accent)]':'bg-gray-900'}`}>{trade.action}</span>
-                      <span className="text-sm text-slate-500">{trade.date}</span>
-                    </div>
-                    <p className="mt-2 font-medium">{trade.ticker}</p>
-                    <p className="text-sm text-slate-500">{trade.account}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-semibold">{trade.amount}</p>
-                  </div>
-                </div>
-                <p className="mt-3 text-sm text-slate-600">{trade.note}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-[30px_25px_34px_22px/22px_30px_24px_31px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
-          <h2 className="text-lg font-semibold">Investment note</h2>
-          <p className="text-sm text-slate-500">Your reasoning for a trade</p>
-          <div className="mt-5 rounded-[32px_22px_30px_24px/24px_31px_21px_29px] border-2 border-dashed border-gray-200 p-5 bg-[#fffdfa]">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Selected idea</p>
-                <h3 className="mt-2 text-xl font-semibold">Why I bought more SCHD</h3>
-              </div>
-              <span className="rounded-full border-2 border-dashed border-gray-300 bg-white px-3 py-1 text-sm text-slate-500">Updated Mar 8</span>
-            </div>
-            <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
-              <p>My goal here is to increase the portion of the portfolio that can generate reliable dividend income without requiring constant monitoring.</p>
-              <p>I still want equity exposure, but I want the position to be easier to hold emotionally during market volatility compared with pure growth names.</p>
-              <p>This buy also fits the broader plan of building toward a target monthly income stream while keeping the portfolio structure simple.</p>
-            </div>
-            <button className="mt-5 rounded-full border-2 border-dashed border-gray-300 px-4 py-2 text-sm text-white bg-[var(--accent)]">Open full investment journal</button>
           </div>
         </div>
       </section>
