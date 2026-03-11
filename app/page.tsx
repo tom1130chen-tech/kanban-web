@@ -321,6 +321,15 @@ const focusRituals = [
 function FinancialWatchView() {
   const [portfolio, setPortfolio] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [showTransactionForm, setShowTransactionForm] = useState(false);
+  const [newTransaction, setNewTransaction] = useState({
+    action: 'Buy',
+    ticker: '',
+    shares: '',
+    price: '',
+    account: 'IBKR Taxable',
+    notes: ''
+  });
 
   useEffect(() => {
     fetch("/api/portfolio")
@@ -331,6 +340,32 @@ function FinancialWatchView() {
       })
       .catch(() => setLoading(false));
   }, []);
+
+  const handleAddTransaction = async () => {
+    try {
+      const res = await fetch("/api/portfolio/transaction", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...newTransaction,
+          shares: parseFloat(newTransaction.shares),
+          price: parseFloat(newTransaction.price)
+        })
+      });
+      
+      if (res.ok) {
+        alert("✅ Transaction recorded!");
+        setShowTransactionForm(false);
+        setNewTransaction({ action: 'Buy', ticker: '', shares: '', price: '', account: 'IBKR Taxable', notes: '' });
+        // Refresh portfolio data
+        fetch("/api/portfolio").then(res => res.json()).then(data => setPortfolio(data.data));
+      } else {
+        alert("❌ Failed to record transaction");
+      }
+    } catch (error) {
+      alert("❌ Error: " + error);
+    }
+  };
 
   if (loading) {
     return (
@@ -447,6 +482,128 @@ function FinancialWatchView() {
                 <div className="text-sm text-slate-600">{h.account}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Trades & Notes */}
+      <section className="grid gap-6 xl:grid-cols-2">
+        <div className="rounded-[24px_34px_20px_28px/29px_24px_32px_20px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-lg font-semibold">Actions</h2>
+              <p className="text-sm text-slate-500">Recent buy / sell decisions</p>
+            </div>
+            <button
+              onClick={() => setShowTransactionForm(!showTransactionForm)}
+              className="rounded-full border-2 border-dashed border-gray-300 px-4 py-2 text-sm font-medium text-white bg-[var(--accent)] hover:shadow-md"
+            >
+              {showTransactionForm ? 'Cancel' : '+ Add Trade'}
+            </button>
+          </div>
+          
+          {showTransactionForm && (
+            <div className="mb-6 p-4 rounded-[22px_18px_255px_18px/18px_255px_18px_225px] border-2 border-dashed border-gray-300 bg-[#fffdfa]">
+              <h3 className="font-semibold mb-3">Record New Transaction</h3>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <select
+                  value={newTransaction.action}
+                  onChange={(e) => setNewTransaction({...newTransaction, action: e.target.value})}
+                  className="rounded-lg border-2 border-gray-300 px-3 py-2 text-sm"
+                >
+                  <option value="Buy">Buy</option>
+                  <option value="Sell">Sell</option>
+                </select>
+                <input
+                  type="text"
+                  placeholder="Ticker (e.g., SCHD)"
+                  value={newTransaction.ticker}
+                  onChange={(e) => setNewTransaction({...newTransaction, ticker: e.target.value})}
+                  className="rounded-lg border-2 border-gray-300 px-3 py-2 text-sm"
+                />
+                <input
+                  type="number"
+                  placeholder="Shares"
+                  value={newTransaction.shares}
+                  onChange={(e) => setNewTransaction({...newTransaction, shares: e.target.value})}
+                  className="rounded-lg border-2 border-gray-300 px-3 py-2 text-sm"
+                />
+                <input
+                  type="number"
+                  placeholder="Price per share"
+                  value={newTransaction.price}
+                  onChange={(e) => setNewTransaction({...newTransaction, price: e.target.value})}
+                  className="rounded-lg border-2 border-gray-300 px-3 py-2 text-sm"
+                />
+                <select
+                  value={newTransaction.account}
+                  onChange={(e) => setNewTransaction({...newTransaction, account: e.target.value})}
+                  className="rounded-lg border-2 border-gray-300 px-3 py-2 text-sm sm:col-span-2"
+                >
+                  <option value="IBKR Taxable">IBKR Taxable</option>
+                  <option value="Fidelity Brokerage">Fidelity Brokerage</option>
+                  <option value="Fidelity IRA">Fidelity IRA</option>
+                  <option value="Chase Investment">Chase Investment</option>
+                </select>
+                <textarea
+                  placeholder="Notes (why you're making this trade, strategy, etc.)"
+                  value={newTransaction.notes}
+                  onChange={(e) => setNewTransaction({...newTransaction, notes: e.target.value})}
+                  className="rounded-lg border-2 border-gray-300 px-3 py-2 text-sm sm:col-span-2"
+                  rows={3}
+                />
+              </div>
+              <button
+                onClick={handleAddTransaction}
+                className="mt-3 w-full rounded-full border-2 border-dashed border-gray-300 px-4 py-2 text-sm font-medium text-white bg-[var(--accent)] hover:shadow-md"
+              >
+                Record Transaction
+              </button>
+            </div>
+          )}
+          
+          <div className="space-y-3">
+            {portfolio.transactions?.slice().reverse().slice(0, 10).map((trade: any, idx: number) => (
+              <div key={trade.id} className={`rounded-[26px_30px_22px_34px/28px_22px_30px_24px] border-2 border-dashed border-gray-200 p-4 bg-[#fffdfa]`}>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium text-white ${trade.action==='Buy'?'bg-[var(--accent)]':'bg-gray-900'}`}>{trade.action}</span>
+                      <span className="text-sm text-slate-500">{trade.date}</span>
+                    </div>
+                    <p className="mt-2 font-medium">{trade.ticker}</p>
+                    <p className="text-sm text-slate-500">{trade.account}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold">${trade.amount?.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
+                    <p className="text-xs text-slate-500">{trade.shares} @ ${trade.price?.toFixed(2)}</p>
+                  </div>
+                </div>
+                {trade.notes && (
+                  <p className="mt-3 text-sm text-slate-600 italic border-l-2 border-gray-300 pl-3">{trade.notes}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[30px_25px_34px_22px/22px_30px_24px_31px] border-2 border-dashed border-gray-300 bg-white p-6 shadow-[4px_5px_0_rgba(255,77,77,0.05)]">
+          <h2 className="text-lg font-semibold">Investment note</h2>
+          <p className="text-sm text-slate-500">Your reasoning for a trade</p>
+          <div className="mt-5 rounded-[32px_22px_30px_24px/24px_31px_21px_29px] border-2 border-dashed border-gray-200 p-5 bg-[#fffdfa]">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-slate-500">Selected idea</p>
+                <h3 className="mt-2 text-xl font-semibold">Why I bought more SCHD</h3>
+              </div>
+              <span className="rounded-full border-2 border-dashed border-gray-300 bg-white px-3 py-1 text-sm text-slate-500">Updated Mar 8</span>
+            </div>
+            <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
+              <p>My goal here is to increase the portion of the portfolio that can generate reliable dividend income without requiring constant monitoring.</p>
+              <p>I still want equity exposure, but I want the position to be easier to hold emotionally during market volatility compared with pure growth names.</p>
+              <p>This buy also fits the broader plan of building toward a target monthly income stream while keeping the portfolio structure simple.</p>
+            </div>
+            <button className="mt-5 rounded-full border-2 border-dashed border-gray-300 px-4 py-2 text-sm text-white bg-[var(--accent)]">Open full investment journal</button>
           </div>
         </div>
       </section>

@@ -1,87 +1,40 @@
 {
-  "lastUpdated": "2026-03-11T14:27:16.581589",
+  "lastUpdated": "2026-03-11T19:30:00Z",
   "holdings": [
     {
       "ticker": "SCHD",
       "name": "Schwab U.S. Dividend Equity ETF",
-      "shares": 1500,
-      "avgCost": 79.47,
+      "shares": 0,
+      "avgCost": 0,
       "account": "IBKR Taxable",
-      "currentPrice": 30.985000610351562,
-      "marketValue": 46477.500915527344,
-      "gainLoss": -72727.49908447266,
-      "gainLossPercent": -61.01044342474952,
-      "weight": 13.899607530362715
-    },
-    {
-      "ticker": "VTI",
-      "name": "Vanguard Total Stock Market ETF",
-      "shares": 400,
-      "avgCost": 239.0,
-      "account": "Fidelity Brokerage",
-      "currentPrice": 332.5299987792969,
-      "marketValue": 133011.99951171875,
-      "gainLoss": 37411.99951171875,
-      "gainLossPercent": 39.13389070263468,
-      "weight": 39.77870052440858
-    },
-    {
-      "ticker": "JEPI",
-      "name": "JPMorgan Equity Premium Income ETF",
-      "shares": 1200,
-      "avgCost": 65.75,
-      "account": "Chase Investment",
-      "currentPrice": 57.900001525878906,
-      "marketValue": 69480.00183105469,
-      "gainLoss": -9419.998168945312,
-      "gainLossPercent": -11.939161177370485,
-      "weight": 20.778758273078836
-    },
-    {
-      "ticker": "MSFT",
-      "name": "Microsoft Corporation",
-      "shares": 120,
-      "avgCost": 344.17,
-      "account": "IBKR Taxable",
-      "currentPrice": 403.75,
-      "marketValue": 48450.0,
-      "gainLoss": 7149.5999999999985,
-      "gainLossPercent": 17.31121248220356,
-      "weight": 14.489505063321726
-    },
-    {
-      "ticker": "BND",
-      "name": "Vanguard Total Bond Market ETF",
-      "shares": 500,
-      "avgCost": 85.0,
-      "account": "Fidelity IRA",
-      "currentPrice": 73.9208984375,
-      "marketValue": 36960.44921875,
-      "gainLoss": -5539.55078125,
-      "gainLossPercent": -13.03423713235294,
-      "weight": 11.053428608828145
+      "currentPrice": 0,
+      "marketValue": 0,
+      "gainLoss": 0,
+      "gainLossPercent": 0,
+      "weight": 0
     }
   ],
   "accounts": {
-    "IBKR Taxable": {
-      "value": 94927.50091552734,
-      "change": -40.85712947008179
-    },
-    "Fidelity Brokerage": {
-      "value": 133011.99951171875,
-      "change": 39.13389070263468
-    },
-    "Chase Investment": {
-      "value": 69480.00183105469,
-      "change": -11.939161177370485
-    },
-    "Fidelity IRA": {
-      "value": 36960.44921875,
-      "change": -13.03423713235294
-    }
+    "IBKR Taxable": {"value": 0, "change": 0},
+    "Fidelity Brokerage": {"value": 0, "change": 0},
+    "Fidelity IRA": {"value": 0, "change": 0},
+    "Chase Investment": {"value": 0, "change": 0}
   },
-  "totalValue": 334379.9514770508,
-  "totalCost": 377505.4,
-  "totalGainLoss": -43125.44852294924,
-  "totalGainLossPercent": -11.423796460381558
+  "transactions": [
+    {
+      "id": "txn-001",
+      "date": "2026-03-08",
+      "action": "Buy",
+      "ticker": "SCHD",
+      "shares": 0,
+      "price": 0,
+      "amount": 0,
+      "account": "IBKR Taxable",
+      "notes": ""
+    }
+  ],
+  "totalValue": 0,
+  "totalCost": 0,
+  "totalGainLoss": 0,
+  "totalGainLossPercent": 0
 }
