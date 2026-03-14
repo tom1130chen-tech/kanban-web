@@ -1,21 +1,15 @@
 {
-  "digestDate": "2026-03-13",
+  "digestDate": "2026-03-14",
   "article": {
-    "title": "2026-03-13 每日科技简报",
-    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️ A very ‘Dora’ update</h3>\n<p class=\"summary\">Paraskevidekatriaphobia is the fear of Friday the 13th. It’s a tough year for those afflicted, since there are three Friday the 13ths in 2026. That’s the most there can be in a single year.</p>\n<ul class=\"key-points\">\n<li>Paraskevidekatriaphobia is the fear of Friday the 13th. It’s a tough year for those afflicted, since there are three Friday the 13ths in 2026. That’s </li><li>So, if you have any 13th-aphobes in your life, be extra nice to them today. And definitely do not let them go near any ladders, mirrors, or mysterious</li><li>—Matty Merritt, Sam Klebanov, Molly Liebergall, Adam Epstein, Holly Van Leuven</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>AI-native management 🤖, revenue addiction 💰, fintech moats 🛡️</h3>\n<p class=\"summary\">Strong identity verification protects your business; adjusting friction based on risk keeps your conversions flowing. To do both, you need a modern identity platform.</p>\n<ul class=\"key-points\">\n<li>Strong identity verification protects your business; adjusting friction based on risk keeps your conversions flowing. To do both, you need a modern id</li><li>Persona's Startup Program gives early-stage companies access to the same tool used at Etsy, LinkedIn, and Twilio – starting at $0:</li><li>→ 500 free verifications/month for 12 months</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Meta's AI flop 🤖, Google Maps redesign 🗺️, Perplexity Agent API 🧑‍💻 </h3>\n<p class=\"summary\">No scraping infrastructure.No proxy rotation.No parser maintenance.</p>\n<ul class=\"key-points\">\n<li>No scraping infrastructure.No proxy rotation.No parser maintenance.</li><li>Use cases include:👉 AI grounding👉 Market research👉 SEO, GEO, &amp; rank tracking</li><li>Special offer for TLDR: Start with 250 free searches/month or claim 3 months at 50% off for new accounts.</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>When product discovery breaks down 🧩, rethinking product 🧱, kill your darlings 🔥</h3>\n<p class=\"summary\">Replit's new Agent 4 attacks that problem directly, and shortens the idea→shipped loop to days. It's a multi-agent system for building products - not stitching together prototypes.</p>\n<ul class=\"key-points\">\n<li>Replit's new Agent 4 attacks that problem directly, and shortens the idea→shipped loop to days. It's a multi-agent system for building products - not </li><li>→ Use parallel Agents to plan, design, and build multiple features in the same environment, at the same time</li><li>→ Build apps on top of AI services, your data stack, or integrations like Notion, Linear, Figma</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🏈 Markets A.M.: Was This a Super Indicator of AI Excess?</h3>\n<p class=\"summary\">It’s Friday the 13th—what could go wrong? Stocks are set to continue their selloff as oil flirts with the $100-a-barrel level. This is happening at the same time as some investors are rushing to dump </p>\n<ul class=\"key-points\">\n<li>It’s Friday the 13th—what could go wrong? Stocks are set to continue their selloff as oil flirts with the $100-a-barrel level. This is happening at th</li><li>​📈 Follow our live markets data and coverage.</li><li>Sometimes you don’t need spreadsheets or fancy models to warn you about frothy markets.</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: When the Money Isn't Everything</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>As the Journal reported earlier this week, two high-profile OpenAI executives recently quit after CEO Sam Altman brokered a deal with the Defense Depa</li><li>The defections underscored a theme in the AI category—that ideas about purpose and corporate responsibility still have currency, just as they did acro</li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-03-14 每日科技简报",
+    "subtitle": "来自 2 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Your brain on AI</h3>\n<p class=\"summary\">For Haraguchi, pi is more than just a number—it’s a spiritual calling. He told The Guardian: “All things in this world, including ourselves, are aggregate sums of atoms, which are made up of rotating </p>\n<ul class=\"key-points\">\n<li>For Haraguchi, pi is more than just a number—it’s a spiritual calling. He told The Guardian: “All things in this world, including ourselves, are aggre</li><li>—Brendan Cosgrove, Molly Liebergall, Dave Lozo, Sam Klebanov, Matty Merritt, Abby Rubenstein, Holly Van Leuven</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 其他来源</h2>\n\n<div class=\"article-card\">\n<h3>Dan Hockenmaier and Emily Kramer posted new notes</h3>\n<p class=\"summary\">Dan Hockenmaier and Emily Kramer posted new notes</p>\n<ul class=\"key-points\">\n<li>Dan Hockenmaier and Emily Kramer posted new notes</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
-        "name": "TLDR",
+        "name": "Other",
         "url": "",
         "type": "newsletter",
-        "summary": "3封邮件"
-      },
-      {
-        "name": "Wall Street Journal",
-        "url": "",
-        "type": "newsletter",
-        "summary": "2封邮件"
+        "summary": "1封邮件"
       },
       {
         "name": "Morning Brew",
@@ -32,8 +26,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 1000,
-    "readTime": "3 min",
+    "wordCount": 200,
+    "readTime": "2 min",
     "language": "zh-CN"
   }
 }
