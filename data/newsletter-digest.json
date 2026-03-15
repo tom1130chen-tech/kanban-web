@@ -1,18 +1,24 @@
 {
-  "digestDate": "2026-03-14",
+  "digestDate": "2026-03-15",
   "article": {
-    "title": "2026-03-14 每日科技简报",
-    "subtitle": "来自 2 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Your brain on AI</h3>\n<p class=\"summary\">For Haraguchi, pi is more than just a number—it’s a spiritual calling. He told The Guardian: “All things in this world, including ourselves, are aggregate sums of atoms, which are made up of rotating </p>\n<ul class=\"key-points\">\n<li>For Haraguchi, pi is more than just a number—it’s a spiritual calling. He told The Guardian: “All things in this world, including ourselves, are aggre</li><li>—Brendan Cosgrove, Molly Liebergall, Dave Lozo, Sam Klebanov, Matty Merritt, Abby Rubenstein, Holly Van Leuven</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 其他来源</h2>\n\n<div class=\"article-card\">\n<h3>Dan Hockenmaier and Emily Kramer posted new notes</h3>\n<p class=\"summary\">Dan Hockenmaier and Emily Kramer posted new notes</p>\n<ul class=\"key-points\">\n<li>Dan Hockenmaier and Emily Kramer posted new notes</li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-03-15 每日科技简报",
+    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n\n<div class=\"article-card\">\n<h3>The tactical playbook for getting 20-40% more comp (without sounding greedy) | Jacob Warwick (Executive Negotiator)</h3>\n<p class=\"summary\">Jacob Warwick is an executive negotiation coach who helps senior operators negotiate better salary, equity, titles, and severance packages. He has worked with leaders across tech and Hollywood, was pr</p>\n<ul class=\"key-points\">\n<li>Jacob Warwick is an executive negotiation coach who helps senior operators negotiate better salary, equity, titles, and severance packages. He has wor</li><li>Listen on YouTube, Spotify, and Apple Podcasts</li><li>Why a simple “What’s the chance there’s a little more here?” often unlocks a 20% bump</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Recomendo</h2>\n\n<div class=\"article-card\">\n<h3>Flighty / 23 learnings on community / Keep the Meter Running</h3>\n<p class=\"summary\">The markings on our Pyrex 2-cup measuring cup wore off after years of use, so I replaced it with the OXO Good Grips Angled Measuring Cup, made of non-BPA plastic. The clever part is the slanted surfac</p>\n<ul class=\"key-points\">\n<li>The markings on our Pyrex 2-cup measuring cup wore off after years of use, so I replaced it with the OXO Good Grips Angled Measuring Cup, made of non-</li><li>In Every Language is a Wikipedia search engine that lets you see how different regions of the world depict the same thing. It’s very cool to search a </li><li>Stop trying to keep up with podcasts. PodSnacks tracks the top 100 podcasts across business, tech, politics, and culture and turns them into fast dail</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TechCrunch</h2>\n\n<div class=\"article-card\">\n<h3>Feed yourself more TechCrunch</h3>\n<p class=\"summary\">Thanks again for signing up for our emails! We're grateful that you've welcomed us into your inbox, and we wanted you to know there are plenty of other feeds and channels where you can find our day-to</p>\n<ul class=\"key-points\">\n<li>Thanks again for signing up for our emails! We're grateful that you've welcomed us into your inbox, and we wanted you to know there are plenty of othe</li><li>If audio's your thing, we have two podcasts that you can subscribe to right now:</li><li>If you want to stay up-to-date with all of our coverage in the feed that works best for you, with some added surprises from our video team, you can fi</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
-        "name": "Other",
+        "name": "Lenny's Newsletter",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
       },
       {
-        "name": "Morning Brew",
+        "name": "TechCrunch",
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
+      },
+      {
+        "name": "Recomendo",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
@@ -26,8 +32,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 200,
-    "readTime": "2 min",
+    "wordCount": 400,
+    "readTime": "3 min",
     "language": "zh-CN"
   }
 }
