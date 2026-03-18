@@ -1,15 +1,15 @@
 {
-  "digestDate": "2026-03-17",
+  "digestDate": "2026-03-18",
   "article": {
-    "title": "2026-03-17 每日科技简报",
+    "title": "2026-03-18 每日科技简报",
     "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n\n<div class=\"article-card\">\n<h3>How I built LennyRPG</h3>\n<p class=\"summary\">👋  Each week, I answer reader questions about building product, driving growth, and accelerating your career. For more: Lenny’s Podcast | Lennybot | How I AI | My favorite AI/PM courses, public speaki</p>\n<ul class=\"key-points\">\n<li>👋  Each week, I answer reader questions about building product, driving growth, and accelerating your career. For more: Lenny’s Podcast | Lennybot | H</li><li>P.S. Get a full free year of Lovable, Manus, Replit, Gamma, n8n, Canva, ElevenLabs, Amp, Factory, Devin, Bolt, Wispr Flow, Linear, PostHog, Framer, Ra</li><li>A few months ago, I shared all of my podcast transcripts on socials on a whim, and holy sh*t, y’all found such incredibly creative ways to use this da</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>OpenAI's pivot 🤖, Nvidia space GPUs 🛰️, Stripe's internal dev agent 👨‍💻</h3>\n<p class=\"summary\">P.S. Don't forget to stop by the Google Cloud booth for some goodies and to hear the latest updates directly from the Google team!</p>\n<ul class=\"key-points\">\n<li>P.S. Don't forget to stop by the Google Cloud booth for some goodies and to hear the latest updates directly from the Google team!</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Storytelling for PMs 🗣️💬, capacity is the roadmap ⚡, the Pokémon dataset 🐱</h3>\n<p class=\"summary\">Love TLDR? Tell your friends and get rewards!</p>\n<ul class=\"key-points\">\n<li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🤹‍♂️ Markets A.M.: Big Tech’s Huge Conglomerate Premium</h3>\n<p class=\"summary\">After Monday’s respite from Iran angst, U.S. stocks appear set for a wobbly open. There’s no sign of willingness by Tehran to ease its chokehold on the region’s energy exports or of major allies heedi</p>\n<ul class=\"key-points\">\n<li>After Monday’s respite from Iran angst, U.S. stocks appear set for a wobbly open. There’s no sign of willingness by Tehran to ease its chokehold on th</li><li>​📈 Follow our live markets data and coverage.</li><li>Remember when Jack Welch brought good things to life?</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: Jensen Huang Asks, What’s Your OpenClaw Strategy?</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>Forgive me for using an old reference for a decidedly recent phenomenon. Jensen Huang is today’s EF Hutton, the brokerage firm that decades ago had th</li><li>People look to him for a sense of where AI is heading, and in times of doubt about its prospects, seemingly for reassurance. Each time, he appears hap</li>\n</ul>\n</div>\n</section>\n</div>",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Adult mode</h3>\n<p class=\"summary\">Rise and shine. Update: Punch, the tiny monkey who broke hearts last month because he was having trouble making friends in his enclosure, now has a “girlfriend,” according to reports. He was recently </p>\n<ul class=\"key-points\">\n<li>Rise and shine. Update: Punch, the tiny monkey who broke hearts last month because he was having trouble making friends in his enclosure, now has a “g</li><li>Sources say that while the couple first met on the enclosure’s sunning rock, they didn’t actually get together until they matched on Peeld.</li><li>—Dave Lozo, Sam Klebanov, Matty Merritt, Adam Epstein</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Software budget shifts 💰, founder storytelling 📚, AI terminal value collapse 💸</h3>\n<p class=\"summary\">To help you navigate these challenges, Stripe interviewed the founders behind the fastest-growing companies. Learn how ElevenLabs, Runway, and Leonardo AI turned their visions into global revenue powe</p>\n<ul class=\"key-points\">\n<li>To help you navigate these challenges, Stripe interviewed the founders behind the fastest-growing companies. Learn how ElevenLabs, Runway, and Leonard</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Amazon 1hr delivery 🚚, GPT-5.4 mini 🤖, how Anthropic uses Skills 👨‍💻</h3>\n<p class=\"summary\">\"This is the best AI product I've used since ChatGPT.\" -- Rahul Vohra, CEO, Superhuman</p>\n<ul class=\"key-points\">\n<li>\"This is the best AI product I've used since ChatGPT.\" -- Rahul Vohra, CEO, Superhuman</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🫣 Markets A.M.: This Market Massacre Still Haunts the Fed</h3>\n<p class=\"summary\">U.S. stock futures are pointing to a third green session in a row despite global oil prices hovering around the triple-digit mark. Markets almost certainly won’t get any relief on the rate front from </p>\n<ul class=\"key-points\">\n<li>U.S. stock futures are pointing to a third green session in a row despite global oil prices hovering around the triple-digit mark. Markets almost cert</li><li>​📈 Follow our live markets data and coverage.</li><li>The “Saturday Night Massacre” sounds like something that happened during a war, but the only blood spilled in October 1979’s emergency Federal Reserve</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: Zurich's New U.S. CEO Won't Let the Insurer Stand Still</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>Sierra Signorelli admits that her industry—insurance—doesn’t exactly have a reputation for attributes such as speed and innovation. And yet here she i</li><li>“We can't just stand still,” Signorelli, who's also CEO of commercial insurance, told me when she stopped by the Leadership Institute’s offices last w</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
-        "name": "Lenny's Newsletter",
+        "name": "TLDR",
         "url": "",
         "type": "newsletter",
-        "summary": "1封邮件"
+        "summary": "2封邮件"
       },
       {
         "name": "Wall Street Journal",
@@ -18,10 +18,10 @@
         "summary": "2封邮件"
       },
       {
-        "name": "TLDR",
+        "name": "Morning Brew",
         "url": "",
         "type": "newsletter",
-        "summary": "2封邮件"
+        "summary": "1封邮件"
       }
     ],
     "author": "Chat",
@@ -32,7 +32,7 @@
     ]
   },
   "metadata": {
-    "wordCount": 799,
+    "wordCount": 800,
     "readTime": "3 min",
     "language": "zh-CN"
   }
