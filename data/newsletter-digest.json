@@ -1,9 +1,9 @@
 {
-  "digestDate": "2026-03-19",
+  "digestDate": "2026-03-20",
   "article": {
-    "title": "2026-03-19 每日科技简报",
-    "subtitle": "来自 2 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Amazon vs USPS 📪, Google's vibe designer 🧑‍🎨, how Codex works 🤖</h3>\n<p class=\"summary\">while also keeping one of the world's busiest websites working as intended. Sean will share his top recommendations for anyone embarking on a modernization drive.\n\nJoin live on April 6, 2026</p>\n<ul class=\"key-points\">\n<li>while also keeping one of the world's busiest websites working as intended. Sean will share his top recommendations for anyone embarking on a moderniz</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🗡️ Markets A.M.: Don’t Grab That Plunging Stock</h3>\n<p class=\"summary\">Investors hoping for hints of help from Wednesday’s Fed meeting were disappointed. Central banks can create money out of thin air, but they can’t make oil. Brent crude prices passed $115 this morning,</p>\n<ul class=\"key-points\">\n<li>Investors hoping for hints of help from Wednesday’s Fed meeting were disappointed. Central banks can create money out of thin air, but they can’t make</li><li>​📈 Follow our live markets data and coverage.</li><li>Even before Middle East chaos sent it on a roller-coaster ride this month, the stock market was unusually choppy beneath the surface. The expanding ab</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: General Petraeus Shares His Formula for 'Institutional Change'</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>That’s retired Gen. David Petraeus speaking yesterday at the Economic Club of New York, explaining how to bring about “institutional change, revolutio</li><li>Today, the rise of AI has made that evolution urgent and necessary within the U.S. military, he argued. Yes, AI and semiautonomous systems have alread</li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-03-20 每日科技简报",
+    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕️ Terminally online</h3>\n<p class=\"summary\">Good morning, and happy first day of spring! One step closer to parks full of pale thighs, scooters blocking every sidewalk, and having to listen to your friends’ opinions about bees.</p>\n<ul class=\"key-points\">\n<li>Good morning, and happy first day of spring! One step closer to parks full of pale thighs, scooters blocking every sidewalk, and having to listen to y</li><li>And remember: Sneeze into your arm, not your hand.</li><li>—Sam Klebanov, Molly Liebergall, Matty Merritt, Adam Epstein, Holly Van Leuven, Neal Freyman</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Bezos raising $100B 💰, OpenAI's Superapp 💻, Cursor Composer 2 🤖</h3>\n<p class=\"summary\">-- Cue manual data export and three hours of analysis.</p>\n<ul class=\"key-points\">\n<li>-- Cue manual data export and three hours of analysis.</li><li>\"What do our best customers have in common?\"</li><li>\"Create a proposal that will help us close this deal.\"</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Easy shipping 🚢, messy docs as helpful pattern 📝, new retention techniques 🧲</h3>\n<p class=\"summary\">Persona gives product teams a configurable layer of identity verification - from documents to biometrics to real-time risk signals. It's built to stop bad actors without adding friction for legitimate</p>\n<ul class=\"key-points\">\n<li>Persona gives product teams a configurable layer of identity verification - from documents to biometrics to real-time risk signals. It's built to stop</li><li>See how you can verify users, stop fraud, and protect conversion rates →</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🎥 Markets A.M.: You Can Play Media Mogul on This Deal</h3>\n<p class=\"summary\">Talk about using military force to reopen the Strait of Hormuz sparked an afternoon bounce in stocks and a retreat from multiyear high oil prices Thursday. The stakes are high for the global economy a</p>\n<ul class=\"key-points\">\n<li>Talk about using military force to reopen the Strait of Hormuz sparked an afternoon bounce in stocks and a retreat from multiyear high oil prices Thur</li><li>​📈 Follow our live markets data and coverage.</li><li>Is the largest leveraged buyout ever in doubt?</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: Would You Use an Interview ‘Anti-Close’?</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>Whoop CEO Will Ahmed’s interviews of job candidates end not with an effort to close the deal but instead with an “anti-close.”</li><li>“The anti-close, or the concept of anti-close, is to say to people, ‘Hey, we're going to ask you to do things that you've never done before,’” Ahmed t</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
         "name": "Wall Street Journal",
@@ -13,6 +13,12 @@
       },
       {
         "name": "TLDR",
+        "url": "",
+        "type": "newsletter",
+        "summary": "2封邮件"
+      },
+      {
+        "name": "Morning Brew",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
@@ -26,8 +32,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 400,
-    "readTime": "2 min",
+    "wordCount": 800,
+    "readTime": "3 min",
     "language": "zh-CN"
   }
 }
