@@ -1,16 +1,10 @@
 {
-  "digestDate": "2026-03-25",
+  "digestDate": "2026-03-26",
   "article": {
-    "title": "2026-03-25 每日科技简报",
-    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Public freakout</h3>\n<p class=\"summary\">Well met, or mae govannen, as the Elves would say. Today, March 25, is Tolkien Reading Day, chosen for the day that the One Ring was destroyed in the fires of Mount Doom.</p>\n<ul class=\"key-points\">\n<li>Well met, or mae govannen, as the Elves would say. Today, March 25, is Tolkien Reading Day, chosen for the day that the One Ring was destroyed in the </li><li>Let the anniversary of the ring’s destruction inspire you to let go of anything weighing you down, or consuming your thoughts, or giving you unnatural</li><li>—Sam Klebanov, Matty Merritt, Dave Lozo, Adam Epstein</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Revenue durability crisis 💸, end of free trials 📉, finding PMF 👨‍💻 ⚡</h3>\n<p class=\"summary\">With Justworks, you can simplify all of that work. Your payroll, benefits, and compliance all live in one place, so you can actually focus on what you built your company to do. And whether you're hiri</p>\n<ul class=\"key-points\">\n<li>With Justworks, you can simplify all of that work. Your payroll, benefits, and compliance all live in one place, so you can actually focus on what you</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Inside Siri's reboot 📱, OpenAI cancels Sora 🎥, Claude Code auto mode 👨‍💻</h3>\n<p class=\"summary\">✅ Outreach, listings, and optimizations already completed</p>\n<ul class=\"key-points\">\n<li>✅ Outreach, listings, and optimizations already completed</li><li>✅ New opportunities identified—and acted on</li><li>Accio comes preloaded with hundreds of verified skills and business tools APIs. And it's powered by Alibaba.com's 1B+ product ecosystem.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>⚒️ There’s Gold in Corporate Data Dumps</h3>\n<p class=\"summary\">This is Heard on the Street writer Jonathan Weil, filling in for Spencer Jakab. Hopes are rising that diplomacy will lead to a cease-fire in the Middle East. Futures jumped, oil prices fell and Treasu</p>\n<ul class=\"key-points\">\n<li>This is Heard on the Street writer Jonathan Weil, filling in for Spencer Jakab. Hopes are rising that diplomacy will lead to a cease-fire in the Middl</li><li>​📈 Follow our live markets data and coverage.</li><li>It’s an awfully strange time for the government to start thinking of giving investors less information rather than more.</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: AI Has Won Over CFOs at Last</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>When the members of our WSJ CFO Council gathered a year ago, they were swapping stories about the sluggishness of their AI efforts. They had data prob</li><li>But this year, they’ve turned the corner. Asked when they expected to get “true ROI from AI within the finance function,” a majority of them said “we </li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-03-26 每日科技简报",
+    "subtitle": "来自 2 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Apple's Gemini deal 🤖, how Claude thinks 🧠, antimatter transport ⚛️ </h3>\n<p class=\"summary\">Their AI-native service gets engineering teams to 80% automated end-to-end test coverage, and helps dev teams ship 5x faster by reducing QA cycles from hours to minutes.</p>\n<ul class=\"key-points\">\n<li>Their AI-native service gets engineering teams to 80% automated end-to-end test coverage, and helps dev teams ship 5x faster by reducing QA cycles fro</li><li>QA Wolf takes testing off your plate. They can get you:</li><li>The benefit? No more manual E2E testing. No more slow QA cycles. No more bugs reaching production.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🔬 Markets A.M.: Small-cap stocks Flash a Warning and an Opportunity</h3>\n<p class=\"summary\">One day the market rallies on confident talk about a “deal” to end the war. The next the gap between President Trump and Iran looks wide enough to sail a supertanker through. Today is shaping up to be</p>\n<ul class=\"key-points\">\n<li>One day the market rallies on confident talk about a “deal” to end the war. The next the gap between President Trump and Iran looks wide enough to sai</li><li>​📈 Follow our live markets data and coverage.</li><li>The Russell 2000 became the first major U.S. stock index to fall into correction territory last week.</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: Inside Microsoft’s AI Transformation</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>Let’s call the conversation Microsoft Chief People Officer Amy Coleman said she had with a peer a multiplier.</li><li>“I sit in the middle of an AI company and I was meeting another chief people officer and she told me she starts her day in AI, not in mail, not in Tea</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
-      {
-        "name": "TLDR",
-        "url": "",
-        "type": "newsletter",
-        "summary": "2封邮件"
-      },
       {
         "name": "Wall Street Journal",
         "url": "",
@@ -18,7 +12,7 @@
         "summary": "2封邮件"
       },
       {
-        "name": "Morning Brew",
+        "name": "TLDR",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
@@ -32,8 +26,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 800,
-    "readTime": "3 min",
+    "wordCount": 400,
+    "readTime": "2 min",
     "language": "zh-CN"
   }
 }
