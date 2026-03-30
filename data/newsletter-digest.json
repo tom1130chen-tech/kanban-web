@@ -1,12 +1,24 @@
 {
-  "digestDate": "2026-03-29",
+  "digestDate": "2026-03-30",
   "article": {
-    "title": "2026-03-29 每日科技简报",
-    "subtitle": "来自 1 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Recomendo</h2>\n\n<div class=\"article-card\">\n<h3>Retro Recomendo: Followable</h3>\n<p class=\"summary\">Our subscriber base has grown so much since we first started nine years ago, that most of you have missed all our earliest recommendations. The best of these are still valid and useful, so we’re tryin</p>\n<ul class=\"key-points\">\n<li>Our subscriber base has grown so much since we first started nine years ago, that most of you have missed all our earliest recommendations. The best o</li><li>How To Home is a YouTube channel with excellent videos that demonstrate how to complete common household repairs, such as wiring switches, fixing fauc</li><li>Gastro Obscura is an Instagram account with photos and descriptions of unusual foods from around the world. You’ll find Japanese cream puffs that look</li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-03-30 每日科技简报",
+    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Another element</h3>\n<p class=\"summary\">Hello there. Wild weekend for KitKat: On Saturday, the candy-coated-wafer company told the Agence France-Presse that a truck carrying over 400,000 units was stolen after leaving a factory in central I</p>\n<ul class=\"key-points\">\n<li>Hello there. Wild weekend for KitKat: On Saturday, the candy-coated-wafer company told the Agence France-Presse that a truck carrying over 400,000 uni</li><li>Yesterday, however, although the stolen candy was not retrieved, KitKat posted a statement to X saying, “Good news: there are no concerns for consumer</li><li>Turns out, it’s full of Formula 1 KitKats. Live and learn!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>YC $1M ARR benchmark 📈, state of software 💻, selling to agents 🤖 </h3>\n<p class=\"summary\">Love TLDR? Tell your friends and get rewards!</p>\n<ul class=\"key-points\">\n<li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Anthropic model leaks 🤖, OpenAI Anthropic feud 💼, important AI ideas 🧠</h3>\n<p class=\"summary\">Their AI-native service gets engineering teams to 80% automated end-to-end test coverage, and helps dev teams ship 5x faster by reducing QA cycles from hours to minutes.</p>\n<ul class=\"key-points\">\n<li>Their AI-native service gets engineering teams to 80% automated end-to-end test coverage, and helps dev teams ship 5x faster by reducing QA cycles fro</li><li>QA Wolf takes testing off your plate. They can get you:</li><li>The benefit? No more manual E2E testing. No more slow QA cycles. No more bugs reaching production.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>👻 Markets A.M.: These Invisible Stocks Have a Superpower</h3>\n<p class=\"summary\">Stocks are pointing to gains to start the week but oil prices are too. U.S. benchmark crude topped $100 a barrel. With the Iran conflict more than a month old, investors aren’t quite sure what to make</p>\n<ul class=\"key-points\">\n<li>Stocks are pointing to gains to start the week but oil prices are too. U.S. benchmark crude topped $100 a barrel. With the Iran conflict more than a m</li><li>​📈 Follow our live markets data and coverage.</li><li>Have you heard of Trinity Industries, M/I Homes or Matson?</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: Why AI May Be a Boon—Not a Threat—to College Grads</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>I was on a college campus earlier this year, and was struck by the level of anxiety among students about their job prospects. AI, they feared, was tak</li><li>Their worries aren’t without cause. AI clearly is encroaching on entry-level knowledge jobs. The data already suggests a decline in college-level hiri</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
-        "name": "Recomendo",
+        "name": "TLDR",
+        "url": "",
+        "type": "newsletter",
+        "summary": "2封邮件"
+      },
+      {
+        "name": "Wall Street Journal",
+        "url": "",
+        "type": "newsletter",
+        "summary": "2封邮件"
+      },
+      {
+        "name": "Morning Brew",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
@@ -20,8 +32,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 200,
-    "readTime": "1 min",
+    "wordCount": 800,
+    "readTime": "3 min",
     "language": "zh-CN"
   }
 }
