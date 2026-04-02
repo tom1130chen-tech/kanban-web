@@ -1,15 +1,15 @@
 {
-  "digestDate": "2026-04-01",
+  "digestDate": "2026-04-02",
   "article": {
-    "title": "2026-04-01 每日科技简报",
+    "title": "2026-04-02 每日科技简报",
     "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Babe, get the bikes</h3>\n<p class=\"summary\">Good evening. Haha, got you. It’s the morning. April Fools’.</p>\n<ul class=\"key-points\">\n<li>Good evening. Haha, got you. It’s the morning. April Fools’.</li><li>If you need a good prank for today, it’s never too late to get into edible glass. Here’s an easy recipe.</li><li>—Matty Merritt, Dave Lozo, Sam Klebanov, Adam Epstein</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>AI-native orgs 🤖, services as software 🤝, digital twins 👥 </h3>\n<p class=\"summary\">Love TLDR? Tell your friends and get rewards!</p>\n<ul class=\"key-points\">\n<li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Claude Code leaks 🤖, inside DeepMind 🧠, inference engineering 🧑‍💻</h3>\n<p class=\"summary\">MiniMax is also open-sourcing their Office Skills library(MIT): 4 production-grade Skills for Word, Excel, PDF &amp; PPT that generate actually deliverable files. Works with Claude Code, Cursor, Codex</p>\n<ul class=\"key-points\">\n<li>MiniMax is also open-sourcing their Office Skills library(MIT): 4 production-grade Skills for Word, Excel, PDF &amp; PPT that generate actually delive</li><li>New: MiniMax launches the world's first subscription supporting all modalities: M2.7, video, voice, music and image, with no surprise bills. → Subscri</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>🎢 Markets A.M.: This Market Drama Can Cost You</h3>\n<p class=\"summary\">Neither the AI-pocalypse nor an energy crisis kept companies from agreeing to buy one another at a record clip during the first quarter. After a very rocky few weeks, optimism has moved from boardroom</p>\n<ul class=\"key-points\">\n<li>Neither the AI-pocalypse nor an energy crisis kept companies from agreeing to buy one another at a record clip during the first quarter. After a very </li><li>​📈 Follow our live markets data and coverage.</li><li>Imagine going into a coma exactly one year ago and waking up a month later. After hugging your relieved family, you’d check your brokerage statement a</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: CEOs Feel 'Emotionally Drained'—and Threatened</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>BCG is out with a study today that may be a cathartic read for CEOs.</li><li>It shows that when you’re pacing your living room at 3 a.m., your peers are likely doing the same, chewing on similar concerns. Why did the board make</li>\n</ul>\n</div>\n</section>\n</div>",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n\n<div class=\"article-card\">\n<h3>An AI state of the union: We’ve passed the inflection point, dark factories are coming, and automation timelines |…</h3>\n<p class=\"summary\">Listen on YouTube, Spotify, and Apple Podcasts</p>\n<ul class=\"key-points\">\n<li>Listen on YouTube, Spotify, and Apple Podcasts</li><li>Why November 2025 was the inflection point when AI coding agents crossed from “mostly works” to “actually works”</li><li>How Simon writes 95% of his code from his phone now and why he’s mentally exhausted by 11 a.m.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>SpaceX files IPO 💰, OpenAI shares sink 📉, the spec layer 👨‍💻</h3>\n<p class=\"summary\">Littlebird is what AI should have been from the start. It observes your screen and meetings, building a private memory that grows with you. No setup. No catching it up. Just an AI that finally knows w</p>\n<ul class=\"key-points\">\n<li>Littlebird is what AI should have been from the start. It observes your screen and meetings, building a private memory that grows with you. No setup. </li><li>This is what AI was supposed to feel like.</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>⚖️ Markets A.M.: Do 'Safe' Retirement Portfolios Need a Rethink?</h3>\n<p class=\"summary\">President Trump’s Wednesday night speech on the Iran conflict went down like a lead balloon with investors, reversing a vigorous rally. Overseas markets are lower and U.S. stock futures point to losse</p>\n<ul class=\"key-points\">\n<li>President Trump’s Wednesday night speech on the Iran conflict went down like a lead balloon with investors, reversing a vigorous rally. Overseas marke</li><li>​📈 Follow our live markets data and coverage.</li><li>The bedrock of most retirement plans is some variation of the 60/40 portfolio. Is it about to fail us?</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>CEO Brief: What Being an Astronaut Taught a CEO</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>Scott Parazynski spent last night as many people did. “I'm watching the NASA feed as we speak,” he told me a couple of hours before the Artemis II lau</li><li>But Parazynski’s perspective is a bit different than most people’s. He flew on five different shuttle missions and walked in space seven times.</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
-        "name": "TLDR",
+        "name": "Lenny's Newsletter",
         "url": "",
         "type": "newsletter",
-        "summary": "2封邮件"
+        "summary": "1封邮件"
       },
       {
         "name": "Wall Street Journal",
@@ -18,7 +18,7 @@
         "summary": "2封邮件"
       },
       {
-        "name": "Morning Brew",
+        "name": "TLDR",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
@@ -32,7 +32,7 @@
     ]
   },
   "metadata": {
-    "wordCount": 800,
+    "wordCount": 600,
     "readTime": "3 min",
     "language": "zh-CN"
   }
