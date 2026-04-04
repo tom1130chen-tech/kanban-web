@@ -1,22 +1,10 @@
 {
-  "digestDate": "2026-04-03",
+  "digestDate": "2026-04-04",
   "article": {
-    "title": "2026-04-03 每日科技简报",
-    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Staycation</h3>\n<p class=\"summary\">Just circling back. Now that April has begun, it means that 25% of the year is complete. That might seem like a lot, but if 2026 were a remote work day, you’d still be in your pajamas. Or if it were H</p>\n<ul class=\"key-points\">\n<li>Just circling back. Now that April has begun, it means that 25% of the year is complete. That might seem like a lot, but if 2026 were a remote work da</li><li>—Matty Merritt, Sam Klebanov, Molly Liebergall, Adam Epstein, Holly Van Leuven</li><li>*Stock data as of market close, cryptocurrency data as of 4:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 TLDR</h2>\n\n<div class=\"article-card\">\n<h3>Agent-first pricing 💸, finding AI tailwinds 🤖, beware simple narratives 💬</h3>\n<p class=\"summary\">Special offer for TLDR readers: get up to 69% off select plans and free migration. For that, you get:</p>\n<ul class=\"key-points\">\n<li>Special offer for TLDR readers: get up to 69% off select plans and free migration. For that, you get:</li><li>👉 Predictable pricing. No surprise fees as you grow.</li><li>👉 Everything you build is yours, exportable anytime.</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>OpenAI buys TBPN 💰, 2 person unicorn 🦄, Cursor v3 🤖</h3>\n<p class=\"summary\">Millions of users worldwide. Free to start.</p>\n<ul class=\"key-points\">\n<li>Millions of users worldwide. Free to start.</li><li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n\n<div class=\"article-card\">\n<h3>Your next customer 🛍️, your best prompt 📝, Claude’s feelings 🤗</h3>\n<p class=\"summary\">Love TLDR? Tell your friends and get rewards!</p>\n<ul class=\"key-points\">\n<li>Love TLDR? Tell your friends and get rewards!</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Wall Street Journal</h2>\n\n<div class=\"article-card\">\n<h3>CEO Brief: The Value in ‘Productive Discomfort’</h3>\n<p class=\"summary\">Is this email difficult to read? View it in a web browser. ›</p>\n<ul class=\"key-points\">\n<li>Is this email difficult to read? View it in a web browser. ›</li><li>We all know the norm at events. The audience asks questions at the end of an onstage interview. But during a discussion about the value of discomfort </li><li>“You didn't know I was going to do this. So now I've inflicted stress upon you to come up with the question and if somebody doesn't raise their hand, </li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-04-04 每日科技简报",
+    "subtitle": "来自 1 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ View from above</h3>\n<p class=\"summary\">Morning, sunshine. Friendly reminder: Tax Day (April 15) is arriving soon, and if you haven’t cranked out your returns yet, this weekend is a great opportunity to do so. If you’ve already done your ta</p>\n<ul class=\"key-points\">\n<li>Morning, sunshine. Friendly reminder: Tax Day (April 15) is arriving soon, and if you haven’t cranked out your returns yet, this weekend is a great op</li><li>—Molly Liebergall, Matty Merritt, Brendan Cosgrove, Sam Klebanov, Abby Rubenstein, Holly Van Leuven</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
-      {
-        "name": "TLDR",
-        "url": "",
-        "type": "newsletter",
-        "summary": "3封邮件"
-      },
-      {
-        "name": "Wall Street Journal",
-        "url": "",
-        "type": "newsletter",
-        "summary": "1封邮件"
-      },
       {
         "name": "Morning Brew",
         "url": "",
@@ -32,8 +20,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 1000,
-    "readTime": "3 min",
+    "wordCount": 200,
+    "readTime": "1 min",
     "language": "zh-CN"
   }
 }
