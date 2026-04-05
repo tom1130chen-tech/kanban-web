@@ -1,12 +1,24 @@
 {
-  "digestDate": "2026-04-04",
+  "digestDate": "2026-04-05",
   "article": {
-    "title": "2026-04-04 每日科技简报",
-    "subtitle": "来自 1 个来源的科技与商业洞察（过去 24 小时）",
-    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ View from above</h3>\n<p class=\"summary\">Morning, sunshine. Friendly reminder: Tax Day (April 15) is arriving soon, and if you haven’t cranked out your returns yet, this weekend is a great opportunity to do so. If you’ve already done your ta</p>\n<ul class=\"key-points\">\n<li>Morning, sunshine. Friendly reminder: Tax Day (April 15) is arriving soon, and if you haven’t cranked out your returns yet, this weekend is a great op</li><li>—Molly Liebergall, Matty Merritt, Brendan Cosgrove, Sam Klebanov, Abby Rubenstein, Holly Van Leuven</li><li>*Stock data as of market close, cryptocurrency data as of 6:00pm ET. Here's what these numbers mean.</li>\n</ul>\n</div>\n</section>\n</div>",
+    "title": "2026-04-05 每日科技简报",
+    "subtitle": "来自 3 个来源的科技与商业洞察（过去 24 小时）",
+    "content": "<div class=\"newsletter-modules\">\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Lenny's Newsletter</h2>\n\n<div class=\"article-card\">\n<h3>Anthropic’s $1B to $19B growth run: how Claude became the fastest-growing AI product in history | Amol Avasare</h3>\n<p class=\"summary\">Amol Avasare is Head of Growth at Anthropic, which is going through the most unprecedented growth trajectory in history—scaling from $1 billion to over $19 billion in ARR in just 14 months. Previously</p>\n<ul class=\"key-points\">\n<li>Amol Avasare is Head of Growth at Anthropic, which is going through the most unprecedented growth trajectory in history—scaling from $1 billion to ove</li><li>Listen on YouTube, Spotify, and Apple Podcasts</li><li>How Amol landed his role by cold emailing Anthropic’s CPO Mike Krieger</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Morning Brew</h2>\n\n<div class=\"article-card\">\n<h3>☕ Impersonator Brew</h3>\n<p class=\"summary\">Good morning. You know what they say: Imitation is the greatest form of flattery. And impersonation is the greatest form of flattery that also pays the bills (no one says that). Today’s Brew is all ab</p>\n<ul class=\"key-points\">\n<li>Good morning. You know what they say: Imitation is the greatest form of flattery. And impersonation is the greatest form of flattery that also pays th</li><li>The cast of ‘RAIN: A Beatles Tribute,’ at the NYSE. Rob Kim/Getty Images</li><li>Even though he left the building in 1977, Elvis Presley is likely the first person you think of when it comes to celebrity impersonators. The Legend h</li>\n</ul>\n</div>\n</section>\n<section class=\"source-module\">\n<h2 class=\"source-header\">📰 Recomendo</h2>\n\n<div class=\"article-card\">\n<h3>Best weather app / Airport delay tracker / Mars photos</h3>\n<p class=\"summary\">Flighty’s airport dashboard shows live departure and arrival delays for hundreds of airports around the world. A quick glance before you leave for the airport could save you a lot of stress — or at le</p>\n<ul class=\"key-points\">\n<li>Flighty’s airport dashboard shows live departure and arrival delays for hundreds of airports around the world. A quick glance before you leave for the</li><li>The Anker Smart Display Charger is a 45W USB-C block with a built-in color screen that’s genuinely useful. It shows real-time wattage, how close your </li><li>This website lets you follow the path of the Curiosity rover through every step and photo since it landed on Mars in 2012. You scroll along the rover’</li>\n</ul>\n</div>\n</section>\n</div>",
     "sources": [
       {
+        "name": "Lenny's Newsletter",
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
+      },
+      {
         "name": "Morning Brew",
+        "url": "",
+        "type": "newsletter",
+        "summary": "1封邮件"
+      },
+      {
+        "name": "Recomendo",
         "url": "",
         "type": "newsletter",
         "summary": "1封邮件"
@@ -20,8 +32,8 @@
     ]
   },
   "metadata": {
-    "wordCount": 200,
-    "readTime": "1 min",
+    "wordCount": 600,
+    "readTime": "3 min",
     "language": "zh-CN"
   }
 }
